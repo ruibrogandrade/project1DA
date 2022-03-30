@@ -4,10 +4,7 @@
 
 #include "Packages.h"
 
-
-Packages::Packages(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int duration,
-                   bool expressDelivery) : volume(volume), weight(weight), reward(reward), duration(duration),
-                                           ExpressDelivery(expressDelivery) {}
+Packages::Packages(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int duration) : volume(volume), weight(weight), reward(reward), duration(duration) {}
 
 unsigned int Packages::getVolume() const {
     return volume;
