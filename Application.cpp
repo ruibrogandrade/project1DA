@@ -3,9 +3,12 @@
 //
 
 #include "Application.h"
+#include <string>
+
+using namespace std;
 
 void Application::fileReaderPackages() {
-    unsigned int bulk, ;
-    int i = 0;
+    unsigned int bulk, weight, reward, duration;
+    string path =
     while(getline(ficheiro, temp, ' '))
 }

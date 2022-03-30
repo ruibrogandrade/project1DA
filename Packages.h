@@ -14,6 +14,9 @@ private:
     unsigned int duration;
     bool ExpressDelivery;
 public:
+    Packages(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int duration,
+             bool expressDelivery);
+
     unsigned int getVolume() const;
     void setVolume(unsigned int volume);
     unsigned int getWeight() const;
