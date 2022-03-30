@@ -3,4 +3,4 @@ project(urban_logistics)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(urban_logistics main.cpp)
+add_executable(urban_logistics main.cpp Transport.cpp Transport.h)
