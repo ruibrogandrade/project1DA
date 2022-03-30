@@ -4,35 +4,35 @@
 
 #include "Packages.h"
 
-int Packages::getVolume() const {
+unsigned int Packages::getVolume() const {
     return volume;
 }
 
-void Packages::setVolume(int volume) {
+void Packages::setVolume(unsigned int volume) {
     Packages::volume = volume;
 }
 
-int Packages::getWeight() const {
+unsigned int Packages::getWeight() const {
     return weight;
 }
 
-void Packages::setWeight(int weight) {
+void Packages::setWeight(unsigned int weight) {
     Packages::weight = weight;
 }
 
-int Packages::getReward() const {
+unsigned int Packages::getReward() const {
     return reward;
 }
 
-void Packages::setReward(int reward) {
+void Packages::setReward(unsigned int reward) {
     Packages::reward = reward;
 }
 
-int Packages::getDuration() const {
+unsigned int Packages::getDuration() const {
     return duration;
 }
 
-void Packages::setDuration(int duration) {
+void Packages::setDuration(unsigned int duration) {
     Packages::duration = duration;
 }
 
