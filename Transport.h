@@ -8,9 +8,11 @@
 
 class Transport {
 private:
+    unsigned int registration;
     unsigned int maxVol;
     unsigned int maxWeight;
     unsigned int price;
+    bool expressDelivery;
 public:
     Transport(unsigned int maxVol, unsigned int maxWeight, unsigned int price);
     unsigned int getMaxWeight() const;

@@ -12,7 +12,7 @@ private:
     unsigned int weight;
     unsigned int reward;
     unsigned int duration;
-    bool ExpressDelivery;
+    bool expressDelivery;
 public:
     Packages(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int duration);
     unsigned int getVolume() const;

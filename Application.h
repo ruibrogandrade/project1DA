@@ -12,11 +12,11 @@ using namespace std;
 
 class Application {
 private:
-    vector<Packages> package;
-    vector<Transport> transport;
+    vector<Packages> packages;
+    vector<Transport> transports;
 public:
-    const vector<Packages> &getPackage() const;
-    const vector<Transport> &getTransport() const;
+    const vector<Packages> &getPackages() const;
+    const vector<Transport> &getTransports() const;
 public:
     void fileReaderPackages();
     void fileReaderTransport();

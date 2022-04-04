@@ -22,7 +22,7 @@ void Application::fileReaderPackages() {
         getline(packagesFile,dataRead, ' '); weight = stoi(dataRead);
         getline(packagesFile,dataRead, ' '); reward = stoi(dataRead);
         getline(packagesFile,dataRead); duration = stoi(dataRead);
-        package.push_back(Packages(volume, weight, reward, duration));
+        packages.push_back(Packages(volume, weight, reward, duration));
     }
 }
 
@@ -38,14 +38,14 @@ void Application::fileReaderTransport() {
         maxVol = stoi(dataRead);
         getline(packagesFile,dataRead, ' '); maxWeight = stoi(dataRead);
         getline(packagesFile,dataRead); price = stoi(dataRead);
-        transport.push_back(Transport(maxVol, maxWeight, price));
+        transports.push_back(Transport(maxVol, maxWeight, price));
     }
 }
 
-const vector<Packages> &Application::getPackage() const {
-    return package;
+const vector<Packages> &Application::getPackages() const {
+    return packages;
 }
 
-const vector<Transport> &Application::getTransport() const {
-    return transport;
+const vector<Transport> &Application::getTransports() const {
+    return transports;
 }
