@@ -8,20 +8,21 @@
 
 class Packages {
 private:
-    int volume;
-    int weight;
-    int reward;
-    int duration;
+    unsigned int volume;
+    unsigned int weight;
+    unsigned int reward;
+    unsigned int duration;
     bool ExpressDelivery;
 public:
-    int getVolume() const;
-    void setVolume(int volume);
-    int getWeight() const;
-    void setWeight(int weight);
-    int getReward() const;
-    void setReward(int reward);
-    int getDuration() const;
-    void setDuration(int duration);
+    Packages(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int duration);
+    unsigned int getVolume() const;
+    void setVolume(unsigned int volume);
+    unsigned int getWeight() const;
+    void setWeight(unsigned int weight);
+    unsigned int getReward() const;
+    void setReward(unsigned int reward);
+    unsigned int getDuration() const;
+    void setDuration(unsigned int duration);
     bool isExpressDelivery() const;
     void setExpressDelivery(bool expressDelivery);
 };
