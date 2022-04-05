@@ -5,21 +5,27 @@
 #ifndef URBAN_LOGISTICS_APPLICATION_H
 #define URBAN_LOGISTICS_APPLICATION_H
 
-#include "Packages.h"
+#include "Package.h"
 #include "Transport.h"
+#include "Optimizer.h"
 #include <vector>
 
 using namespace std;
 
 class Application {
 private:
-    vector<Packages> packages;
-    vector<Transport> transports;
+    vector<Package> allPackages;
+    vector<Transport> allTransports, usedTransports;
 public:
-    const vector<Packages> &getPackages() const;
-    const vector<Transport> &getTransports() const;
-    void fileReaderPackages();
-    void fileReaderTransport();
+    Application();
+    vector<Package> getAllPackages() const;
+    vector<Transport> getAllTransports() const;
+    void readPackages();
+    void readTransports();
+    unsigned int showMenu();
+    void showDeliveredPackages() const;
+    void showUsedTransports() const;
+    void runApplication();
 };
 
 #endif //URBAN_LOGISTICS_APPLICATION_H

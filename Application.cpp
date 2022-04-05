@@ -9,7 +9,12 @@
 
 using namespace std;
 
-void Application::fileReaderPackages() {
+Application::Application() {
+    readPackages();
+    readTransports();
+}
+
+void Application::readPackages() {
     ifstream packagesFile;
     string dataRead, discartedLine;
     unsigned int volume, weight, reward, duration;
@@ -22,11 +27,11 @@ void Application::fileReaderPackages() {
         getline(packagesFile,dataRead, ' '); weight = stoi(dataRead);
         getline(packagesFile,dataRead, ' '); reward = stoi(dataRead);
         getline(packagesFile,dataRead); duration = stoi(dataRead);
-        packages.push_back(Packages(volume, weight, reward, duration));
+        allPackages.push_back(Package(volume, weight, reward, duration));
     }
 }
 
-void Application::fileReaderTransport() {
+void Application::readTransports() {
     ifstream packagesFile;
     string dataRead, discartedLine;
     unsigned long maxVol, maxWeight, price;
@@ -38,14 +43,86 @@ void Application::fileReaderTransport() {
         maxVol = stoi(dataRead);
         getline(packagesFile,dataRead, ' '); maxWeight = stoi(dataRead);
         getline(packagesFile,dataRead); price = stoi(dataRead);
-        transports.push_back(Transport(maxVol, maxWeight, price));
+        allTransports.push_back(Transport(price, maxVol, maxWeight));
     }
 }
 
-const vector<Packages> &Application::getPackages() const {
-    return packages;
+vector<Package> Application::getAllPackages() const {
+    return allPackages;
 }
 
-const vector<Transport> &Application::getTransports() const {
-    return transports;
+vector<Transport> Application::getAllTransports() const {
+    return allTransports;
 }
+
+bool isBadCin(unsigned int choice){
+    //verify if the menu chose is a possible choice made by the user
+
+    if (cin.fail() || cin.peek() != '\n' || choice < 0 || choice > 3) {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        cout << "Invalid input!" << endl;
+        return true;
+    }
+    return false;
+}
+
+unsigned int Application::showMenu() {
+    cout <<
+    "|========================================================================|\n"
+    "|                                                                        |\n"
+    "|          _____________   _________   ______    ___   ___     ___       |\n"
+    "|         /  __   __   /  /   _____/  /  __  |  /  /  /  /    /  /       |\n"
+    "|        /  / /  / /  /  /   /____   /  / |  | /  /  /  /    /  /        |\n"
+    "|       /  / /__/ /  /  /   /____/  /  /  |  |/  /  /  /____/  /         |\n"
+    "|      /__/      /__/  /________/  /__/   |_____/  /__________/          |\n"
+    "|                                                                        |\n"
+    "|========================================================================|\n"
+    "|                                                                        |\n"
+    "|      Optimize express deliveries          [3]                          |\n"
+    "|      Optimize company profit              [2]                          |\n"
+    "|      Optimize the number of transports    [1]                          |\n"
+    "|      Exit                                 [0]                          |\n"
+    "|========================================================================|\n";
+
+    unsigned int choice;
+
+    while(true)
+    {
+        cout << "Choose an option to organize your deliveries:";
+        cin >> choice;
+
+        if(isBadCin(choice))
+            continue;
+
+        return choice;
+    }
+}
+
+void Application::runApplication() {
+    Optimizer deliveryOptimizer;
+
+    while(true)
+    {
+        unsigned int optimizerType = showMenu();
+        deliveryOptimizer = Optimizer(optimizerType, allPackages, allTransports);
+
+        if(optimizerType == EXIT)
+            return;
+
+        deliveryOptimizer.optimize();
+        usedTransports = deliveryOptimizer.getUsedTransports();
+        showUsedTransports();
+        return;
+    }
+}
+
+void Application::showUsedTransports() const {
+    cout << "Transports that were used:" << endl;
+    for(auto transport : usedTransports)
+    {
+        cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice() << endl;
+    }
+}
+
+
