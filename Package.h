@@ -15,6 +15,7 @@ private:
     unsigned int reward;
     unsigned int estimatedTime;
     bool expressDelivery;
+    bool visited = false;
 public:
     //expressDelivery argument is not necessary in the constructor when the order is not express
     //we need only to create a constructor like this: Package(volume, weight, reward, duration)
@@ -26,6 +27,8 @@ public:
     unsigned int getReward() const;
     unsigned int getEstimatedTime() const;
     bool isExpressDelivery() const;
+    bool getVisited() const;
+    void setVisited();
 
     ostream &operator<<(ostream &os) {
         os << volume << "  " << weight << "  " << reward << "  " << estimatedTime << endl;

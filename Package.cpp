@@ -27,3 +27,11 @@ unsigned int Package::getEstimatedTime() const {
 bool Package::isExpressDelivery() const {
     return expressDelivery;
 }
+
+void Package::setVisited() {
+    visited = true;
+}
+
+bool Package::getVisited() const {
+    return visited;
+}
