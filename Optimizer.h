@@ -30,10 +30,6 @@ private:
 
 private:
     //private methods. They are only used as auxiliary functions in the public optimize methods
-    static bool comparePackages(const Package& p1, const Package& p2);
-    static bool compareTransports(const Transport& t1, const Transport& t2);
-    vector<Package> sortPackages(vector<Package> &packages);
-    vector<Transport> sortTransport(vector<Transport> &transports);
 
 public:
     Optimizer(){};
@@ -43,6 +39,8 @@ public:
     void optimizeExpressDelivery();
     void optimize();
     vector<Transport> getUsedTransports() const;
+
+    void cleanUsedTransports();
 };
 
 #endif //OPTIMIZER_H
