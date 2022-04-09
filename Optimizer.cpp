@@ -23,14 +23,13 @@ void Optimizer::optimize() {
 }
 
 void Optimizer::optimizeTransports() {
-    FirstScenario first;
     cleanUsedTransports();
 
     vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    sort(packages.begin(), packages.end(), first.comparePackages);
+    sort(packages.begin(), packages.end(), FirstScenario::comparePackages);
 
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    sort(transports.begin(), transports.end(), first.compareTransports);
+    sort(transports.begin(), transports.end(), FirstScenario::compareTransports);
 
     for(auto t : transports) {
         for (auto p = packages.begin(); p != packages.end(); p++) {
