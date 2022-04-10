@@ -7,14 +7,14 @@
 #include "Transport.h"
 
 bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
-    double ratio1 = p1.getWeight()/p1.getVolume();
-    double ratio2 = p2.getWeight()/p2.getVolume();
+    double ratio1 = (double)p1.getWeight()/p1.getVolume();
+    double ratio2 = (double)p2.getWeight()/p2.getVolume();
     return ratio1 < ratio2;
 }
 
 bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
-    double ratio1 = t1.getMaxWeight()/t1.getMaxVol();
-    double ratio2 = t2.getMaxWeight()/t2.getMaxVol();
+    double ratio1 = (double)t1.getMaxWeight()/t1.getMaxVol();
+    double ratio2 = (double)t2.getMaxWeight()/t2.getMaxVol();
     return ratio1 < ratio2;
 }
 

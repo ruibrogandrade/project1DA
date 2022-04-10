@@ -25,11 +25,19 @@ void Optimizer::optimize() {
 void Optimizer::optimizeTransports() {
     cleanUsedTransports();
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    sort(packages.begin(), packages.end(), FirstScenario::comparePackages);
+    vector<Package> packages = FirstScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
+    vector<Transport> transports = FirstScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
 
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    sort(transports.begin(), transports.end(), FirstScenario::compareTransports);
+    /*
+    for (auto &package: packages)
+        for (auto &t: transports)
+            if (t.addPackage(package\))
+                break;
+
+    int counter = 0;
+    for (const auto& t:transports) if(!t.getCarriedPackages().empty()) counter++;
+    cout << counter << endl;
+    */
 
     for(auto t : transports) {
         for (auto p = packages.begin(); p != packages.end(); p++) {
@@ -40,6 +48,7 @@ void Optimizer::optimizeTransports() {
 
             if(packages.empty()) {
                 usedTransports.push_back(t);
+                cout << usedTransports.size() << endl;
                 return;
             }
         }
