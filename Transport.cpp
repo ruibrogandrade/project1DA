@@ -7,7 +7,7 @@
 Transport::Transport(unsigned int price, unsigned int maxVol, unsigned int maxWeight, bool expressDelivery)
         : maxVol(maxVol), maxWeight(maxWeight), price(price),
         remainingVolume(maxVol), remainingWeight(maxWeight),
-        expressDelivery(expressDelivery){}
+        profit(-price), expressDelivery(expressDelivery){}
 
 unsigned int Transport::getMaxVol() const {
     return maxVol;
@@ -25,11 +25,11 @@ const vector<Package> &Transport::getCarriedPackages() const {
     return carriedPackages;
 }
 
-unsigned int Transport::getRemainingVolume() {
+unsigned int Transport::getRemainingVolume() const {
     return remainingVolume;
 }
 
-unsigned int Transport::getRemainingWeight() {
+unsigned int Transport::getRemainingWeight() const {
     return remainingWeight;
 }
 
@@ -51,8 +51,16 @@ bool Transport::isExpressDelivery() const {
     return expressDelivery;
 }
 
-ostream &Transport::operator<<(ostream &os) {
+ostream &Transport::operator<<(ostream &os) const {
     os << maxVol << "  " << maxWeight << "  " << price << endl;
     return os;
+}
+
+int Transport::getProfit() const {
+    return profit;
+}
+
+void Transport::setProfit(int p) {
+    Transport::profit = p;
 }
 
