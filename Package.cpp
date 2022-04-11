@@ -28,10 +28,15 @@ bool Package::isExpressDelivery() const {
     return expressDelivery;
 }
 
-void Package::setVisited() {
-    visited = true;
+void Package::setAdded() {
+    added = true;
 }
 
-bool Package::getVisited() const {
-    return visited;
+bool Package::isAlreadyAdded() const {
+    return added;
+}
+
+void Package::restart() {
+    added = false;
+    expressDelivery = false;
 }

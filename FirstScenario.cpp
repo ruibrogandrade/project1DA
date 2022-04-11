@@ -14,7 +14,7 @@ bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
 bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
     double sum1 = t1.getMaxWeight() + t1.getMaxVol();
     double sum2 = t2.getMaxWeight() + t2.getMaxVol();
-    return sum1 < sum2;
+    return sum1 > sum2;
 }
 
 vector<Package> FirstScenario::sortPackages(vector<Package> &packages) {

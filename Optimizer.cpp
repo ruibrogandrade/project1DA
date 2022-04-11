@@ -24,22 +24,20 @@ void Optimizer::optimize() {
 }
 
 void Optimizer::optimizeTransports() {
-    cleanUsedTransports();
+    restartOptimizer();
 
     //vector<Package> packages = FirstScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
     vector<Transport> transports = FirstScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
 
     for (auto &package: allPackages)
-        for (auto &t: transports)
-            if (t.addPackage(package))
+        for (auto &transport: transports)
+            if (transport.addPackage(package))
                 break;
 
-    for (const auto& t:transports) {
-        if(!t.getCarriedPackages().empty()) usedTransports.push_back(t);
-        else break;
+    for (const auto& transport:transports) {
+        if(transport.getCarriedPackages().empty()) break;
+        usedTransports.push_back(transport);
     }
-
-    cout << usedTransports.size() << endl;
 
     /*for(auto t : transports) {
         for (auto p = packages.begin(); p != packages.end(); p++) {
@@ -63,7 +61,7 @@ vector<Transport> Optimizer::getUsedTransports() const {
 
 void Optimizer::optimizeProfit(){
     //TODO
-    cleanUsedTransports();
+    restartOptimizer();
 
     vector<Package> packages = SecondScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
     vector<Transport> transports = SecondScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
@@ -73,8 +71,16 @@ void Optimizer::optimizeProfit(){
 
 void Optimizer::optimizeExpressDelivery(){
     //TODO
+    restartOptimizer();
+
 }
 
-void Optimizer::cleanUsedTransports() {
-    this->usedTransports.clear();
+void Optimizer::restartOptimizer() {
+    usedTransports.clear();
+
+    for(auto &package : allPackages)
+        package.restart(); // makes added = false and expressDelivery = false
+
+    for(auto &transport : allTransports) // makes carriedPackages empty and expressDelivery = false
+        transport.restart();
 }

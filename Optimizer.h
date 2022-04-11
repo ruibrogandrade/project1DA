@@ -21,8 +21,8 @@ using namespace std;
 class Optimizer {
 private:
     //class' attributes
-    //vector<map<Package,bool>> allPackages; // This map tells if package has already visited or hasn't;
-    //vector<map<Transport,bool>> allTransports; // This map tells if transport has already visited or hasn't;
+    //vector<map<Package,bool>> allPackages; // This map tells if package has already added or hasn't;
+    //vector<map<Transport,bool>> allTransports; // This map tells if transport has already added or hasn't;
     vector<Transport> usedTransports;
     vector<Transport> allTransports;
     vector<Package> allPackages;
@@ -30,17 +30,16 @@ private:
 
 private:
     //private methods. They are only used as auxiliary functions in the public optimize methods
+    void restartOptimizer();
+    void optimizeTransports();
+    void optimizeProfit();
+    void optimizeExpressDelivery();
 
 public:
     Optimizer(){};
     Optimizer(unsigned int optimizerType, const vector<Package> &allPackages, const vector<Transport> &allTransports);
-    void optimizeTransports();
-    void optimizeProfit();
-    void optimizeExpressDelivery();
     void optimize();
     vector<Transport> getUsedTransports() const;
-
-    void cleanUsedTransports();
 };
 
 #endif //OPTIMIZER_H

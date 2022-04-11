@@ -34,26 +34,23 @@ unsigned int Transport::getRemainingWeight() const {
 }
 
 bool Transport::addPackage(Package &package) {
-    if (package.getVolume() > remainingVolume || package.getWeight() > remainingWeight)
+    if (package.getVolume() > remainingVolume || package.getWeight() > remainingWeight || package.isAlreadyAdded())
         return false;
 
     carriedPackages.push_back(package);
+    package.setAdded();
     remainingVolume -= package.getVolume();
     remainingWeight -= package.getWeight();
     return true;
 }
 
-void Transport::emptyTransport() {
+void Transport::restart() {
     carriedPackages.clear();
+    expressDelivery = false;
 }
 
 bool Transport::isExpressDelivery() const {
     return expressDelivery;
-}
-
-ostream &Transport::operator<<(ostream &os) const {
-    os << maxVol << "  " << maxWeight << "  " << price << endl;
-    return os;
 }
 
 int Transport::getProfit() const {

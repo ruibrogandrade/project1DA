@@ -118,10 +118,14 @@ void Application::runApplication() {
 }
 
 void Application::showUsedTransports() const {
-    cout << "Transports that were used:" << endl;
+
+    cout << endl << "Number of transports that were used: " << usedTransports.size() << endl << endl;
+    cout << "Transports                        Number of carried packages" << endl;
+
     for(auto transport : usedTransports)
     {
-        cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice() << endl;
+        cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
+        << "  ---------------  " << transport.getCarriedPackages().size() << endl;
     }
 }
 
