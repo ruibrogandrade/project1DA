@@ -31,11 +31,6 @@ public:
     void setAdded();
     void restart();
 
-    ostream &operator<<(ostream &os) {
-        os << volume << "  " << weight << "  " << reward << "  " << estimatedTime;
-        return os;
-    }
-
 };
 
 #endif //URBAN_LOGISTICS_PACKAGE_H

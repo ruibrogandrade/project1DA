@@ -66,7 +66,8 @@ void Optimizer::optimizeProfit(){
     vector<Package> packages = SecondScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
     vector<Transport> transports = SecondScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
 
-    for (auto &t: transports) SecondScenario::knapSack(t, packages);
+    for (auto &t: transports)
+        SecondScenario::knapSack(t, packages);
 }
 
 void Optimizer::optimizeExpressDelivery(){

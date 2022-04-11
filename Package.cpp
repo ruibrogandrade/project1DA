@@ -40,3 +40,8 @@ void Package::restart() {
     added = false;
     expressDelivery = false;
 }
+
+ostream &Package::operator<<(ostream &os) const {
+    os << volume << "  " << weight << "  " << reward << "  " << estimatedTime << endl;
+    return os;
+}
