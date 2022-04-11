@@ -16,7 +16,6 @@ public:
     static vector<Package> sortPackages(vector<Package> &packages);
     static vector<Transport> sortTransport(vector<Transport> &transports);
     static void knapSack(Transport& t, vector<Package> &packages);
-    static unsigned int totalProfit(const set<Package*>& s);
 };
 
 #endif //MAIN_CPP_SECONDSCENARIO_H
