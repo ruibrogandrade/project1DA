@@ -6,15 +6,15 @@
 #include "FirstScenario.h"
 
 bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
-    unsigned int ratio1 = p1.getWeight()+p1.getVolume();
-    unsigned int ratio2 = p2.getWeight()+p2.getVolume();
-    return ratio1 < ratio2;
+    double sum1 = p1.getWeight() + p1.getVolume();
+    double sum2 = p2.getWeight() + p2.getVolume();
+    return sum1 < sum2;
 }
 
 bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
-    double ratio1 = (double)t1.getMaxWeight()/t1.getMaxVol();
-    double ratio2 = (double)t2.getMaxWeight()/t2.getMaxVol();
-    return ratio1 < ratio2;
+    double sum1 = t1.getMaxWeight() + t1.getMaxVol();
+    double sum2 = t2.getMaxWeight() + t2.getMaxVol();
+    return sum1 < sum2;
 }
 
 vector<Package> FirstScenario::sortPackages(vector<Package> &packages) {
