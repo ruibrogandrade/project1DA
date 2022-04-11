@@ -4,11 +4,10 @@
 
 #include <algorithm>
 #include "FirstScenario.h"
-#include "Transport.h"
 
 bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
-    double ratio1 = (double)p1.getWeight()/p1.getVolume();
-    double ratio2 = (double)p2.getWeight()/p2.getVolume();
+    unsigned int ratio1 = p1.getWeight()+p1.getVolume();
+    unsigned int ratio2 = p2.getWeight()+p2.getVolume();
     return ratio1 < ratio2;
 }
 

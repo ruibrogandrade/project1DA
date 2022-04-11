@@ -17,6 +17,13 @@ private:
     unsigned int maxVol, remainingVolume;
     unsigned int maxWeight, remainingWeight;
     unsigned int price;
+    int profit;
+public:
+    int getProfit() const;
+
+    void setProfit(int profit);
+
+private:
     bool expressDelivery;
     vector<Package> carriedPackages;
 
@@ -30,12 +37,12 @@ public:
     unsigned int getPrice() const;
     bool isExpressDelivery() const;
     const vector<Package> &getCarriedPackages() const;
-    unsigned int getRemainingVolume();
-    unsigned int getRemainingWeight();
+    unsigned int getRemainingVolume() const;
+    unsigned int getRemainingWeight() const;
     bool addPackage(Package &package);
     void emptyTransport();
 
-    ostream &operator<<(ostream &os);
+    ostream &operator<<(ostream &os) const;
 
 };
 
