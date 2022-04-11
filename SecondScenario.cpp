@@ -23,31 +23,55 @@ vector<Transport> SecondScenario::sortTransport(vector<Transport> &transports) {
     return transports;
 }
 
-Transport SecondScenario::knapSack(Transport& t, vector<Package> &p) {
+void SecondScenario::knapSack(Transport& t, vector<Package> &p) {
+    //TODO
+    unsigned int maxWeight = t.getMaxWeight(),
+        maxVol = t.getMaxVol(),
+        size = p.size();
 
-    unsigned int W = t.getMaxWeight(), V = t.getMaxVol(),
-        n = p.size();
+    // Three-dimensional matrix with dimension 2*maxWeight*maxVol
+    // that stores a set of Packages and an integer that is equal
+    // to the sum of all the rewards on the set
+    vector<vector<vector<pair<unsigned int, set<Package*>>>>> matrix
+        (2, vector<vector<pair<unsigned int, set<Package*>>>>
+        (maxWeight + 1, vector<pair<unsigned int, set<Package*>>>(maxVol + 1)));
 
-    vector<vector<vector<int>>> K(n+1, vector<vector<int>>(W+1, vector<int>(V+1)));
-    // We know we are always using the the current row or
-    // the previous row of the array/vector . Thereby we can
-    // improve it further by using a 2D array but with only
-    // 2 rows i%2 will be giving the index inside the bounds
-    // of 2d array K
+    for (int index = 0; index <= size; index++)
+        for (int weight = 0; weight <= maxWeight; weight++)
+            for (int volume = 0; volume <= maxVol; volume++)
 
-    for (int i = 0; i <= n; i++)
-        for (int w = 0; w <= W; w++) {
-            for (int v = 0; v <= V; v++) {
-                if (i == 0 || w == 0 || v == 0)
-                    K[i][w][v] = 0;
-                else if (p[i - 1].getWeight() <= w && p[i -1].getVolume() <= v)
-                    if (p[i - 1].getReward() + K[i - 1][w - p[i - 1].getWeight()][v - p[i - 1].getVolume()] <= K[i - 1][w][v])
-                        K[i][w][v] = K[i - 1][w][v];
-                    else K[i][w][v] = p[i - 1].getReward() + K[i - 1][w - p[i - 1].getWeight()][v - p[i - 1].getVolume()];
-                else
-                    K[i][w][v] = K[i - 1][w][v];
-            }
-        }
-    cout << K[n][W][V] << endl;
-    return K[n][W][V];
+                // Basic cases of the matrix
+                if (index == 0 || weight == 0 || volume == 0) continue;
+
+                // Calculates if package of index (i-1) fits in the
+                // given weight and volume
+                else if (p[index - 1].getWeight() > weight ||
+                         p[index - 1].getVolume() > volume) {
+
+                    // Use pair in the previous position in the matrix
+                    matrix[index % 2][weight][volume] =
+                            matrix[(index - 1) % 2][weight][volume];
+                } else {
+                    // Max value:
+
+                    // Calculation of the new pair
+                    // (combination between a pair in the matrix and one package from the vector)
+                    pair<unsigned int, set<Package*>> newPair = matrix[(index - 1) % 2]
+                    [weight - p[index - 1].getWeight()]
+                    [volume - p[index - 1].getVolume()];
+
+                    // Adds package of index (i-1) to the new pair, if it's capable
+                    // then actualizes the total value of profit
+                    if (newPair.second.insert(&p[index - 1]).second)
+                        newPair.first += p[index - 1].getReward();
+
+                    // Stores the new pair if it's profits is better,
+                    // or the pair in the previous position otherwise
+                    matrix[index % 2][weight][volume] =
+                            (matrix[(index - 1) % 2][weight][volume].first > newPair.first) ?
+                            matrix[(index - 1) % 2][weight][volume] : newPair;
+                }
+
+    // Value with the maximum profit for the given transport
+    cout << matrix[size % 2][maxWeight][maxVol].first << endl;
 }

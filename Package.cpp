@@ -35,3 +35,8 @@ void Package::setVisited() {
 bool Package::getVisited() const {
     return visited;
 }
+
+ostream &Package::operator<<(ostream &os) const {
+    os << volume << "  " << weight << "  " << reward << "  " << estimatedTime << endl;
+    return os;
+}

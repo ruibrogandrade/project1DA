@@ -30,10 +30,7 @@ public:
     bool getVisited() const;
     void setVisited();
 
-    ostream &operator<<(ostream &os) {
-        os << volume << "  " << weight << "  " << reward << "  " << estimatedTime << endl;
-        return os;
-    }
+    ostream &operator<<(ostream &os) const;
 
 };
 
