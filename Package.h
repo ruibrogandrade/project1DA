@@ -30,6 +30,7 @@ public:
     bool isAlreadyAdded() const;
     void setAdded();
     void restart();
+    ostream &operator<<(ostream &os) const;
 
 };
 
