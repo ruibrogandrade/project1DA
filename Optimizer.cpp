@@ -17,57 +17,59 @@ Optimizer::Optimizer(unsigned int optimizerType, const vector<Package> &allPacka
 
 void Optimizer::optimize() {
     switch (optimizerType) {
-        case OPTIMIZE_TRANSPORTS: optimizeTransports(); break;
-        case OPTIMIZE_PROFIT: optimizeProfit(); break;
-        case OPTIMIZE_EXPRESS_DELIVERY: optimizeExpressDelivery(); break;
+        case OPTIMIZE_TRANSPORTS: optimizeTransports(); showUsedTransports(); break;
+        case OPTIMIZE_PROFIT: optimizeProfit(); showUsedTransports(); break;
+        case OPTIMIZE_EXPRESS_DELIVERY: optimizeExpressDelivery(); showUsedTransports(); break;
     }
 }
 
 void Optimizer::optimizeTransports() {
     restartOptimizer();
 
-    //vector<Package> packages = FirstScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
-    vector<Transport> transports = FirstScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
+    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
+    packages = FirstScenario::sortPackages(packages);
 
-    for (auto &package: allPackages)
+    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
+    transports = FirstScenario::sortTransport(transports);
+
+    for (auto &package: packages)
         for (auto &transport: transports)
             if (transport.addPackage(package))
                 break;
 
-    for (const auto& transport:transports) {
+    for (const auto& transport: transports) {
         if(transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
     }
-
-    /*for(auto t : transports) {
-        for (auto p = packages.begin(); p != packages.end(); p++) {
-
-            if(t.getRemainingVolume() == 0 || t.getRemainingWeight() == 0) break;
-
-            if(t.addPackage(*p)) packages.erase(p);
-
-            if(packages.empty()) {
-                usedTransports.push_back(t);
-                return;
-            }
-        }
-        usedTransports.push_back(t);
-    }*/
-}
-
-vector<Transport> Optimizer::getUsedTransports() const {
-    return usedTransports;
 }
 
 void Optimizer::optimizeProfit(){
-    //TODO
     restartOptimizer();
 
-    vector<Package> packages = SecondScenario::sortPackages(allPackages); // Make a copy of the packages for don't change the original vector
-    vector<Transport> transports = SecondScenario::sortTransport(allTransports); // Make a copy of the transports for don't change the original vector
+    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
+    packages = SecondScenario::sortPackages(packages);
 
-    for (auto &t: transports)
-        SecondScenario::knapSack(t, packages);
+    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
+    transports = SecondScenario::sortTransport(transports);
+
+    totalProfit = 0;
+
+    for (auto &package: packages)
+        for (auto &transport: transports)
+            if (transport.addPackage(package))
+                break;
+
+    for (auto& transport: transports)
+    {
+        if (transport.getCarriedPackages().empty())
+            break;
+
+        if(transport.calculateProfit() > 0)
+        {
+            usedTransports.push_back(transport);
+            totalProfit += transport.calculateProfit();
+        }
+    }
 }
 
 void Optimizer::optimizeExpressDelivery(){
@@ -80,8 +82,65 @@ void Optimizer::restartOptimizer() {
     usedTransports.clear();
 
     for(auto &package : allPackages)
-        package.restart(); // makes added = false and expressDelivery = false
+        package.restart(); // makes package.added = false and expressDelivery = false
 
-    for(auto &transport : allTransports) // makes carriedPackages empty and expressDelivery = false
+    for(auto &transport : allTransports) // makes transport.carriedPackages empty and expressDelivery = false
         transport.restart();
 }
+
+vector<Transport> Optimizer::getUsedTransports() const {
+    return usedTransports;
+}
+
+void Optimizer::showUsedTransports() const {
+
+    switch (optimizerType)
+    {
+        case OPTIMIZE_TRANSPORTS:
+            cout << endl << "Number of transports that were used: " << usedTransports.size() << endl << endl;
+            cout << "Transports                        Number of carried packages" << endl;
+
+            for(const auto& transport : usedTransports)
+            {
+                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
+                     << "  ---------------  " << transport.getCarriedPackages().size() << endl;
+            }
+            break;
+
+        case OPTIMIZE_PROFIT:
+            cout << endl << "Number of transports that were used: " << usedTransports.size() << endl
+             << "Total profit: " << totalProfit << endl << endl;
+            cout << "Transports                        Number of carried packages                         Profit" << endl;
+
+            for(auto transport : usedTransports)
+            {
+                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
+                     << "  ---------------               " << transport.getCarriedPackages().size()
+                     << "             --------------------   " << transport.calculateProfit() << endl;
+            }
+            break;
+    }
+}
+
+
+/*
+ for(auto transport : transports)
+    {
+        unsigned int sizeVolume = transport.getMaxVol(), sizeWeight = transport.getMaxWeight();
+        vector<unsigned int> maxProfitVolume(sizeVolume, 0), maxProfitWeight(sizeWeight, 0);
+
+        for(size_t i = 0; i < packages.size(); i++)
+        {
+            unsigned int volume = packages[i].getVolume(), weight = packages[i].getWeight();
+
+            while(volume < transport.getMaxVol() || weight < transport.getMaxWeight())
+            {
+                if(packages[i].getReward() + maxProfitVolume[volume - packages[i].getVolume()] > maxProfitVolume[volume])
+                {
+                    maxProfitVolume[volume] = packages[i].getReward() + maxProfitVolume[volume - packages[i].getVolume()];
+                }
+            }
+        }
+    }
+
+ */

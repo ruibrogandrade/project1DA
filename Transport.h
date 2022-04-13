@@ -17,7 +17,7 @@ private:
     unsigned int maxVol, remainingVolume;
     unsigned int maxWeight, remainingWeight;
     unsigned int price;
-    int profit;
+    int profit = 0;
 
 private:
     bool expressDelivery;
@@ -26,8 +26,8 @@ private:
 public:
     //When the order is an express delivery we need only to create
     //a constructor like this: Transport(price, expressDelivery)
-    Transport(){};
-    Transport(unsigned int price, unsigned int maxVol = INT_MAX, unsigned int maxWeight = INT_MAX, bool expressDelivery = false);
+    Transport()= default;
+    explicit Transport(unsigned int price, unsigned int maxVol = INT_MAX, unsigned int maxWeight = INT_MAX, bool expressDelivery = false);
     unsigned int getMaxWeight() const;
     unsigned int getMaxVol() const;
     unsigned int getPrice() const;
@@ -36,11 +36,10 @@ public:
     unsigned int getRemainingVolume() const;
     unsigned int getRemainingWeight() const;
     bool addPackage(Package &package);
-    int getProfit() const;
-    void setProfit(int profit);
+    int calculateProfit();
     void restart();
 
-     ostream &operator<<(ostream &os) {
+     ostream &operator<<(ostream &os) const {
         os << maxVol << "  " << maxWeight << "  " << price;
         return os;
     }

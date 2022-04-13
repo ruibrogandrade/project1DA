@@ -19,7 +19,7 @@ void Application::readPackages() {
     string dataRead, discartedLine;
     unsigned int volume, weight, reward, duration;
 
-    packagesFile.open("../Dados/encomendas.txt", ios::in);
+    packagesFile.open("../Dados/sampleEncomendas.txt", ios::in);
     getline(packagesFile,discartedLine); // discard the first line TITLE
 
     while(getline(packagesFile,dataRead, ' ')) {
@@ -36,7 +36,7 @@ void Application::readTransports() {
     string dataRead, discartedLine;
     unsigned long maxVol, maxWeight, price;
 
-    packagesFile.open("../Dados/carrinhas.txt", ios::in);
+    packagesFile.open("../Dados/sampleCarrinhas.txt", ios::in);
     getline(packagesFile,discartedLine); // discard the first line TITLE
 
     while(getline(packagesFile,dataRead, ' ')) {
@@ -55,13 +55,12 @@ vector<Transport> Application::getAllTransports() const {
     return allTransports;
 }
 
-bool isBadCin(unsigned int choice){
+bool isBadCin(){
     //verify if the menu chose is a possible choice made by the user
 
-    if (cin.fail() || cin.peek() != '\n' || choice < 0 || choice > 3) {
+    if (cin.fail() || cin.peek() != '\n') {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
-        cout << "Invalid input!" << endl;
         return true;
     }
     return false;
@@ -92,40 +91,49 @@ unsigned int Application::showMenu() {
         cout << "Choose an option to organize your deliveries:";
         cin >> choice;
 
-        if(isBadCin(choice))
+        if(isBadCin() || choice < 0 || choice > 3)
+        {
+            cout << "Invalid input!" << endl;
             continue;
+        }
 
         return choice;
     }
 }
 
+bool wasFinished()
+{
+    unsigned finished;
+    while(true)
+    {
+        cout << endl << "Press 0 to back to the menu or 1 to finish the program:";
+        cin >> finished;
+        if(isBadCin() || (finished != 0 && finished != 1))
+        {
+            cout << "Invalid input!" << endl;
+            continue;
+        }
+
+        return finished;
+    }
+}
+
 void Application::runApplication() {
     Optimizer deliveryOptimizer;
+    unsigned int optimizerType;
 
     while(true)
     {
-        unsigned int optimizerType = showMenu();
+        optimizerType = showMenu();
         deliveryOptimizer = Optimizer(optimizerType, allPackages, allTransports);
 
         if(optimizerType == EXIT)
             return;
 
         deliveryOptimizer.optimize();
-        usedTransports = deliveryOptimizer.getUsedTransports();
-        showUsedTransports();
-        return;
-    }
-}
 
-void Application::showUsedTransports() const {
 
-    cout << endl << "Number of transports that were used: " << usedTransports.size() << endl << endl;
-    cout << "Transports                        Number of carried packages" << endl;
-
-    for(auto transport : usedTransports)
-    {
-        cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
-        << "  ---------------  " << transport.getCarriedPackages().size() << endl;
+        if(wasFinished()) return;
     }
 }
 

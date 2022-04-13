@@ -8,7 +8,7 @@
 bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
     double sum1 = p1.getWeight() + p1.getVolume();
     double sum2 = p2.getWeight() + p2.getVolume();
-    return sum1 < sum2;
+    return sum1 > sum2;
 }
 
 bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){

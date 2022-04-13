@@ -15,16 +15,15 @@ using namespace std;
 class Application {
 private:
     vector<Package> allPackages;
-    vector<Transport> allTransports, usedTransports;
+    vector<Transport> allTransports;
 public:
     Application();
     vector<Package> getAllPackages() const;
     vector<Transport> getAllTransports() const;
     void readPackages();
     void readTransports();
-    unsigned int showMenu();
+    static unsigned int showMenu();
     void showDeliveredPackages() const;
-    void showUsedTransports() const;
     void runApplication();
 };
 

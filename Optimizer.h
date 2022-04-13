@@ -26,7 +26,8 @@ private:
     vector<Transport> usedTransports;
     vector<Transport> allTransports;
     vector<Package> allPackages;
-    unsigned int optimizerType;
+    unsigned int optimizerType = 0;
+    int totalProfit = 0;
 
 private:
     //private methods. They are only used as auxiliary functions in the public optimize methods
@@ -36,10 +37,11 @@ private:
     void optimizeExpressDelivery();
 
 public:
-    Optimizer(){};
+    Optimizer()= default;
     Optimizer(unsigned int optimizerType, const vector<Package> &allPackages, const vector<Transport> &allTransports);
     void optimize();
     vector<Transport> getUsedTransports() const;
+    void showUsedTransports() const;
 };
 
 #endif //OPTIMIZER_H

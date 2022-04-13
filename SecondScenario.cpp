@@ -6,11 +6,11 @@
 #include "SecondScenario.h"
 
 bool SecondScenario::comparePackages(const Package &p1, const Package &p2) {
-    return p1.getReward()>p2.getReward();
+    return p1.getReward()/(p1.getVolume() + p1.getWeight()) > p2.getReward()/(p2.getVolume() + p2.getWeight());
 }
 
 bool SecondScenario::compareTransports(const Transport &t1, const Transport &t2) {
-    return t1.getPrice()<t2.getPrice();
+    return t1.getPrice()/(t1.getMaxWeight() + t1.getMaxVol()) < t2.getPrice()/(t2.getMaxWeight() + t2.getMaxVol());
 }
 
 vector<Package> SecondScenario::sortPackages(vector<Package> &packages) {

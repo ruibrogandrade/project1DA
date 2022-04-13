@@ -7,7 +7,7 @@
 Transport::Transport(unsigned int price, unsigned int maxVol, unsigned int maxWeight, bool expressDelivery)
         : maxVol(maxVol), maxWeight(maxWeight), price(price),
         remainingVolume(maxVol), remainingWeight(maxWeight),
-        profit(-price), expressDelivery(expressDelivery){}
+        expressDelivery(expressDelivery){}
 
 unsigned int Transport::getMaxVol() const {
     return maxVol;
@@ -53,11 +53,17 @@ bool Transport::isExpressDelivery() const {
     return expressDelivery;
 }
 
-int Transport::getProfit() const {
+int Transport::calculateProfit() {
+    profit = 0;
+    if(carriedPackages.empty())
+        return profit;
+
+    unsigned int totalReward = 0;
+    for(auto package : carriedPackages)
+        totalReward += package.getReward();
+
+    profit = (int)totalReward - (int)price;
     return profit;
 }
 
-void Transport::setProfit(int p) {
-    Transport::profit = p;
-}
 
