@@ -13,14 +13,12 @@ bool SecondScenario::compareTransports(const Transport &t1, const Transport &t2)
     return t1.getPrice()/(t1.getMaxWeight() + t1.getMaxVol()) < t2.getPrice()/(t2.getMaxWeight() + t2.getMaxVol());
 }
 
-vector<Package> SecondScenario::sortPackages(vector<Package> &packages) {
+void SecondScenario::sortPackages(vector<Package> &packages) {
     sort(packages.begin(), packages.end(), comparePackages);
-    return packages;
 }
 
-vector<Transport> SecondScenario::sortTransport(vector<Transport> &transports) {
+void SecondScenario::sortTransport(vector<Transport> &transports) {
     sort(transports.begin(), transports.end(), compareTransports);
-    return transports;
 }
 
 pair<unsigned int, set<unsigned int>> SecondScenario::knapSack(Transport& t, vector<Package> &p) {

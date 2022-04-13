@@ -19,7 +19,7 @@ void Application::readPackages() {
     string dataRead, discartedLine;
     unsigned int volume, weight, reward, duration;
 
-    packagesFile.open("../Dados/sampleEncomendas.txt", ios::in);
+    packagesFile.open("../Dados/sample2Encomendas.txt", ios::in);
     getline(packagesFile,discartedLine); // discard the first line TITLE
 
     while(getline(packagesFile,dataRead, ' ')) {
@@ -36,7 +36,7 @@ void Application::readTransports() {
     string dataRead, discartedLine;
     unsigned long maxVol, maxWeight, price;
 
-    packagesFile.open("../Dados/sampleCarrinhas.txt", ios::in);
+    packagesFile.open("../Dados/sample2Carrinhas.txt", ios::in);
     getline(packagesFile,discartedLine); // discard the first line TITLE
 
     while(getline(packagesFile,dataRead, ' ')) {

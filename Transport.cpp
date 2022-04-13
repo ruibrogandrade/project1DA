@@ -7,7 +7,7 @@
 Transport::Transport(unsigned int price, unsigned int maxVol, unsigned int maxWeight, bool expressDelivery)
         : maxVol(maxVol), maxWeight(maxWeight), price(price),
         remainingVolume(maxVol), remainingWeight(maxWeight),
-        expressDelivery(expressDelivery){}
+        profit((int)-price), expressDelivery(expressDelivery){}
 
 unsigned int Transport::getMaxVol() const {
     return maxVol;
@@ -17,20 +17,29 @@ unsigned int Transport::getMaxWeight() const {
     return maxWeight;
 }
 
+void Transport::setWeightExpress(){
+    maxWeight = INT_MAX;
+}
+
+void Transport::setVolumeExpress(){
+    maxWeight = INT_MAX;
+}
+
+void Transport::setExpressDelivery(){
+    expressDelivery = true;
+}
+
 unsigned int Transport::getPrice() const {
     return price;
 }
 
+int Transport::getProfit() const {
+    if(carriedPackages.empty()) return 0;
+    return profit;
+}
+
 const vector<Package> &Transport::getCarriedPackages() const {
     return carriedPackages;
-}
-
-unsigned int Transport::getRemainingVolume() const {
-    return remainingVolume;
-}
-
-unsigned int Transport::getRemainingWeight() const {
-    return remainingWeight;
 }
 
 bool Transport::addPackage(Package &package) {
@@ -41,6 +50,16 @@ bool Transport::addPackage(Package &package) {
     package.setAdded();
     remainingVolume -= package.getVolume();
     remainingWeight -= package.getWeight();
+    profit += (int)package.getReward();
+    return true;
+}
+
+bool Transport::addExpress(Package &package) {
+    if (package.getVolume() > maxVol || package.getWeight() > maxWeight || package.isAlreadyAdded())
+        return false;
+
+    carriedPackages.push_back(package);
+    package.setAdded();
     return true;
 }
 
@@ -53,17 +72,16 @@ bool Transport::isExpressDelivery() const {
     return expressDelivery;
 }
 
-int Transport::calculateProfit() {
-    profit = 0;
-    if(carriedPackages.empty())
-        return profit;
-
-    unsigned int totalReward = 0;
-    for(auto package : carriedPackages)
-        totalReward += package.getReward();
-
-    profit = (int)totalReward - (int)price;
-    return profit;
+unsigned int Transport::getDuration() const{
+    unsigned int duration = 0;
+    for (auto p: carriedPackages) duration += p.getEstimatedTime();
+    return duration;
 }
 
+unsigned int Transport::getTime() const {
+    return time;
+}
 
+void Transport::setTime(unsigned int time) {
+    Transport::time = time;
+}

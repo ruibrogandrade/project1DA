@@ -17,33 +17,39 @@ private:
     unsigned int maxVol, remainingVolume;
     unsigned int maxWeight, remainingWeight;
     unsigned int price;
-    int profit = 0;
+    int profit;
+    unsigned time;
 
 private:
     bool expressDelivery;
     vector<Package> carriedPackages;
 
 public:
-    //When the order is an express delivery we need only to create
-    //a constructor like this: Transport(price, expressDelivery)
     Transport()= default;
-    explicit Transport(unsigned int price, unsigned int maxVol = INT_MAX, unsigned int maxWeight = INT_MAX, bool expressDelivery = false);
+    explicit Transport(unsigned int price, unsigned int maxVol, unsigned int maxWeight, bool expressDelivery = false);
     unsigned int getMaxWeight() const;
     unsigned int getMaxVol() const;
+    void setWeightExpress();
+    void setVolumeExpress();
     unsigned int getPrice() const;
+    int getProfit() const;
     bool isExpressDelivery() const;
     const vector<Package> &getCarriedPackages() const;
-    unsigned int getRemainingVolume() const;
-    unsigned int getRemainingWeight() const;
+    unsigned int getDuration() const;
     bool addPackage(Package &package);
-    int calculateProfit();
+    bool addExpress(Package &package);
+    void setExpressDelivery();
+
+    unsigned int getTime() const;
+
+    void setTime(unsigned int time);
+
     void restart();
 
      ostream &operator<<(ostream &os) const {
         os << maxVol << "  " << maxWeight << "  " << price;
         return os;
     }
-
 };
 
 
