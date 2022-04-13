@@ -54,6 +54,21 @@ void Optimizer::optimizeProfit(){
 
     totalProfit = 0;
 
+    for (auto t: transports) {
+        auto temp = SecondScenario::knapSack(t, packages);
+        if(temp.first-t.getPrice()<0) return;
+        else {
+            totalProfit += temp.first-t.getPrice();
+            for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
+                t.addPackage(packages[*rit]);
+                packages.erase(packages.begin() + *rit);
+            }
+            usedTransports.push_back(t);
+        }
+
+    }
+
+    /*
     for (auto &package: packages)
         for (auto &transport: transports)
             if (transport.addPackage(package))
@@ -64,18 +79,19 @@ void Optimizer::optimizeProfit(){
         if (transport.getCarriedPackages().empty())
             break;
 
-        if(transport.calculateProfit() > 0)
+        int profit = transport.calculateProfit()
+        if(profit > 0)
         {
             usedTransports.push_back(transport);
-            totalProfit += transport.calculateProfit();
+            totalProfit += profit;
         }
     }
+     */
 }
 
 void Optimizer::optimizeExpressDelivery(){
     //TODO
     restartOptimizer();
-
 }
 
 void Optimizer::restartOptimizer() {

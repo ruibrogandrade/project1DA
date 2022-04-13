@@ -23,7 +23,7 @@ vector<Transport> SecondScenario::sortTransport(vector<Transport> &transports) {
     return transports;
 }
 
-void SecondScenario::knapSack(Transport& t, vector<Package> &p) {
+pair<unsigned int, set<unsigned int>> SecondScenario::knapSack(Transport& t, vector<Package> &p) {
     //TODO
     unsigned int maxWeight = t.getMaxWeight(),
         maxVol = t.getMaxVol(),
@@ -32,9 +32,9 @@ void SecondScenario::knapSack(Transport& t, vector<Package> &p) {
     // Three-dimensional matrix with dimension 2*maxWeight*maxVol
     // that stores a set of Packages and an integer that is equal
     // to the sum of all the rewards on the set
-    vector<vector<vector<pair<unsigned int, set<Package*>>>>> matrix
-        (2, vector<vector<pair<unsigned int, set<Package*>>>>
-        (maxWeight + 1, vector<pair<unsigned int, set<Package*>>>(maxVol + 1)));
+    vector<vector<vector<pair<unsigned int, set<unsigned int>>>>> matrix
+        (2, vector<vector<pair<unsigned int, set<unsigned int>>>>
+        (maxWeight + 1, vector<pair<unsigned int, set<unsigned int>>>(maxVol + 1)));
 
     for (int index = 0; index <= size; index++)
         for (int weight = 0; weight <= maxWeight; weight++)
@@ -56,13 +56,13 @@ void SecondScenario::knapSack(Transport& t, vector<Package> &p) {
 
                     // Calculation of the new pair
                     // (combination between a pair in the matrix and one package from the vector)
-                    pair<unsigned int, set<Package*>> newPair = matrix[(index - 1) % 2]
+                    pair<unsigned int, set<unsigned int>> newPair = matrix[(index - 1) % 2]
                     [weight - p[index - 1].getWeight()]
                     [volume - p[index - 1].getVolume()];
 
-                    // Adds package of index (i-1) to the new pair, if it's capable
+                    // Adds index (i-1) to the new pair, if it's capable
                     // then actualizes the total value of profit
-                    if (newPair.second.insert(&p[index - 1]).second)
+                    if (newPair.second.insert(index - 1).second)
                         newPair.first += p[index - 1].getReward();
 
                     // Stores the new pair if it's profits is better,
@@ -73,5 +73,5 @@ void SecondScenario::knapSack(Transport& t, vector<Package> &p) {
                 }
 
     // Value with the maximum profit for the given transport
-    cout << matrix[size % 2][maxWeight][maxVol].first << endl;
+    return matrix[size % 2][maxWeight][maxVol];
 }

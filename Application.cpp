@@ -110,8 +110,7 @@ bool wasFinished()
         cin >> finished;
         if(isBadCin() || (finished != 0 && finished != 1))
         {
-            cout << "Invalid input!" << endl;
-            continue;
+            cout << "Invalid input!" << endl; continue;
         }
 
         return finished;
@@ -131,7 +130,6 @@ void Application::runApplication() {
             return;
 
         deliveryOptimizer.optimize();
-
 
         if(wasFinished()) return;
     }
