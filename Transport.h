@@ -32,6 +32,7 @@ public:
     void setWeightExpress();
     void setVolumeExpress();
     unsigned int getPrice() const;
+    int calculateProfit();
     int getProfit() const;
     bool isExpressDelivery() const;
     const vector<Package> &getCarriedPackages() const;

@@ -85,3 +85,16 @@ unsigned int Transport::getTime() const {
 void Transport::setTime(unsigned int time) {
     Transport::time = time;
 }
+
+int Transport::calculateProfit() {
+    profit = 0;
+    if(carriedPackages.empty())
+        return profit;
+
+    unsigned int totalReward = 0;
+    for(auto package : carriedPackages)
+        totalReward += package.getReward();
+
+    profit = (int)totalReward - (int)price;
+    return profit;
+}

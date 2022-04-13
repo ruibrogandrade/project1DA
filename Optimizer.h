@@ -35,6 +35,8 @@ private:
     void optimizeTransports();
     void optimizeProfit();
     void optimizeExpressDelivery();
+    void knapsackProfit(vector<Package> &packages, vector<Transport> &transports);
+    void greedyProfit(vector<Package> &packages, vector<Transport> &transports);
 
 public:
     Optimizer()= default;

@@ -54,31 +54,30 @@ void Optimizer::optimizeTransports() {
     }
 }
 
-void Optimizer::optimizeProfit(){
-    restartOptimizer();
+unsigned int chooseProfitAlgorithm(){
+    cout << endl <<
+         "|========================================================================|\n"
+         "|      Greedy Algorithm (fast, but only an approach)     [1]             |\n"
+         "|      Knapsack Algorithm (precise, but so slow)         [0]             |\n"
+         "|========================================================================|\n";
+    while(true)
+    {
+        cout << "Choose an algorithm that you want to use for achieve better profit:";
+        unsigned int algorithmChose;
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    SecondScenario::sortPackages(packages);
-
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    SecondScenario::sortTransport(transports);
-
-    totalProfit = 0;
-    for (auto t: transports) {
-        auto temp = SecondScenario::knapSack(t, packages);
-        int profit = (int)(temp.first-t.getPrice());
-        if(profit<0) return;
-        else {
-            totalProfit += profit;
-            for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
-                t.addPackage(packages[*rit]);
-                packages.erase(packages.begin() + *rit);
-            }
-            usedTransports.push_back(t);
+        cin >> algorithmChose;
+        if (cin.fail() || cin.peek() != '\n' || (algorithmChose != 1 && algorithmChose != 0))
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            continue;
         }
-    }
 
-    /*
+        return algorithmChose;
+    }
+}
+
+void Optimizer::greedyProfit(vector<Package> &packages, vector<Transport> &transports) {
     for (auto &package: packages)
         for (auto &transport: transports)
             if (transport.addPackage(package))
@@ -96,7 +95,50 @@ void Optimizer::optimizeProfit(){
             totalProfit += profit;
         }
     }
-     */
+}
+
+void Optimizer::knapsackProfit(vector<Package> &packages, vector<Transport> &transports) {
+    for (auto t: transports)
+    {
+        auto temp = SecondScenario::knapSack(t, packages);
+        int profit = (int)(temp.first-t.getPrice());
+        if(profit<0) return;
+        else {
+            totalProfit += profit;
+            for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
+                t.addPackage(packages[*rit]);
+                packages.erase(packages.begin() + *rit);
+            }
+            usedTransports.push_back(t);
+        }
+    }
+}
+
+
+void Optimizer::optimizeProfit(){
+    restartOptimizer();
+
+    #define GREEDY 1
+    #define KNAPSACK 0
+
+    unsigned int algorithmSelected = chooseProfitAlgorithm();
+
+    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
+    SecondScenario::sortPackages(packages);
+
+    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
+    SecondScenario::sortTransport(transports);
+
+    totalProfit = 0;
+
+    switch (algorithmSelected)
+    {
+        case GREEDY:
+            greedyProfit(packages, transports); break;
+
+        case KNAPSACK:
+            knapsackProfit(packages, transports); break;
+    }
 }
 
 void Optimizer::optimizeExpressDelivery(){
