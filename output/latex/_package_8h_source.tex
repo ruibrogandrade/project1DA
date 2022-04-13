@@ -1,0 +1,43 @@
+\hypertarget{_package_8h_source}{}\doxysection{Package.\+h}
+\label{_package_8h_source}\index{C:/Users/Rui Andrade/Documents/Projeto DA/urban-\/logistics/Package.h@{C:/Users/Rui Andrade/Documents/Projeto DA/urban-\/logistics/Package.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Rui on 30/03/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef URBAN\_LOGISTICS\_PACKAGE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define URBAN\_LOGISTICS\_PACKAGE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_package}{Package}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{13     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} volume;}
+\DoxyCodeLine{14     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} weight;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reward;}
+\DoxyCodeLine{16     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} estimatedTime;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{bool} expressDelivery;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{bool} added = \textcolor{keyword}{false};}
+\DoxyCodeLine{19 \textcolor{keyword}{public}:}
+\DoxyCodeLine{20     \textcolor{comment}{//expressDelivery argument is not necessary in the constructor when the order is not express}}
+\DoxyCodeLine{21     \textcolor{comment}{//we need only to create a constructor like this: Package(volume, weight, reward, duration)}}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_package}{Package}}() \{\};}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_package}{Package}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} volume, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} weight, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} reward, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} estimatedTime,}
+\DoxyCodeLine{24             \textcolor{keywordtype}{bool} expressDelivery = \textcolor{keyword}{false});}
+\DoxyCodeLine{25     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getVolume() \textcolor{keyword}{const};}
+\DoxyCodeLine{26     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getWeight() \textcolor{keyword}{const};}
+\DoxyCodeLine{27     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getReward() \textcolor{keyword}{const};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getEstimatedTime() \textcolor{keyword}{const};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} isExpressDelivery() \textcolor{keyword}{const};}
+\DoxyCodeLine{30     \textcolor{keywordtype}{bool} isAlreadyAdded() \textcolor{keyword}{const};}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} setAdded();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} restart();}
+\DoxyCodeLine{33     ostream \&operator<<(ostream \&os) \textcolor{keyword}{const};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//URBAN\_LOGISTICS\_PACKAGE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,56 @@
+\hypertarget{_transport_8h_source}{}\doxysection{Transport.\+h}
+\label{_transport_8h_source}\index{C:/Users/Rui Andrade/Documents/Projeto DA/urban-\/logistics/Transport.h@{C:/Users/Rui Andrade/Documents/Projeto DA/urban-\/logistics/Transport.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by gdrp7 on 30/03/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef URBAN\_LOGISTICS\_TRANSPORT\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define URBAN\_LOGISTICS\_TRANSPORT\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Package.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <climits>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_transport}{Transport}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{private}:}
+\DoxyCodeLine{16     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} registration;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} maxVol, remainingVolume;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} maxWeight, remainingWeight;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} price;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} profit = 0;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} expressDelivery;}
+\DoxyCodeLine{24     vector<Package> carriedPackages;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     \textcolor{comment}{//When the order is an express delivery we need only to create}}
+\DoxyCodeLine{28     \textcolor{comment}{//a constructor like this: Transport(price, expressDelivery)}}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_transport}{Transport}}()= \textcolor{keywordflow}{default};}
+\DoxyCodeLine{30     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_transport}{Transport}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} price, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} maxVol = INT\_MAX, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} maxWeight = INT\_MAX, \textcolor{keywordtype}{bool} expressDelivery = \textcolor{keyword}{false});}
+\DoxyCodeLine{31     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getMaxWeight() \textcolor{keyword}{const};}
+\DoxyCodeLine{32     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getMaxVol() \textcolor{keyword}{const};}
+\DoxyCodeLine{33     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getPrice() \textcolor{keyword}{const};}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} isExpressDelivery() \textcolor{keyword}{const};}
+\DoxyCodeLine{35     \textcolor{keyword}{const} vector<Package> \&getCarriedPackages() \textcolor{keyword}{const};}
+\DoxyCodeLine{36     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getRemainingVolume() \textcolor{keyword}{const};}
+\DoxyCodeLine{37     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getRemainingWeight() \textcolor{keyword}{const};}
+\DoxyCodeLine{38     \textcolor{keywordtype}{bool} addPackage(\mbox{\hyperlink{class_package}{Package}} \&package);}
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} calculateProfit();}
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} restart();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42      ostream \&operator<<(ostream \&os)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{43         os << maxVol << \textcolor{stringliteral}{"{}  "{}} << maxWeight << \textcolor{stringliteral}{"{}  "{}} << price;}
+\DoxyCodeLine{44         \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{45     \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//URBAN\_LOGISTICS\_TRANSPORT\_H}}
+
+\end{DoxyCode}
