@@ -19,6 +19,12 @@ private:
     unsigned int price;
     int profit;
     unsigned time;
+    bool full;
+    unsigned remainingTime = 8 * 3600;
+public:
+    bool isFull() const;
+
+    void setFull(bool full);
 
 private:
     bool expressDelivery;
@@ -39,6 +45,7 @@ public:
     bool addPackage(Package &package);
     bool addExpress(Package &package);
     void setExpressDelivery();
+    unsigned int getRemainingTime() const;
 
     unsigned int getTime() const;
 

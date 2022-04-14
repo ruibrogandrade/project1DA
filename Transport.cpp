@@ -55,11 +55,14 @@ bool Transport::addPackage(Package &package) {
 }
 
 bool Transport::addExpress(Package &package) {
-    if (package.getVolume() > maxVol || package.getWeight() > maxWeight || package.isAlreadyAdded())
+
+    if(package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
         return false;
 
     carriedPackages.push_back(package);
+    remainingTime -= package.getEstimatedTime(); //
     package.setAdded();
+    if(remainingTime == 0) full = true;
     return true;
 }
 
@@ -84,4 +87,16 @@ unsigned int Transport::getTime() const {
 
 void Transport::setTime(unsigned int time) {
     Transport::time = time;
+}
+
+bool Transport::isFull() const {
+    return full;
+}
+
+void Transport::setFull(bool full) {
+    Transport::full = full;
+}
+
+unsigned int Transport::getRemainingTime() const{
+    return remainingTime;
 }

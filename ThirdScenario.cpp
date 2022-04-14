@@ -7,7 +7,7 @@
 
 
 bool ThirdScenario::comparePackages(const Package &p1, const Package &p2) {
-    return p1.getEstimatedTime()/(p1.getVolume() + p1.getWeight()) > p2.getEstimatedTime()/(p2.getVolume() + p2.getWeight());
+    return p1.getEstimatedTime() < p2.getEstimatedTime();
 }
 
 bool ThirdScenario::compareTransports(const Transport &t1, const Transport &t2) {
@@ -22,4 +22,10 @@ vector<Package> ThirdScenario::sortPackages(vector<Package> &packages) {
 vector<Transport> ThirdScenario::sortTransport(vector<Transport> &transports) {
     sort(transports.begin(), transports.end(), compareTransports);
     return transports;
+}
+
+bool ThirdScenario::isTransportsFull(vector<Transport> &transports) {
+    for (const auto &t: transports)
+        if (!t.isFull()) return false;
+    return true;
 }

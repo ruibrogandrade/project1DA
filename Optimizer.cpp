@@ -103,32 +103,31 @@ void Optimizer::optimizeExpressDelivery(){
     //TODO
     restartOptimizer();
 
-    unsigned int time = 0;
     unsigned int counterPackages = 0;
 
     vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    FirstScenario::sortPackages(packages);
+    ThirdScenario::sortPackages(packages);
 
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    FirstScenario::sortTransport(transports);
+    ThirdScenario::sortTransport(transports);
 
+    auto et = packages.begin();
 
-    for(auto &transport: transports) {
-        for (auto package: packages) {
-            if (transport.getTime() == (8 * 3600)) break;
-            if (((transport.getTime() + package.getEstimatedTime()) < (8 * 3600)) && (transport.addPackage(package))) {
-                int newTime = transport.getTime() + package.getEstimatedTime();
-                transport.setTime(newTime);
-                counterPackages++;
-            }
+    while((et != packages.end()) && !ThirdScenario::isTransportsFull(transports)) {
+        if (transports.begin()->addExpress(*et)) {
+            counterPackages++;
+            if (et == packages.end()) break;
+            et++;
         }
     }
+
     double avgTime = 0;
     for (const auto& transport: transports) {
         if(transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
-        avgTime += transport.getTime();
+        avgTime += ((8*3600)-transport.getRemainingTime());
     }
+
     avgTime /= (double)counterPackages;
     //double  averageDeliveryTime = counterPackages / (transports.size() + (8 * 3600));
 
@@ -180,7 +179,7 @@ void Optimizer::showUsedTransports() const {
              << "Total profit: " << totalProfit << endl << endl;
             cout << "Transports                        Number of carried packages                         Profit" << endl;
 
-            for (auto transport: usedTransports)
+            for (const auto& transport: usedTransports)
                 cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
                      << "  ---------------               " << transport.getCarriedPackages().size()
                      << "             --------------------   " << transport.getProfit() << endl;
