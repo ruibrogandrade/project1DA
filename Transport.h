@@ -19,6 +19,7 @@ private:
     unsigned int price;
     int profit;
     unsigned time;
+    unsigned remainingTime = 8 * 3600;
 
 private:
     bool expressDelivery;
@@ -35,11 +36,12 @@ public:
     int calculateProfit();
     int getProfit() const;
     bool isExpressDelivery() const;
-    const vector<Package> &getCarriedPackages() const;
+    vector<Package> getCarriedPackages() const;
     unsigned int getDuration() const;
     bool addPackage(Package &package);
     bool addExpress(Package &package);
     void setExpressDelivery();
+    unsigned int getRemainingTime() const;
 
     unsigned int getTime() const;
 

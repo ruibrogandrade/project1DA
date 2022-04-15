@@ -17,18 +17,6 @@ unsigned int Transport::getMaxWeight() const {
     return maxWeight;
 }
 
-void Transport::setWeightExpress(){
-    maxWeight = INT_MAX;
-}
-
-void Transport::setVolumeExpress(){
-    maxWeight = INT_MAX;
-}
-
-void Transport::setExpressDelivery(){
-    expressDelivery = true;
-}
-
 unsigned int Transport::getPrice() const {
     return price;
 }
@@ -38,7 +26,7 @@ int Transport::getProfit() const {
     return profit;
 }
 
-const vector<Package> &Transport::getCarriedPackages() const {
+vector<Package> Transport::getCarriedPackages() const {
     return carriedPackages;
 }
 
@@ -55,10 +43,11 @@ bool Transport::addPackage(Package &package) {
 }
 
 bool Transport::addExpress(Package &package) {
-    if (package.getVolume() > maxVol || package.getWeight() > maxWeight || package.isAlreadyAdded())
+    if(package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
         return false;
 
     carriedPackages.push_back(package);
+    remainingTime -= package.getEstimatedTime();
     package.setAdded();
     return true;
 }
@@ -97,4 +86,8 @@ int Transport::calculateProfit() {
 
     profit = (int)totalReward - (int)price;
     return profit;
+}
+
+unsigned int Transport::getRemainingTime() const{
+    return remainingTime;
 }

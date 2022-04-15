@@ -20,14 +20,14 @@ using namespace std;
 
 class Optimizer {
 private:
-    //class' attributes
-    //vector<map<Package,bool>> allPackages; // This map tells if package has already added or hasn't;
-    //vector<map<Transport,bool>> allTransports; // This map tells if transport has already added or hasn't;
     vector<Transport> usedTransports;
     vector<Transport> allTransports;
     vector<Package> allPackages;
-    unsigned int optimizerType = 0;
-    int totalProfit = 0;
+    Transport expressTransport;
+    unsigned int optimizerType, numDeliveredPackages;
+    int totalProfit;
+    double avgTime;
+
 
 private:
     //private methods. They are only used as auxiliary functions in the public optimize methods
