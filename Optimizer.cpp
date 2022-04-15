@@ -135,20 +135,19 @@ void Optimizer::optimizeExpressDelivery(){
 
     cout << "Average Time " << avgTime << endl;
 
-    /*for (auto &package: packages)
-        for (auto &transport: transports)
-            if ((transport.getDuration() + package.getEstimatedTime() <= 8*3600 && transport.addExpress(package))
-                break;
+    /*auto it = transports.begin();
 
-    double avgTime = 0;
-    for (const auto& transport: transports) {
-        if(transport.getCarriedPackages().empty()) break;
-        usedTransports.push_back(transport);
-        avgTime += transport.getDuration();
+    for(auto package : packages) {
+        it->addExpress(package);
+        if (it->getRemainingTime()<(++it)->getRemainingTime())
+            it++;
+        if (it == transports.end()) {
+            ThirdScenario::sortTransport(transports);
+        }
     }
-    avgTime /= usedTransports.size();
-    cout << avgTime << endl;*/
+    ThirdScenario::sortTransport(transports);*/
 }
+
 
 void Optimizer::restartOptimizer() {
     usedTransports.clear();
