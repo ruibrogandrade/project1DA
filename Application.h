@@ -18,12 +18,9 @@ private:
     vector<Transport> allTransports;
 public:
     Application();
-    vector<Package> getAllPackages() const;
-    vector<Transport> getAllTransports() const;
     void readPackages();
     void readTransports();
     static unsigned int showMenu();
-    void showDeliveredPackages() const;
     void runApplication();
 };
 

@@ -12,10 +12,14 @@
 class SecondScenario {
 public:
     static bool comparePackages(const Package &p1, const Package &p2);
+
     static bool compareTransports(const Transport &t1, const Transport &t2);
+
     static void sortPackages(vector<Package> &packages);
+
     static void sortTransport(vector<Transport> &transports);
-    static pair<unsigned int, set<unsigned int>> knapSack(Transport& t, vector<Package> &packages);
+
+    static pair<unsigned, set<unsigned>> knapsack(Transport &t, vector<Package> &packages);
 };
 
 #endif //MAIN_CPP_SECONDSCENARIO_H

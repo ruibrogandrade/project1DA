@@ -6,32 +6,25 @@
 #define URBAN_LOGISTICS_PACKAGE_H
 
 #include <iostream>
+
 using namespace std;
 
 class Package {
 private:
-    unsigned int volume;
-    unsigned int weight;
-    unsigned int reward;
-    unsigned int estimatedTime;
-    bool expressDelivery;
+    unsigned volume = 0, weight = 0;
+    unsigned reward = 0, estimatedTime = 0;
     bool added = false;
+
 public:
-    //expressDelivery argument is not necessary in the constructor when the order is not express
-    //we need only to create a constructor like this: Package(volume, weight, reward, duration)
-    Package() {};
-    Package(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int estimatedTime,
-            bool expressDelivery = false);
-    unsigned int getVolume() const;
-    unsigned int getWeight() const;
-    unsigned int getReward() const;
-    unsigned int getEstimatedTime() const;
-    bool isExpressDelivery() const;
+    Package() = default;
+    Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime);
+    unsigned getVolume() const;
+    unsigned getWeight() const;
+    unsigned getReward() const;
+    unsigned getEstimatedTime() const;
     bool isAlreadyAdded() const;
     void setAdded();
     void restart();
-    ostream &operator<<(ostream &os) const;
-
 };
 
 #endif //URBAN_LOGISTICS_PACKAGE_H

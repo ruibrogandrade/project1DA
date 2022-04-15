@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "ThirdScenario.h"
 
-
 bool ThirdScenario::comparePackages(const Package &p1, const Package &p2) {
     return p1.getEstimatedTime() < p2.getEstimatedTime();
 }

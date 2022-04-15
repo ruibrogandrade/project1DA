@@ -4,9 +4,9 @@
 
 #include "Package.h"
 
-Package::Package(unsigned int volume, unsigned int weight, unsigned int reward, unsigned int estimatedTime, bool expressDelivery)
-: volume(volume), weight(weight), reward(reward),
-estimatedTime(estimatedTime), expressDelivery(expressDelivery) {}
+Package::Package(unsigned volume, unsigned weight, unsigned reward, unsigned int estimatedTime)
+        : volume(volume), weight(weight), reward(reward),
+          estimatedTime(estimatedTime) {}
 
 unsigned int Package::getVolume() const {
     return volume;
@@ -24,10 +24,6 @@ unsigned int Package::getEstimatedTime() const {
     return estimatedTime;
 }
 
-bool Package::isExpressDelivery() const {
-    return expressDelivery;
-}
-
 void Package::setAdded() {
     added = true;
 }
@@ -38,5 +34,4 @@ bool Package::isAlreadyAdded() const {
 
 void Package::restart() {
     added = false;
-    expressDelivery = false;
 }

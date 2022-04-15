@@ -4,26 +4,30 @@
 
 #include "Transport.h"
 
-Transport::Transport(unsigned int price, unsigned int maxVol, unsigned int maxWeight, bool expressDelivery)
+Transport::Transport(unsigned price, unsigned maxVol, unsigned maxWeight)
         : maxVol(maxVol), maxWeight(maxWeight), price(price),
-        remainingVolume(maxVol), remainingWeight(maxWeight),
-        profit((int)-price), expressDelivery(expressDelivery){}
+          remainingVolume(maxVol), remainingWeight(maxWeight),
+          profit(0) {}
 
-unsigned int Transport::getMaxVol() const {
+unsigned Transport::getMaxVol() const {
     return maxVol;
 }
 
-unsigned int Transport::getMaxWeight() const {
+unsigned Transport::getMaxWeight() const {
     return maxWeight;
 }
 
-unsigned int Transport::getPrice() const {
+unsigned Transport::getPrice() const {
     return price;
 }
 
 int Transport::getProfit() const {
-    if(carriedPackages.empty()) return 0;
+    if (carriedPackages.empty()) return 0;
     return profit;
+}
+
+unsigned Transport::getRemainingTime() const {
+    return remainingTime;
 }
 
 const vector<Package> &Transport::getCarriedPackages() const {
@@ -38,12 +42,12 @@ bool Transport::addPackage(Package &package) {
     package.setAdded();
     remainingVolume -= package.getVolume();
     remainingWeight -= package.getWeight();
-    profit += (int)package.getReward();
+    profit += (int) package.getReward();
     return true;
 }
 
 bool Transport::addExpress(Package &package) {
-    if(package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
+    if (package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
         return false;
 
     carriedPackages.push_back(package);
@@ -53,40 +57,23 @@ bool Transport::addExpress(Package &package) {
 }
 
 void Transport::restart() {
-    carriedPackages.clear();
-    expressDelivery = false;
-}
-
-bool Transport::isExpressDelivery() const {
-    return expressDelivery;
-}
-
-unsigned int Transport::getDuration() const{
-    unsigned int duration = 0;
-    for (auto p: carriedPackages) duration += p.getEstimatedTime();
-    return duration;
+    this->carriedPackages.clear();
 }
 
 int Transport::calculateProfit() {
-    profit = 0;
-    if(carriedPackages.empty()) return profit;
+    if (carriedPackages.empty()) return profit;
 
-    unsigned int totalReward = 0;
-    for(auto package : carriedPackages) totalReward += package.getReward();
-    profit = (int)totalReward - (int)price;
+    unsigned totalReward = 0;
+    for (auto package: carriedPackages) totalReward += package.getReward();
+    profit = (int) totalReward - (int) price;
 
     return profit;
 }
 
-unsigned int Transport::getRemainingTime() const{
-    return remainingTime;
-}
+unsigned Transport::sumTime() {
+    if (carriedPackages.empty()) return 0;
 
-unsigned int Transport::sumTime(){
-    if (carriedPackages.empty())
-        return 0;
-
-    unsigned int sumTime = 0;
+    unsigned sumTime = 0;
     for (int i = 0; i < carriedPackages.size(); i++)
         sumTime += carriedPackages[i].getEstimatedTime() * (carriedPackages.size() - i);
 

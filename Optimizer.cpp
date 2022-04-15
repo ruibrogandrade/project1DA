@@ -2,15 +2,20 @@
 // Created by Rui on 04/04/2022.
 //
 
+#define GREEDY 1
+#define KNAPSACK 0
+
 #include <algorithm>
 #include "Optimizer.h"
 #include "FirstScenario.h"
 #include "SecondScenario.h"
 #include "ThirdScenario.h"
+#include <cmath>
 
 using namespace std;
 
-Optimizer::Optimizer(unsigned int optimizerType, const vector<Package> &allPackages, const vector<Transport> &allTransports) {
+Optimizer::Optimizer(unsigned optimizerType, const vector<Package> &allPackages,
+                     const vector<Transport> &allTransports) {
     this->optimizerType = optimizerType;
     this->allPackages = allPackages;
     this->allTransports = allTransports;
@@ -18,9 +23,18 @@ Optimizer::Optimizer(unsigned int optimizerType, const vector<Package> &allPacka
 
 void Optimizer::optimize() {
     switch (optimizerType) {
-        case OPTIMIZE_TRANSPORTS: optimizeTransports(); showUsedTransports(); break;
-        case OPTIMIZE_PROFIT: optimizeProfit(); showUsedTransports(); break;
-        case OPTIMIZE_EXPRESS_DELIVERY: optimizeExpressDelivery(); showUsedTransports(); break;
+        case OPTIMIZE_TRANSPORTS:
+            optimizeTransports();
+            showUsedTransports();
+            break;
+        case OPTIMIZE_PROFIT:
+            optimizeProfit();
+            showUsedTransports();
+            break;
+        case OPTIMIZE_EXPRESS_DELIVERY:
+            optimizeExpressDelivery();
+            showUsedTransports();
+            break;
     }
 }
 
@@ -38,27 +52,27 @@ void Optimizer::optimizeTransports() {
             if (transport.addPackage(package))
                 break;
 
-    for (const auto& transport: transports) {
-        if(transport.getCarriedPackages().empty()) break;
+    for (const auto &transport: transports) {
+        if (transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
         numDeliveredPackages += transport.getCarriedPackages().size();
     }
+    efficiency = (double) numDeliveredPackages / (double) packages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
 }
 
-unsigned int chooseProfitAlgorithm(){
+unsigned chooseProfitAlgorithm() {
     cout << endl <<
          "|========================================================================|\n"
          "|      Greedy Algorithm (fast, but only an approach)     [1]             |\n"
          "|      Knapsack Algorithm (precise, but so slow)         [0]             |\n"
          "|========================================================================|\n";
-    while(true)
-    {
+    while (true) {
         cout << "Choose an algorithm that you want to use for achieve better profit:";
-        unsigned int algorithmChose;
+        unsigned algorithmChose;
 
         cin >> algorithmChose;
-        if (cin.fail() || cin.peek() != '\n' || (algorithmChose != 1 && algorithmChose != 0))
-        {
+        if (cin.fail() || cin.peek() != '\n' || (algorithmChose != 1 && algorithmChose != 0)) {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
             continue;
@@ -74,42 +88,44 @@ void Optimizer::greedyProfit(vector<Package> &packages, vector<Transport> &trans
             if (transport.addPackage(package))
                 break;
 
-    for (auto& transport: transports) {
+    for (auto &transport: transports) {
         if (transport.getCarriedPackages().empty()) break;
 
         int profit = transport.calculateProfit();
-        if(profit > 0) {
+        if (profit > 0) {
             usedTransports.push_back(transport);
             numDeliveredPackages += transport.getCarriedPackages().size();
             totalProfit += profit;
         }
     }
+    efficiency = (double) numDeliveredPackages / (double) packages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
+
 }
 
 void Optimizer::knapsackProfit(vector<Package> &packages, vector<Transport> &transports) {
-    for (auto t: transports)
-    {
-        auto temp = SecondScenario::knapSack(t, packages);
-        int profit = (int)(temp.first-t.getPrice());
-        if(profit<0) return;
+    for (auto t: transports) {
+        auto temp = SecondScenario::knapsack(t, packages);
+        int profit = (int) (temp.first - t.getPrice());
+        if (profit < 0) return;
         totalProfit += profit;
-        for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
+        for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++) {
             t.addPackage(packages[*rit]);
             packages.erase(packages.begin() + *rit);
         }
         usedTransports.push_back(t);
         numDeliveredPackages += t.getCarriedPackages().size();
     }
+    efficiency = (double) numDeliveredPackages / (double) packages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
+
 }
 
 
-void Optimizer::optimizeProfit(){
+void Optimizer::optimizeProfit() {
     restartOptimizer();
 
-    #define GREEDY 1
-    #define KNAPSACK 0
-
-    unsigned int algorithmSelected = chooseProfitAlgorithm();
+    unsigned algorithmSelected = chooseProfitAlgorithm();
 
     vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
     SecondScenario::sortPackages(packages);
@@ -117,15 +133,12 @@ void Optimizer::optimizeProfit(){
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
     SecondScenario::sortTransport(transports);
 
-    totalProfit = 0;
-
-    if (algorithmSelected == GREEDY)  greedyProfit(packages, transports);
+    if (algorithmSelected == GREEDY) greedyProfit(packages, transports);
     else if (algorithmSelected == KNAPSACK) knapsackProfit(packages, transports);
 }
 
 
-void Optimizer::optimizeExpressDelivery(){
-    //TODO
+void Optimizer::optimizeExpressDelivery() {
     restartOptimizer();
 
     vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
@@ -134,67 +147,66 @@ void Optimizer::optimizeExpressDelivery(){
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
     ThirdScenario::sortTransport(transports);
 
-    auto it = transports.begin();
+    unsigned numOfTransports;
+    while (true) {
+        cout << "How many transports you want to use (1 - " << allTransports.size() << ")?:";
+        cin >> numOfTransports;
+        if (!cin.fail() && cin.peek() == '\n' && numOfTransports >= 1 && numOfTransports <= allTransports.size())
+            break;
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        cout << "Invalid number!" << endl;
+    }
+    transports.resize(numOfTransports);
 
-    for(auto package : packages) {
+    auto it = transports.begin();
+    for (auto package: packages) {
         if (!(it->addExpress(package))) break;
 
-        if (it->getRemainingTime()<(it++)->getRemainingTime()) it++;
+        if (it->getRemainingTime() < (it++)->getRemainingTime()) it++;
 
         if (it == transports.end()) it = transports.begin();
     }
 
-    unsigned int sumTime = 0;
-    for (auto& transport: transports) {
+    unsigned sumTime = 0;
+    for (auto &transport: transports) {
         if (transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
         sumTime += transport.sumTime();
         numDeliveredPackages += transport.getCarriedPackages().size();
     }
 
-    avgTime = (double)sumTime / numDeliveredPackages;
-    /*
-    for(auto package : packages)
-    {
-        if(!expressTransport.addExpress(package))
-            break;
-    }
-
-    usedTransports.push_back(expressTransport);
-    numDeliveredPackages = expressTransport.getCarriedPackages().size();
-
-    unsigned int sumTime = sumTimeTransport(expressTransport);
-    unsigned int numPackagesTransported = (unsigned) expressTransport.getCarriedPackages().size();
-
-    avgTime = (double)sumTime / numPackagesTransported;
-     */
+    avgTime = (double) sumTime / numDeliveredPackages;
+    efficiency = (double) numDeliveredPackages / (double) packages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
 }
-
 
 void Optimizer::restartOptimizer() {
     usedTransports.clear();
 
-    for(auto &package : allPackages)
-        package.restart(); // makes package.added = false and expressDelivery = false
+    // makes package.added = false and expressDelivery = false
+    for (auto &package: allPackages)
+        package.restart();
 
-    for(auto &transport : allTransports) // makes transport.carriedPackages empty and expressDelivery = false
+    // makes transport.carriedPackages empty and expressDelivery = false
+    for (auto &transport: allTransports)
         transport.restart();
 
-    totalProfit = 0; numDeliveredPackages = 0; avgTime = 0;
-}
-
-vector<Transport> Optimizer::getUsedTransports() const {
-    return usedTransports;
+    totalProfit = 0;
+    numDeliveredPackages = 0;
+    avgTime = 0, efficiency = 0;
 }
 
 void Optimizer::showUsedTransports() const {
+    cout << endl << "Used transports: " << usedTransports.size() << endl
+         << "Delivered packages: " << numDeliveredPackages << endl
+         << "NON delivered packages: " << allPackages.size() - numDeliveredPackages << endl
+         << "Efficiency: " << efficiency * 100 << "%" << endl;
 
     switch (optimizerType) {
         case OPTIMIZE_TRANSPORTS:
-            cout << endl << "Used transports: " << usedTransports.size() << endl
-            << "Delivered packages: "<< numDeliveredPackages << endl
-            << "NON delivered packages: " << allPackages.size() - numDeliveredPackages << endl << endl;
-            cout << "Transports                        Number of carried packages" << endl;
+            cout << "Transports" << "                           "
+                 << "Number of carried packages" << endl;
 
             for (const auto &transport: usedTransports)
                 cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
@@ -202,28 +214,24 @@ void Optimizer::showUsedTransports() const {
             break;
 
         case OPTIMIZE_PROFIT:
-            cout << endl << "Used transports: " << usedTransports.size() << endl
-            << "Delivered packages: "<< numDeliveredPackages << endl
-            << "NON delivered packages: " << allPackages.size() - numDeliveredPackages << endl
-            << "Total profit: " << totalProfit << endl << endl;
-            cout << "Transports                        Number of carried packages                         Profit" << endl;
+            cout << "Total profit: " << totalProfit << endl << endl;
+            cout << "Transports" << "                           "
+                 << "Number of carried packages" << endl;
 
-            for (const auto& transport: usedTransports)
+            for (const auto &transport: usedTransports)
                 cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
                      << "  ---------------               " << transport.getCarriedPackages().size()
                      << "             --------------------   " << transport.getProfit() << endl;
             break;
 
         case OPTIMIZE_EXPRESS_DELIVERY:
-            cout << endl << "Used transports: " << usedTransports.size() << endl
-                    << "Delivered packages: "<< numDeliveredPackages << endl
-                    << "NON delivered packages: " << allPackages.size() - numDeliveredPackages << endl
-                    << "Minimum Average Time: " << avgTime << endl << endl;
-            cout << "Transports                           Number of carried packages" << endl;
+            cout << "Minimum Average Time: " << avgTime << endl << endl;
+            cout << "Transports" << "                           "
+                 << "Number of carried packages" << endl;
 
-
-            cout << "Express Transport" << "   ---------------  "
-                << expressTransport.getCarriedPackages().size() << endl;
+            for (const auto &transport: usedTransports)
+                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
+                     << "  ---------------  " << transport.getCarriedPackages().size() << endl;
             break;
     }
 }
