@@ -19,12 +19,7 @@ private:
     unsigned int price;
     int profit;
     unsigned time;
-    bool full;
     unsigned remainingTime = 8 * 3600;
-public:
-    bool isFull() const;
-
-    void setFull(bool full);
 
 private:
     bool expressDelivery;
@@ -38,9 +33,10 @@ public:
     void setWeightExpress();
     void setVolumeExpress();
     unsigned int getPrice() const;
+    int calculateProfit();
     int getProfit() const;
     bool isExpressDelivery() const;
-    const vector<Package> &getCarriedPackages() const;
+    vector<Package> getCarriedPackages() const;
     unsigned int getDuration() const;
     bool addPackage(Package &package);
     bool addExpress(Package &package);

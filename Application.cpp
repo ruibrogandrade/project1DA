@@ -58,7 +58,8 @@ vector<Transport> Application::getAllTransports() const {
 bool isBadCin(){
     //verify if the menu chose is a possible choice made by the user
 
-    if (cin.fail() || cin.peek() != '\n') {
+    if (cin.fail() || cin.peek() != '\n')
+    {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
         return true;

@@ -17,18 +17,6 @@ unsigned int Transport::getMaxWeight() const {
     return maxWeight;
 }
 
-void Transport::setWeightExpress(){
-    maxWeight = INT_MAX;
-}
-
-void Transport::setVolumeExpress(){
-    maxWeight = INT_MAX;
-}
-
-void Transport::setExpressDelivery(){
-    expressDelivery = true;
-}
-
 unsigned int Transport::getPrice() const {
     return price;
 }
@@ -55,14 +43,12 @@ bool Transport::addPackage(Package &package) {
 }
 
 bool Transport::addExpress(Package &package) {
-
     if(package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
         return false;
 
     carriedPackages.push_back(package);
-    remainingTime -= package.getEstimatedTime(); //
+    remainingTime -= package.getEstimatedTime();
     package.setAdded();
-    if(remainingTime == 0) full = true;
     return true;
 }
 
@@ -89,12 +75,17 @@ void Transport::setTime(unsigned int time) {
     Transport::time = time;
 }
 
-bool Transport::isFull() const {
-    return full;
-}
+int Transport::calculateProfit() {
+    profit = 0;
+    if(carriedPackages.empty())
+        return profit;
 
-void Transport::setFull(bool full) {
-    Transport::full = full;
+    unsigned int totalReward = 0;
+    for(auto package : carriedPackages)
+        totalReward += package.getReward();
+
+    profit = (int)totalReward - (int)price;
+    return profit;
 }
 
 unsigned int Transport::getRemainingTime() const{
