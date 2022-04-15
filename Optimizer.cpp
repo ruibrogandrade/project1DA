@@ -115,6 +115,7 @@ void Optimizer::optimizeExpressDelivery(){
 
     while((et != packages.end()) && !ThirdScenario::isTransportsFull(transports)) {
         if (transports.begin()->addExpress(*et)) {
+            transports = ThirdScenario::sortTransport(transports);
             counterPackages++;
             if (et == packages.end()) break;
             et++;
@@ -125,6 +126,7 @@ void Optimizer::optimizeExpressDelivery(){
     for (const auto& transport: transports) {
         if(transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
+        cout << (transport.getRemainingTime()) << endl;
         avgTime += ((8*3600)-transport.getRemainingTime());
     }
 
