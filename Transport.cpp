@@ -67,24 +67,14 @@ unsigned int Transport::getDuration() const{
     return duration;
 }
 
-unsigned int Transport::getTime() const {
-    return time;
-}
-
-void Transport::setTime(unsigned int time) {
-    Transport::time = time;
-}
-
 int Transport::calculateProfit() {
     profit = 0;
-    if(carriedPackages.empty())
-        return profit;
+    if(carriedPackages.empty()) return profit;
 
     unsigned int totalReward = 0;
-    for(auto package : carriedPackages)
-        totalReward += package.getReward();
-
+    for(auto package : carriedPackages) totalReward += package.getReward();
     profit = (int)totalReward - (int)price;
+
     return profit;
 }
 

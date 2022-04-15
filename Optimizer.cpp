@@ -74,14 +74,11 @@ void Optimizer::greedyProfit(vector<Package> &packages, vector<Transport> &trans
             if (transport.addPackage(package))
                 break;
 
-    for (auto& transport: transports)
-    {
-        if (transport.getCarriedPackages().empty())
-            break;
+    for (auto& transport: transports) {
+        if (transport.getCarriedPackages().empty()) break;
 
         int profit = transport.calculateProfit();
-        if(profit > 0)
-        {
+        if(profit > 0) {
             usedTransports.push_back(transport);
             numDeliveredPackages += transport.getCarriedPackages().size();
             totalProfit += profit;
@@ -124,29 +121,27 @@ void Optimizer::optimizeProfit(){
 
     totalProfit = 0;
 
-    switch (algorithmSelected)
-    {
-        case GREEDY:
-            greedyProfit(packages, transports); break;
-
-        case KNAPSACK:
-            knapsackProfit(packages, transports); break;
-    }
+    if (algorithmSelected == GREEDY)  greedyProfit(packages, transports);
+    else if (algorithmSelected == KNAPSACK) knapsackProfit(packages, transports);
 }
 
 unsigned int sumTimeTransport(Transport &transport){
+    if (transport.getCarriedPackages().empty()) return 0;
+
     unsigned int sumTime = 0;
+    /*for (auto p : transport.getCarriedPackages()) {
+        sumTime *= 2;
+        sumTime += p.getEstimatedTime();
+    }*/
 
     vector<Package> carriedPackages = transport.getCarriedPackages();
     for(int i = 0; i < carriedPackages.size(); i++)
     {
-        for(int j = 0; j <= i; j++)
-        {
-            sumTime += carriedPackages[j].getEstimatedTime();
-        }
+        sumTime += carriedPackages[i].getEstimatedTime() * (carriedPackages.size() - i) ;
     }
     return sumTime;
 }
+
 
 void Optimizer::optimizeExpressDelivery(){
     //TODO
@@ -163,27 +158,37 @@ void Optimizer::optimizeExpressDelivery(){
     auto it = transports.begin();
 
     for(auto package : packages) {
-        it->addExpress(package);
-        if (it->getRemainingTime()<(++it)->getRemainingTime())
-            it++;
-        if (it == transports.end()) {
-            it = transports.begin();
-        }
-    }
-    ThirdScenario::sortTransport(transports);
+        if (!(it->addExpress(package))) break;
 
-    double avgTime = 0;
-    for (const auto& transport: transports) {
-        if(transport.getCarriedPackages().empty()) break;
+        if (it->getRemainingTime()<(it++)->getRemainingTime()) it++;
+
+        if (it == transports.end()) it = transports.begin();
+    }
+
+    unsigned int sumTime = 0;
+    for (auto& transport: transports) {
+        if (transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
-        cout << (transport.getRemainingTime()) << endl;
-        avgTime += ((8*3600)-transport.getRemainingTime());
+        sumTime += sumTimeTransport(transport);
+        numDeliveredPackages += transport.getCarriedPackages().size();
     }
 
-    avgTime /= (double)counterPackages;
-    //double  averageDeliveryTime = counterPackages / (transports.size() + (8 * 3600));
+    avgTime = (double)sumTime / numDeliveredPackages;
+    /*
+    for(auto package : packages)
+    {
+        if(!expressTransport.addExpress(package))
+            break;
+    }
 
-    cout << "Average Time " << avgTime << endl;
+    usedTransports.push_back(expressTransport);
+    numDeliveredPackages = expressTransport.getCarriedPackages().size();
+
+    unsigned int sumTime = sumTimeTransport(expressTransport);
+    unsigned int numPackagesTransported = (unsigned) expressTransport.getCarriedPackages().size();
+
+    avgTime = (double)sumTime / numPackagesTransported;
+     */
 }
 
 
@@ -224,7 +229,7 @@ void Optimizer::showUsedTransports() const {
             << "Total profit: " << totalProfit << endl << endl;
             cout << "Transports                        Number of carried packages                         Profit" << endl;
 
-            for (auto transport: usedTransports)
+            for (const auto& transport: usedTransports)
                 cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
                      << "  ---------------               " << transport.getCarriedPackages().size()
                      << "             --------------------   " << transport.getProfit() << endl;

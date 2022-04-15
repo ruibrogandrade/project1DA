@@ -18,10 +18,7 @@ private:
     unsigned int maxWeight, remainingWeight;
     unsigned int price;
     int profit;
-    unsigned time;
     unsigned remainingTime = 8 * 3600;
-
-private:
     bool expressDelivery;
     vector<Package> carriedPackages;
 
@@ -35,17 +32,13 @@ public:
     unsigned int getPrice() const;
     int calculateProfit();
     int getProfit() const;
+    unsigned int getRemainingTime() const;
     bool isExpressDelivery() const;
-    vector<Package> getCarriedPackages() const;
+    const vector<Package> &getCarriedPackages() const;
     unsigned int getDuration() const;
+
     bool addPackage(Package &package);
     bool addExpress(Package &package);
-    void setExpressDelivery();
-    unsigned int getRemainingTime() const;
-
-    unsigned int getTime() const;
-
-    void setTime(unsigned int time);
 
     void restart();
 

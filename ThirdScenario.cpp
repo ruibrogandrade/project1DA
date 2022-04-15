@@ -23,9 +23,3 @@ vector<Transport> ThirdScenario::sortTransport(vector<Transport> &transports) {
     sort(transports.begin(), transports.end(), compareTransports);
     return transports;
 }
-
-bool ThirdScenario::isTransportsFull(vector<Transport> &transports) {
-    for (const auto &t: transports)
-        if (!t.isFull()) return false;
-    return true;
-}
