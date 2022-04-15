@@ -125,23 +125,6 @@ void Optimizer::optimizeProfit(){
     else if (algorithmSelected == KNAPSACK) knapsackProfit(packages, transports);
 }
 
-unsigned int sumTimeTransport(Transport &transport){
-    if (transport.getCarriedPackages().empty()) return 0;
-
-    unsigned int sumTime = 0;
-    /*for (auto p : transport.getCarriedPackages()) {
-        sumTime *= 2;
-        sumTime += p.getEstimatedTime();
-    }*/
-
-    vector<Package> carriedPackages = transport.getCarriedPackages();
-    for(int i = 0; i < carriedPackages.size(); i++)
-    {
-        sumTime += carriedPackages[i].getEstimatedTime() * (carriedPackages.size() - i) ;
-    }
-    return sumTime;
-}
-
 
 void Optimizer::optimizeExpressDelivery(){
     //TODO

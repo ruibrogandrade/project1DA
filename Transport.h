@@ -36,7 +36,7 @@ public:
     bool isExpressDelivery() const;
     const vector<Package> &getCarriedPackages() const;
     unsigned int getDuration() const;
-
+    unsigned int sumTime();
     bool addPackage(Package &package);
     bool addExpress(Package &package);
 

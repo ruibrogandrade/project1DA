@@ -81,3 +81,14 @@ int Transport::calculateProfit() {
 unsigned int Transport::getRemainingTime() const{
     return remainingTime;
 }
+
+unsigned int Transport::sumTime(){
+    if (carriedPackages.empty())
+        return 0;
+
+    unsigned int sumTime = 0;
+    for (int i = 0; i < carriedPackages.size(); i++)
+        sumTime += carriedPackages[i].getEstimatedTime() * (carriedPackages.size() - i);
+
+    return sumTime;
+}
