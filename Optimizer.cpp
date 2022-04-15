@@ -92,15 +92,13 @@ void Optimizer::knapsackProfit(vector<Package> &packages, vector<Transport> &tra
         auto temp = SecondScenario::knapSack(t, packages);
         int profit = (int)(temp.first-t.getPrice());
         if(profit<0) return;
-        else {
-            totalProfit += profit;
-            for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
-                t.addPackage(packages[*rit]);
-                packages.erase(packages.begin() + *rit);
-            }
-            usedTransports.push_back(t);
-            numDeliveredPackages += t.getCarriedPackages().size();
+        totalProfit += profit;
+        for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++ ) {
+            t.addPackage(packages[*rit]);
+            packages.erase(packages.begin() + *rit);
         }
+        usedTransports.push_back(t);
+        numDeliveredPackages += t.getCarriedPackages().size();
     }
 }
 
@@ -130,8 +128,6 @@ void Optimizer::optimizeExpressDelivery(){
     //TODO
     restartOptimizer();
 
-    unsigned int counterPackages = 0;
-
     vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
     ThirdScenario::sortPackages(packages);
 
@@ -152,7 +148,7 @@ void Optimizer::optimizeExpressDelivery(){
     for (auto& transport: transports) {
         if (transport.getCarriedPackages().empty()) break;
         usedTransports.push_back(transport);
-        sumTime += sumTimeTransport(transport);
+        sumTime += transport.sumTime();
         numDeliveredPackages += transport.getCarriedPackages().size();
     }
 
