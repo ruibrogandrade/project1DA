@@ -111,16 +111,17 @@ void Optimizer::optimizeExpressDelivery(){
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
     ThirdScenario::sortTransport(transports);
 
-    auto et = packages.begin();
+    auto it = transports.begin();
 
-    while((et != packages.end()) && !ThirdScenario::isTransportsFull(transports)) {
-        if (transports.begin()->addExpress(*et)) {
-            transports = ThirdScenario::sortTransport(transports);
-            counterPackages++;
-            if (et == packages.end()) break;
-            et++;
+    for(auto package : packages) {
+        it->addExpress(package);
+        if (it->getRemainingTime()<(++it)->getRemainingTime())
+            it++;
+        if (it == transports.end()) {
+            it = transports.begin();
         }
     }
+    ThirdScenario::sortTransport(transports);
 
     double avgTime = 0;
     for (const auto& transport: transports) {
@@ -134,18 +135,6 @@ void Optimizer::optimizeExpressDelivery(){
     //double  averageDeliveryTime = counterPackages / (transports.size() + (8 * 3600));
 
     cout << "Average Time " << avgTime << endl;
-
-    /*auto it = transports.begin();
-
-    for(auto package : packages) {
-        it->addExpress(package);
-        if (it->getRemainingTime()<(++it)->getRemainingTime())
-            it++;
-        if (it == transports.end()) {
-            ThirdScenario::sortTransport(transports);
-        }
-    }
-    ThirdScenario::sortTransport(transports);*/
 }
 
 
