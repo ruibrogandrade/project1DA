@@ -192,18 +192,29 @@ void Optimizer::balancePackages() {
 
     vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
 
+    auto transportIter = transports.begin();
     for(auto package : packages)
     {
-        FourthScenario::sortTransport(transports);
-        auto transport = transports.begin();
-
-        while(!transport->addPackage(package))
+        bool added = true;
+        while(!transportIter->addPackage(package))
         {
-            transport++;
-            if(transport == transports.end())
+            added = false;
+            transportIter++;
+            if(transportIter == transports.end())
+            {
+                transportIter = transports.begin();
                 break;
+            }
+        }
+
+        if(added)
+        {
+            transportIter++;
+            if(transportIter == transports.end())
+                transportIter = transports.begin();
         }
     }
+
 
     for(const auto& transport : transports)
     {
@@ -254,8 +265,9 @@ void Optimizer::showUsedTransports() const {
 
         case OPTIMIZE_PROFIT:
             cout << "Total profit: " << totalProfit << endl << endl;
-            cout << "Transports" << "                           "
-                 << "Number of carried packages" << endl;
+            cout << "Transports" << "                        "
+                 << "Number of carried packages" << "                         "
+                 << "Profit" << endl;
 
             for (const auto &transport: usedTransports)
                 cout << transport.getMaxVol() << "  "
@@ -267,7 +279,7 @@ void Optimizer::showUsedTransports() const {
 
         case OPTIMIZE_EXPRESS_DELIVERY:
             cout << "Minimum Average Time: " << avgTime << endl << endl;
-            cout << "Transports" << "                           "
+            cout << "Transports" << "                        "
                  << "Number of carried packages" << endl;
 
             for (const auto &transport: usedTransports)
