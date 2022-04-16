@@ -17,10 +17,20 @@ bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
     return sum1 > sum2;
 }
 
-void FirstScenario::sortPackages(vector<Package> &packages) {
+vector<Transport> FirstScenario::execute(vector<Package> packages, vector<Transport> transports) {
     sort(packages.begin(), packages.end(), comparePackages);
-}
-
-void FirstScenario::sortTransport(vector<Transport> &transports) {
     sort(transports.begin(), transports.end(), compareTransports);
+
+    vector<Transport> usedTransports = {};
+
+    for (auto &package: packages)
+        for (auto &transport: transports)
+            if (transport.addPackage(package))
+                break;
+
+    for (const auto &t: transports) {
+        if (t.getCarriedPackages().empty()) break;
+        usedTransports.push_back(t);
+    }
+    return usedTransports;
 }

@@ -10,14 +10,12 @@
 #include "Transport.h"
 
 class SecondScenario {
-public:
+private:
     static bool comparePackages(const Package &p1, const Package &p2);
 
     static bool compareTransports(const Transport &t1, const Transport &t2);
-
-    static void sortPackages(vector<Package> &packages);
-
-    static void sortTransport(vector<Transport> &transports);
+public:
+    vector<Transport> execute(vector<Package> packages, vector<Transport> transports);
 
     static pair<unsigned, set<unsigned>> knapsack(Transport &t, vector<Package> &packages);
 };
