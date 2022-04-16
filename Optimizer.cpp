@@ -10,6 +10,7 @@
 #include "FirstScenario.h"
 #include "SecondScenario.h"
 #include "ThirdScenario.h"
+#include "FourthScenario.h"
 #include <cmath>
 
 using namespace std;
@@ -35,6 +36,9 @@ void Optimizer::optimize() {
             optimizeExpressDelivery();
             showUsedTransports();
             break;
+        case BALANCE_PACKAGES:
+            balancePackages();
+            showUsedTransports();
     }
 }
 
@@ -118,7 +122,6 @@ void Optimizer::knapsackProfit(vector<Package> &packages, vector<Transport> &tra
     }
     efficiency = (double) numDeliveredPackages / (double) packages.size();
     efficiency = round(efficiency * 10000.0) / 10000.0;
-
 }
 
 
@@ -149,7 +152,7 @@ void Optimizer::optimizeExpressDelivery() {
 
     unsigned numOfTransports;
     while (true) {
-        cout << "How many transports you want to use (1 - " << allTransports.size() << ")?:";
+        cout << endl << "How many transports you want to use (1 - " << allTransports.size() << ")?:";
         cin >> numOfTransports;
         if (!cin.fail() && cin.peek() == '\n' && numOfTransports >= 1 && numOfTransports <= allTransports.size())
             break;
@@ -181,14 +184,48 @@ void Optimizer::optimizeExpressDelivery() {
     efficiency = round(efficiency * 10000.0) / 10000.0;
 }
 
+void Optimizer::balancePackages() {
+    restartOptimizer();
+
+    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
+    FourthScenario::sortPackages(packages);
+
+    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
+
+    for(auto package : packages)
+    {
+        FourthScenario::sortTransport(transports);
+        auto transport = transports.begin();
+
+        while(!transport->addPackage(package))
+        {
+            transport++;
+            if(transport == transports.end())
+                break;
+        }
+    }
+
+    for(const auto& transport : transports)
+    {
+        if(!transport.getCarriedPackages().empty())
+        {
+            usedTransports.push_back(transport);
+            numDeliveredPackages += transport.getCarriedPackages().size();
+        }
+    }
+
+    efficiency = (double) numDeliveredPackages / (double) packages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
+}
+
 void Optimizer::restartOptimizer() {
     usedTransports.clear();
 
-    // makes package.added = false and expressDelivery = false
+    // makes package.added = false
     for (auto &package: allPackages)
         package.restart();
 
-    // makes transport.carriedPackages empty and expressDelivery = false
+    // makes transport.carriedPackages empty
     for (auto &transport: allTransports)
         transport.restart();
 
@@ -204,13 +241,15 @@ void Optimizer::showUsedTransports() const {
          << "Efficiency: " << efficiency * 100 << "%" << endl;
 
     switch (optimizerType) {
-        case OPTIMIZE_TRANSPORTS:
-            cout << "Transports" << "                           "
+        case OPTIMIZE_TRANSPORTS: case BALANCE_PACKAGES:
+            cout << endl << "Transports" << "                        "
                  << "Number of carried packages" << endl;
 
             for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
-                     << "  ---------------  " << transport.getCarriedPackages().size() << endl;
+                cout << transport.getMaxVol() << "  "
+                << transport.getMaxWeight() << "  "
+                << transport.getPrice() << "  ---------------  "
+                << transport.getCarriedPackages().size() << endl;
             break;
 
         case OPTIMIZE_PROFIT:
@@ -219,9 +258,11 @@ void Optimizer::showUsedTransports() const {
                  << "Number of carried packages" << endl;
 
             for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
-                     << "  ---------------               " << transport.getCarriedPackages().size()
-                     << "             --------------------   " << transport.getProfit() << endl;
+                cout << transport.getMaxVol() << "  "
+                << transport.getMaxWeight() << "  "
+                << transport.getPrice() << "  ---------------               "
+                << transport.getCarriedPackages().size() << "             --------------------   "
+                << transport.getProfit() << endl;
             break;
 
         case OPTIMIZE_EXPRESS_DELIVERY:
@@ -230,8 +271,10 @@ void Optimizer::showUsedTransports() const {
                  << "Number of carried packages" << endl;
 
             for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  " << transport.getMaxWeight() << "  " << transport.getPrice()
-                     << "  ---------------  " << transport.getCarriedPackages().size() << endl;
+                cout << transport.getMaxVol() << "  "
+                << transport.getMaxWeight() << "  "
+                << transport.getPrice() << "  ---------------  "
+                << transport.getCarriedPackages().size() << endl;
             break;
     }
 }

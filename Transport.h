@@ -23,29 +23,19 @@ private:
 
 public:
     Transport() = default;
-
     explicit Transport(unsigned price, unsigned maxVol, unsigned maxWeight);
-
     unsigned getMaxWeight() const;
-
     unsigned getMaxVol() const;
-
     unsigned getPrice() const;
-
     int getProfit() const;
-
     int calculateProfit();
-
     unsigned getRemainingTime() const;
-
+    unsigned getRemainingWeight() const;
+    unsigned getRemainingVolume() const;
     const vector<Package> &getCarriedPackages() const;
-
     unsigned sumTime();
-
     bool addPackage(Package &package);
-
     bool addExpress(Package &package);
-
     void restart();
 };
 

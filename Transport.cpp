@@ -79,3 +79,11 @@ unsigned Transport::sumTime() {
 
     return sumTime;
 }
+
+unsigned Transport::getRemainingWeight() const {
+    return remainingWeight;
+}
+
+unsigned Transport::getRemainingVolume() const {
+    return remainingVolume;
+}

@@ -74,17 +74,15 @@ bool isBadCin() {
 unsigned int Application::showMenu() {
     cout <<
          "|========================================================================|\n"
-         "|                                                                        |\n"
          "|          _____________   _________   ______    ___   ___     ___       |\n"
          "|         /  __   __   /  /   _____/  /  __  |  /  /  /  /    /  /       |\n"
          "|        /  / /  / /  /  /   /____   /  / |  | /  /  /  /    /  /        |\n"
          "|       /  / /__/ /  /  /   /____/  /  /  |  |/  /  /  /____/  /         |\n"
          "|      /__/      /__/  /________/  /__/   |_____/  /__________/          |\n"
-         "|                                                                        |\n"
          "|========================================================================|\n"
-         "|                                                                        |\n"
+         "|      Balance packages by transport        [4]                          |\n"
          "|      Optimize express deliveries          [3]                          |\n"
-         "|      Optimize company profit              [2]                          |\n"
+         "|      Optimize company's profit            [2]                          |\n"
          "|      Optimize the number of transports    [1]                          |\n"
          "|      Exit                                 [0]                          |\n"
          "|========================================================================|\n";
@@ -95,7 +93,7 @@ unsigned int Application::showMenu() {
         cout << "Choose an option to organize your deliveries:";
         cin >> choice;
 
-        if (isBadCin() || choice < 0 || choice > 3) {
+        if (isBadCin() || choice < 0 || choice > 4) {
             cout << "Invalid input!" << endl;
             continue;
         }
@@ -112,7 +110,7 @@ bool wasFinished() {
             cout << "Invalid input!" << endl;
             continue;
         }
-        return finished;
+        return (bool)finished;
     }
 }
 
