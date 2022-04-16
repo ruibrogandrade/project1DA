@@ -17,10 +17,32 @@ bool FourthScenario::compareTransports(const Transport& t1, const Transport& t2)
     return sum1 > sum2;
 }
 
-void FourthScenario::sortPackages(vector<Package> &packages) {
+vector<Transport> FourthScenario::execute(vector<Package> packages, vector<Transport> transports) {
     sort(packages.begin(), packages.end(), comparePackages);
-}
 
-void FourthScenario::sortTransport(vector<Transport> &transports) {
-    sort(transports.begin(), transports.end(), compareTransports);
+    vector<Transport> usedTransports = {};
+
+    auto transportIter = transports.begin();
+    for(auto package : packages) {
+        bool added = true;
+        while(!transportIter->addPackage(package)) {
+            added = false;
+            transportIter++;
+            if(transportIter == transports.end()) {
+                transportIter = transports.begin();
+                break;
+            }
+        }
+
+        if(added) {
+            transportIter++;
+            if(transportIter == transports.end())
+                transportIter = transports.begin();
+        }
+    }
+    for (const auto &t: transports) {
+        if (t.getCarriedPackages().empty()) break;
+        usedTransports.push_back(t);
+    }
+    return usedTransports;
 }

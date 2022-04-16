@@ -45,24 +45,12 @@ void Optimizer::optimize() {
 void Optimizer::optimizeTransports() {
     restartOptimizer();
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    FirstScenario::sortPackages(packages);
+    FirstScenario firstScenario;
+    vector<Transport> result =
+            firstScenario.execute(allPackages, allTransports);
 
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    FirstScenario::sortTransport(transports);
-
-    for (auto &package: packages)
-        for (auto &transport: transports)
-            if (transport.addPackage(package))
-                break;
-
-    for (const auto &transport: transports) {
-        if (transport.getCarriedPackages().empty()) break;
-        usedTransports.push_back(transport);
-        numDeliveredPackages += transport.getCarriedPackages().size();
-    }
-    efficiency = (double) numDeliveredPackages / (double) packages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
+    this->usedTransports = result;
+    calculateEfficiency();
 }
 
 unsigned chooseProfitAlgorithm() {
@@ -144,78 +132,23 @@ void Optimizer::optimizeProfit() {
 void Optimizer::optimizeExpressDelivery() {
     restartOptimizer();
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    ThirdScenario::sortPackages(packages);
+    ThirdScenario thirdScenario;
+    vector<Transport> result =
+            thirdScenario.execute(allPackages, allTransports);
 
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    ThirdScenario::sortTransport(transports);
-
-    unsigned numOfTransports;
-    while (true) {
-        cout << endl << "How many transports you want to use (1 - " << allTransports.size() << ")?:";
-        cin >> numOfTransports;
-        if (!cin.fail() && cin.peek() == '\n' && numOfTransports >= 1 && numOfTransports <= allTransports.size())
-            break;
-        cin.clear();
-        cin.ignore(INT_MAX, '\n');
-        cout << "Invalid number!" << endl;
-    }
-    transports.resize(numOfTransports);
-
-    auto it = transports.begin();
-    for (auto package: packages) {
-        if (!(it->addExpress(package))) break;
-
-        if (it->getRemainingTime() < (it++)->getRemainingTime()) it++;
-
-        if (it == transports.end()) it = transports.begin();
-    }
-
-    unsigned sumTime = 0;
-    for (auto &transport: transports) {
-        if (transport.getCarriedPackages().empty()) break;
-        usedTransports.push_back(transport);
-        sumTime += transport.sumTime();
-        numDeliveredPackages += transport.getCarriedPackages().size();
-    }
-
-    avgTime = (double) sumTime / numDeliveredPackages;
-    efficiency = (double) numDeliveredPackages / (double) packages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
+    this->usedTransports = result;
+    calculateEfficiency();
 }
 
 void Optimizer::balancePackages() {
     restartOptimizer();
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    FourthScenario::sortPackages(packages);
+    FourthScenario fourthScenario;
+    vector<Transport> result =
+            fourthScenario.execute(allPackages, allTransports);
 
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-
-    for(auto package : packages)
-    {
-        FourthScenario::sortTransport(transports);
-        auto transport = transports.begin();
-
-        while(!transport->addPackage(package))
-        {
-            transport++;
-            if(transport == transports.end())
-                break;
-        }
-    }
-
-    for(const auto& transport : transports)
-    {
-        if(!transport.getCarriedPackages().empty())
-        {
-            usedTransports.push_back(transport);
-            numDeliveredPackages += transport.getCarriedPackages().size();
-        }
-    }
-
-    efficiency = (double) numDeliveredPackages / (double) packages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
+    this->usedTransports = result;
+    calculateEfficiency();
 }
 
 void Optimizer::restartOptimizer() {
@@ -279,3 +212,10 @@ void Optimizer::showUsedTransports() const {
     }
 }
 
+void Optimizer::calculateEfficiency() {
+    for (const auto& t : usedTransports)
+        numDeliveredPackages += t.getCarriedPackages().size();
+
+    efficiency = (double) numDeliveredPackages / (double) allPackages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
+}

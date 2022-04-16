@@ -38,6 +38,7 @@ private:
     void greedyProfit(vector<Package> &packages, vector<Transport> &transports);
     void balancePackages();
     void showUsedTransports() const;
+    void calculateEfficiency();
 
 public:
     Optimizer() = default;
