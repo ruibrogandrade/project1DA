@@ -13,7 +13,6 @@ class Package {
 private:
     unsigned volume = 0, weight = 0;
     unsigned reward = 0, estimatedTime = 0;
-    bool added = false;
 
 public:
     Package() = default;
@@ -22,9 +21,6 @@ public:
     unsigned getWeight() const;
     unsigned getReward() const;
     unsigned getEstimatedTime() const;
-    bool isAlreadyAdded() const;
-    void setAdded();
-    void restart();
 };
 
 #endif //URBAN_LOGISTICS_PACKAGE_H

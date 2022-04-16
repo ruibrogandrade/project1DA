@@ -69,63 +69,26 @@ unsigned chooseProfitAlgorithm() {
             cin.ignore(INT_MAX, '\n');
             continue;
         }
-
         return algorithmChose;
     }
 }
-
-void Optimizer::greedyProfit(vector<Package> &packages, vector<Transport> &transports) {
-    for (auto &package: packages)
-        for (auto &transport: transports)
-            if (transport.addPackage(package))
-                break;
-
-    for (auto &transport: transports) {
-        if (transport.getCarriedPackages().empty()) break;
-
-        int profit = transport.calculateProfit();
-        if (profit > 0) {
-            usedTransports.push_back(transport);
-            numDeliveredPackages += transport.getCarriedPackages().size();
-            totalProfit += profit;
-        }
-    }
-    efficiency = (double) numDeliveredPackages / (double) packages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
-
-}
-
-void Optimizer::knapsackProfit(vector<Package> &packages, vector<Transport> &transports) {
-    for (auto t: transports) {
-        auto temp = SecondScenario::knapsack(t, packages);
-        int profit = (int) (temp.first - t.getPrice());
-        if (profit < 0) return;
-        totalProfit += profit;
-        for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++) {
-            t.addPackage(packages[*rit]);
-            packages.erase(packages.begin() + *rit);
-        }
-        usedTransports.push_back(t);
-        numDeliveredPackages += t.getCarriedPackages().size();
-    }
-    efficiency = (double) numDeliveredPackages / (double) packages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
-}
-
 
 void Optimizer::optimizeProfit() {
     restartOptimizer();
 
     unsigned algorithmSelected = chooseProfitAlgorithm();
 
-    vector<Package> packages = allPackages; // Make a copy of the packages for don't change the original vector
-    SecondScenario::sortPackages(packages);
+    SecondScenario secondScenario;
+    vector<Transport> result;
 
-    vector<Transport> transports = allTransports; // Make a copy of the transports for don't change the original vector
-    SecondScenario::sortTransport(transports);
+    if (algorithmSelected == GREEDY)
+        secondScenario.greedyProfit(allPackages, allTransports);
+    else if (algorithmSelected == KNAPSACK)
+        secondScenario.knapsackProfit(allPackages, allTransports);
 
-    if (algorithmSelected == GREEDY) greedyProfit(packages, transports);
-    else if (algorithmSelected == KNAPSACK) knapsackProfit(packages, transports);
+    usedTransports = secondScenario.getUsedTransports();
+    totalProfit = secondScenario.getTotalProfit();
+    calculateEfficiency();
 }
 
 
@@ -138,6 +101,7 @@ void Optimizer::optimizeExpressDelivery() {
 
     this->usedTransports = result;
     calculateEfficiency();
+    calculateAverageTime();
 }
 
 void Optimizer::balancePackages() {
@@ -153,10 +117,6 @@ void Optimizer::balancePackages() {
 
 void Optimizer::restartOptimizer() {
     usedTransports.clear();
-
-    // makes package.added = false
-    for (auto &package: allPackages)
-        package.restart();
 
     // makes transport.carriedPackages empty
     for (auto &transport: allTransports)
@@ -217,6 +177,13 @@ void Optimizer::calculateEfficiency() {
     for (const auto& t : usedTransports)
         numDeliveredPackages += t.getCarriedPackages().size();
 
-    efficiency = (double) numDeliveredPackages / (double) allPackages.size();
-    efficiency = round(efficiency * 10000.0) / 10000.0;
+    this->efficiency = (double) numDeliveredPackages / (double) allPackages.size();
+    this->efficiency = round(efficiency * 10000.0) / 10000.0;
+}
+
+void Optimizer::calculateAverageTime() {
+    unsigned sumTime = 0;
+    for (auto &transport: usedTransports) sumTime += transport.sumTime();
+
+    this->avgTime = (double) sumTime / numDeliveredPackages;
 }

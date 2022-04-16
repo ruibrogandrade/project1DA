@@ -34,11 +34,10 @@ private:
     void optimizeTransports();
     void optimizeProfit();
     void optimizeExpressDelivery();
-    void knapsackProfit(vector<Package> &packages, vector<Transport> &transports);
-    void greedyProfit(vector<Package> &packages, vector<Transport> &transports);
     void balancePackages();
     void showUsedTransports() const;
     void calculateEfficiency();
+    void calculateAverageTime();
 
 public:
     Optimizer() = default;

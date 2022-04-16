@@ -13,14 +13,6 @@ bool SecondScenario::compareTransports(const Transport &t1, const Transport &t2)
     return t1.getPrice() / (t1.getMaxWeight() + t1.getMaxVol()) < t2.getPrice() / (t2.getMaxWeight() + t2.getMaxVol());
 }
 
-void SecondScenario::sortPackages(vector<Package> &packages) {
-    sort(packages.begin(), packages.end(), comparePackages);
-}
-
-void SecondScenario::sortTransport(vector<Transport> &transports) {
-    sort(transports.begin(), transports.end(), compareTransports);
-}
-
 pair<unsigned, set<unsigned>> SecondScenario::knapsack(Transport &t, vector<Package> &packages) {
     unsigned maxWeight = t.getMaxWeight(),
             maxVol = t.getMaxVol(),
@@ -74,3 +66,50 @@ pair<unsigned, set<unsigned>> SecondScenario::knapsack(Transport &t, vector<Pack
     // Value with the maximum profit for the given transport
     return matrix[size % 2][maxWeight][maxVol];
 }
+
+void SecondScenario::knapsackProfit(vector<Package> packages, vector<Transport> transports) {
+    sort(packages.begin(), packages.end(), comparePackages);
+    sort(transports.begin(), transports.end(), compareTransports);
+
+    for (auto t: transports) {
+        auto temp = knapsack(t, packages);
+        int profit = (int) (temp.first - t.getPrice());
+
+        if (profit < 0) break;
+        totalProfit += profit;
+
+        for (auto rit = temp.second.rbegin(); rit != temp.second.rend(); rit++) {
+            t.addPackage(packages[*rit]);
+            packages.erase(packages.begin() + *rit);
+        }
+        usedTransports.push_back(t);
+    }
+}
+
+void SecondScenario::greedyProfit(vector<Package> packages, vector<Transport> transports) {
+    sort(packages.begin(), packages.end(), comparePackages);
+    sort(transports.begin(), transports.end(), compareTransports);
+
+    for (auto &package: packages)
+        for (auto &transport: transports)
+            if (transport.addPackage(package))
+                break;
+
+    for (auto &transport: transports) {
+        if (transport.getCarriedPackages().empty()) break;
+
+        int profit = transport.calculateProfit();
+        if (profit <= 0) continue;
+        usedTransports.push_back(transport);
+        totalProfit += profit;
+    }
+}
+
+int SecondScenario::getTotalProfit() const {
+    return totalProfit;
+}
+
+const vector<Transport> &SecondScenario::getUsedTransports() const {
+    return usedTransports;
+}
+

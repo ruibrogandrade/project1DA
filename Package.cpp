@@ -23,15 +23,3 @@ unsigned int Package::getReward() const {
 unsigned int Package::getEstimatedTime() const {
     return estimatedTime;
 }
-
-void Package::setAdded() {
-    added = true;
-}
-
-bool Package::isAlreadyAdded() const {
-    return added;
-}
-
-void Package::restart() {
-    added = false;
-}

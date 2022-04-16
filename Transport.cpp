@@ -35,11 +35,10 @@ const vector<Package> &Transport::getCarriedPackages() const {
 }
 
 bool Transport::addPackage(Package &package) {
-    if (package.getVolume() > remainingVolume || package.getWeight() > remainingWeight || package.isAlreadyAdded())
+    if (package.getVolume() > remainingVolume || package.getWeight() > remainingWeight)
         return false;
 
     carriedPackages.push_back(package);
-    package.setAdded();
     remainingVolume -= package.getVolume();
     remainingWeight -= package.getWeight();
     profit += (int) package.getReward();
@@ -47,12 +46,11 @@ bool Transport::addPackage(Package &package) {
 }
 
 bool Transport::addExpress(Package &package) {
-    if (package.getEstimatedTime() > remainingTime || package.isAlreadyAdded())
+    if (package.getEstimatedTime() > remainingTime)
         return false;
 
     carriedPackages.push_back(package);
     remainingTime -= package.getEstimatedTime();
-    package.setAdded();
     return true;
 }
 
@@ -78,12 +76,4 @@ unsigned Transport::sumTime() {
         sumTime += carriedPackages[i].getEstimatedTime() * (carriedPackages.size() - i);
 
     return sumTime;
-}
-
-unsigned Transport::getRemainingWeight() const {
-    return remainingWeight;
-}
-
-unsigned Transport::getRemainingVolume() const {
-    return remainingVolume;
 }

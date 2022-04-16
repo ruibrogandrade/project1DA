@@ -71,7 +71,7 @@ bool isBadCin() {
     return false;
 }
 
-unsigned int Application::showMenu() {
+unsigned Application::showMenu() {
     cout <<
          "|========================================================================|\n"
          "|          _____________   _________   ______    ___   ___     ___       |\n"

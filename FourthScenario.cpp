@@ -11,12 +11,6 @@ bool FourthScenario::comparePackages(const Package &p1, const Package &p2) {
     return sum1 > sum2;
 }
 
-bool FourthScenario::compareTransports(const Transport& t1, const Transport& t2){
-    double sum1 = t1.getRemainingVolume() + t1.getRemainingWeight();
-    double sum2 = t2.getRemainingVolume() + t2.getRemainingWeight();
-    return sum1 > sum2;
-}
-
 vector<Transport> FourthScenario::execute(vector<Package> packages, vector<Transport> transports) {
     sort(packages.begin(), packages.end(), comparePackages);
 
