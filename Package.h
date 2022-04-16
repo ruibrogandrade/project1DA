@@ -15,11 +15,33 @@ private:
     unsigned reward = 0, estimatedTime = 0;
 
 public:
+    /**
+     * An empty Constructor
+     */
     Package() = default;
+    /**
+     * Constructor that stores the data after reading the database.
+     * @param volume
+     * @param weight
+     * @param reward
+     * @param estimatedTime
+     */
     Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime);
+    /**
+     * @return unsigned - volume of package
+     */
     unsigned getVolume() const;
+    /**
+     * @return unsigned - weight of package
+     */
     unsigned getWeight() const;
+    /**
+     * @return unsigned - reward of package
+     */
     unsigned getReward() const;
+    /**
+     * @return unsigned - duration of package
+     */
     unsigned getEstimatedTime() const;
 };
 

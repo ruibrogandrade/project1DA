@@ -1,0 +1,66 @@
+\hypertarget{class_second_scenario}{}\doxysection{Second\+Scenario Class Reference}
+\label{class_second_scenario}\index{SecondScenario@{SecondScenario}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_second_scenario_abd6e016c402728ec0407134aad5b5021}{get\+Total\+Profit}} () const
+\item 
+const vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \& \mbox{\hyperlink{class_second_scenario_a9cfba92e4d667120d9499706b2d6cd19}{get\+Used\+Transports}} () const
+\item 
+void \mbox{\hyperlink{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}{knapsack\+Profit}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
+\item 
+void \mbox{\hyperlink{class_second_scenario_aaa727edd5f7d2dc47e010194113ee7cc}{greedy\+Profit}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_second_scenario_abd6e016c402728ec0407134aad5b5021}\label{class_second_scenario_abd6e016c402728ec0407134aad5b5021}} 
+\index{SecondScenario@{SecondScenario}!getTotalProfit@{getTotalProfit}}
+\index{getTotalProfit@{getTotalProfit}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{getTotalProfit()}{getTotalProfit()}}
+{\footnotesize\ttfamily int Second\+Scenario\+::get\+Total\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the total profit after trying to maximize it. \begin{DoxyReturn}{Returns}
+int -\/ maximum profit. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_second_scenario_a9cfba92e4d667120d9499706b2d6cd19}\label{class_second_scenario_a9cfba92e4d667120d9499706b2d6cd19}} 
+\index{SecondScenario@{SecondScenario}!getUsedTransports@{getUsedTransports}}
+\index{getUsedTransports@{getUsedTransports}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{getUsedTransports()}{getUsedTransports()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \& Second\+Scenario\+::get\+Used\+Transports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the transports that were used after trying to optimize the profit. \begin{DoxyReturn}{Returns}
+vector$<$\+Transport$>$ -\/ Transports that were used. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_second_scenario_aaa727edd5f7d2dc47e010194113ee7cc}\label{class_second_scenario_aaa727edd5f7d2dc47e010194113ee7cc}} 
+\index{SecondScenario@{SecondScenario}!greedyProfit@{greedyProfit}}
+\index{greedyProfit@{greedyProfit}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{greedyProfit()}{greedyProfit()}}
+{\footnotesize\ttfamily void Second\+Scenario\+::greedy\+Profit (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$}]{transports }\end{DoxyParamCaption})}
+
+Executes the bin-\/packing algorithm after sorting by descending order of packages and after the sort the transports by ascending order of transports. This function achieves only an approach to the actual optimal profit but is much faster than the knapsack algorithm. 
+\begin{DoxyParams}{Parameters}
+{\em packages} & -\/ all packages stored from the database. \\
+\hline
+{\em transports} & -\/ all transports stored from the database. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}\label{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}} 
+\index{SecondScenario@{SecondScenario}!knapsackProfit@{knapsackProfit}}
+\index{knapsackProfit@{knapsackProfit}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{knapsackProfit()}{knapsackProfit()}}
+{\footnotesize\ttfamily void Second\+Scenario\+::knapsack\+Profit (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$}]{transports }\end{DoxyParamCaption})}
+
+Executes the second scenario using the private function \char`\"{}knapsack\char`\"{} for each given transport, until the profit calculation is negative. 
+\begin{DoxyParams}{Parameters}
+{\em packages} & -\/ a vector that has all the packages that we want delivered \\
+\hline
+{\em transports} & -\/ a vector that has all transports available for deployment \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Second\+Scenario.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Second\+Scenario.\+cpp\end{DoxyCompactItemize}

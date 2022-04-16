@@ -1,0 +1,59 @@
+\hypertarget{_transport_8h_source}{}\doxysection{Transport.\+h}
+\label{_transport_8h_source}\index{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Transport.h@{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Transport.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by gdrp7 on 30/03/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef URBAN\_LOGISTICS\_TRANSPORT\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define URBAN\_LOGISTICS\_TRANSPORT\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Package.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <climits>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_transport}{Transport}} \{}
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17     \textcolor{keywordtype}{unsigned} maxVol\{\}, remainingVolume\{\};}
+\DoxyCodeLine{18     \textcolor{keywordtype}{unsigned} maxWeight\{\}, remainingWeight\{\};}
+\DoxyCodeLine{19     \textcolor{keywordtype}{unsigned} price\{\};}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} profit\{\};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{unsigned} remainingTime = 8 * 3600;}
+\DoxyCodeLine{22     vector<Package> carriedPackages;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_transport_ab8ce6a9578103db92d4465235b53fefd}{Transport}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{36     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_transport_ab8ce6a9578103db92d4465235b53fefd}{Transport}}(\textcolor{keywordtype}{unsigned} price, \textcolor{keywordtype}{unsigned} maxVol, \textcolor{keywordtype}{unsigned} maxWeight);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_transport_a6e7438a853ee6c7077defd040f8792f3}{getMaxWeight}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_transport_ab93cb8530365d3dfe4270513a20e5700}{getMaxVol}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{51     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_transport_a1536d6ba827bdc939e22d6076cba49f3}{getPrice}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_transport_a8baaccc2bed2997ee50bbdfb0c3d31e6}{getProfit}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{64     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_transport_a0878950f8928e0258635056a32e92ebf}{calculateProfit}}();}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{72     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_transport_a5c83e149f5d7b0ad20865dd8dad23721}{getRemainingTime}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{78     \textcolor{keyword}{const} vector<Package> \&\mbox{\hyperlink{class_transport_ad761498f12d20e99e3b62a7fc42a8430}{getCarriedPackages}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_transport_a9e963e1aac55ea84054b7e406db53d70}{sumTime}}();}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_transport_ae8d1691d7de5aa1e44645b8da40b88a2}{addPackage}}(\mbox{\hyperlink{class_package}{Package}} \&package);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{108     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_transport_aefcf0b2dc4c5b42ecb389508069dc902}{addExpress}}(\mbox{\hyperlink{class_package}{Package}} \&package);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{113     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_transport_a867cc8b8b4f455515d1c78eadf5938de}{restart}}();}
+\DoxyCodeLine{114 \};}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//URBAN\_LOGISTICS\_TRANSPORT\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,172 @@
+\hypertarget{class_transport}{}\doxysection{Transport Class Reference}
+\label{class_transport}\index{Transport@{Transport}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_transport_ab8ce6a9578103db92d4465235b53fefd}{Transport}} ()=default
+\item 
+\mbox{\hyperlink{class_transport_a8ee74c68a17a24de9e53ab5bd14bb9b4}{Transport}} (unsigned price, unsigned max\+Vol, unsigned max\+Weight)
+\item 
+unsigned \mbox{\hyperlink{class_transport_a6e7438a853ee6c7077defd040f8792f3}{get\+Max\+Weight}} () const
+\item 
+unsigned \mbox{\hyperlink{class_transport_ab93cb8530365d3dfe4270513a20e5700}{get\+Max\+Vol}} () const
+\item 
+unsigned \mbox{\hyperlink{class_transport_a1536d6ba827bdc939e22d6076cba49f3}{get\+Price}} () const
+\item 
+int \mbox{\hyperlink{class_transport_a8baaccc2bed2997ee50bbdfb0c3d31e6}{get\+Profit}} () const
+\item 
+int \mbox{\hyperlink{class_transport_a0878950f8928e0258635056a32e92ebf}{calculate\+Profit}} ()
+\item 
+unsigned \mbox{\hyperlink{class_transport_a5c83e149f5d7b0ad20865dd8dad23721}{get\+Remaining\+Time}} () const
+\item 
+const vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \& \mbox{\hyperlink{class_transport_ad761498f12d20e99e3b62a7fc42a8430}{get\+Carried\+Packages}} () const
+\item 
+unsigned \mbox{\hyperlink{class_transport_a9e963e1aac55ea84054b7e406db53d70}{sum\+Time}} ()
+\item 
+bool \mbox{\hyperlink{class_transport_ae8d1691d7de5aa1e44645b8da40b88a2}{add\+Package}} (\mbox{\hyperlink{class_package}{Package}} \&package)
+\item 
+bool \mbox{\hyperlink{class_transport_aefcf0b2dc4c5b42ecb389508069dc902}{add\+Express}} (\mbox{\hyperlink{class_package}{Package}} \&package)
+\item 
+void \mbox{\hyperlink{class_transport_a867cc8b8b4f455515d1c78eadf5938de}{restart}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_transport_ab8ce6a9578103db92d4465235b53fefd}\label{class_transport_ab8ce6a9578103db92d4465235b53fefd}} 
+\index{Transport@{Transport}!Transport@{Transport}}
+\index{Transport@{Transport}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{Transport()}{Transport()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Transport\+::\+Transport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+An empty constructor \mbox{\Hypertarget{class_transport_a8ee74c68a17a24de9e53ab5bd14bb9b4}\label{class_transport_a8ee74c68a17a24de9e53ab5bd14bb9b4}} 
+\index{Transport@{Transport}!Transport@{Transport}}
+\index{Transport@{Transport}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{Transport()}{Transport()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Transport\+::\+Transport (\begin{DoxyParamCaption}\item[{unsigned}]{price,  }\item[{unsigned}]{max\+Vol,  }\item[{unsigned}]{max\+Weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor that stores the data after reading the database. 
+\begin{DoxyParams}{Parameters}
+{\em price} & \\
+\hline
+{\em max\+Vol} & \\
+\hline
+{\em max\+Weight} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_transport_aefcf0b2dc4c5b42ecb389508069dc902}\label{class_transport_aefcf0b2dc4c5b42ecb389508069dc902}} 
+\index{Transport@{Transport}!addExpress@{addExpress}}
+\index{addExpress@{addExpress}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{addExpress()}{addExpress()}}
+{\footnotesize\ttfamily bool Transport\+::add\+Express (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_package}{Package}} \&}]{package }\end{DoxyParamCaption})}
+
+This function is used for the express packages. Verifies if is possible to add the package in the transport according to the remaining time, and then add this package in the carried\+Packages vector if it is possible. Also decrements the transport\textquotesingle{}s remaining time. 
+\begin{DoxyParams}{Parameters}
+{\em package} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ if the package was added or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_ae8d1691d7de5aa1e44645b8da40b88a2}\label{class_transport_ae8d1691d7de5aa1e44645b8da40b88a2}} 
+\index{Transport@{Transport}!addPackage@{addPackage}}
+\index{addPackage@{addPackage}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{addPackage()}{addPackage()}}
+{\footnotesize\ttfamily bool Transport\+::add\+Package (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_package}{Package}} \&}]{package }\end{DoxyParamCaption})}
+
+This function is used for the normal packages. Verifies if is possible to add the package in the transport according to the weight and the volume, and then add this package in the carried\+Packages vector if it is possible. Also decrements the transport\textquotesingle{}s volume, the transport\textquotesingle{}s weight and increments the transport\textquotesingle{}s profit. 
+\begin{DoxyParams}{Parameters}
+{\em package} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ if the package was added or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a0878950f8928e0258635056a32e92ebf}\label{class_transport_a0878950f8928e0258635056a32e92ebf}} 
+\index{Transport@{Transport}!calculateProfit@{calculateProfit}}
+\index{calculateProfit@{calculateProfit}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{calculateProfit()}{calculateProfit()}}
+{\footnotesize\ttfamily int Transport\+::calculate\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the profit based on the price of the transport and the sum of the rewards of the carried packages in the transport. \begin{DoxyReturn}{Returns}
+int -\/ profit calculated for one transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_ad761498f12d20e99e3b62a7fc42a8430}\label{class_transport_ad761498f12d20e99e3b62a7fc42a8430}} 
+\index{Transport@{Transport}!getCarriedPackages@{getCarriedPackages}}
+\index{getCarriedPackages@{getCarriedPackages}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getCarriedPackages()}{getCarriedPackages()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \& Transport\+::get\+Carried\+Packages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Package$>$ -\/ packages that were delivered by the transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_ab93cb8530365d3dfe4270513a20e5700}\label{class_transport_ab93cb8530365d3dfe4270513a20e5700}} 
+\index{Transport@{Transport}!getMaxVol@{getMaxVol}}
+\index{getMaxVol@{getMaxVol}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getMaxVol()}{getMaxVol()}}
+{\footnotesize\ttfamily unsigned Transport\+::get\+Max\+Vol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+unsigned -\/ maximum volume supported by the transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a6e7438a853ee6c7077defd040f8792f3}\label{class_transport_a6e7438a853ee6c7077defd040f8792f3}} 
+\index{Transport@{Transport}!getMaxWeight@{getMaxWeight}}
+\index{getMaxWeight@{getMaxWeight}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getMaxWeight()}{getMaxWeight()}}
+{\footnotesize\ttfamily unsigned Transport\+::get\+Max\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+unsigned -\/ maximum weight supported by the transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a1536d6ba827bdc939e22d6076cba49f3}\label{class_transport_a1536d6ba827bdc939e22d6076cba49f3}} 
+\index{Transport@{Transport}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily unsigned Transport\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+unsigned -\/ cost to use the transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a8baaccc2bed2997ee50bbdfb0c3d31e6}\label{class_transport_a8baaccc2bed2997ee50bbdfb0c3d31e6}} 
+\index{Transport@{Transport}!getProfit@{getProfit}}
+\index{getProfit@{getProfit}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getProfit()}{getProfit()}}
+{\footnotesize\ttfamily int Transport\+::get\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+int -\/ profit for one transport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a5c83e149f5d7b0ad20865dd8dad23721}\label{class_transport_a5c83e149f5d7b0ad20865dd8dad23721}} 
+\index{Transport@{Transport}!getRemainingTime@{getRemainingTime}}
+\index{getRemainingTime@{getRemainingTime}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{getRemainingTime()}{getRemainingTime()}}
+{\footnotesize\ttfamily unsigned Transport\+::get\+Remaining\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the remaining time that consists in the available time to deliver the express packages (8 hours) minus the sum of the package times that already been delivered. \begin{DoxyReturn}{Returns}
+unsigned -\/ remaining time. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_transport_a867cc8b8b4f455515d1c78eadf5938de}\label{class_transport_a867cc8b8b4f455515d1c78eadf5938de}} 
+\index{Transport@{Transport}!restart@{restart}}
+\index{restart@{restart}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{restart()}{restart()}}
+{\footnotesize\ttfamily void Transport\+::restart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear the carried\+Packages vector. \mbox{\Hypertarget{class_transport_a9e963e1aac55ea84054b7e406db53d70}\label{class_transport_a9e963e1aac55ea84054b7e406db53d70}} 
+\index{Transport@{Transport}!sumTime@{sumTime}}
+\index{sumTime@{sumTime}!Transport@{Transport}}
+\doxysubsubsection{\texorpdfstring{sumTime()}{sumTime()}}
+{\footnotesize\ttfamily unsigned Transport\+::sum\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calculates the sum of the times to be calculate in the average time. This sum consists in the ordered sum of the packages in the carried\+Packages vector.
+
+Example\+: time package 1 + (time package 1 + time package 2) + (time package 1 + time package 2 + time package 3) ... \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Transport.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Transport.\+cpp\end{DoxyCompactItemize}
