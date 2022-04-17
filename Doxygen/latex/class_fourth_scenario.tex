@@ -5,9 +5,30 @@
 \item 
 vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \mbox{\hyperlink{class_fourth_scenario_ad8d9f227a046c504c68e2b2421979e6c}{execute}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
 \end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_fourth_scenario_a97400c63fff749b4043df6b5914088a1}{compare\+Packages}} (const \mbox{\hyperlink{class_package}{Package}} \&p1, const \mbox{\hyperlink{class_package}{Package}} \&p2)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_fourth_scenario_a97400c63fff749b4043df6b5914088a1}\label{class_fourth_scenario_a97400c63fff749b4043df6b5914088a1}} 
+\index{FourthScenario@{FourthScenario}!comparePackages@{comparePackages}}
+\index{comparePackages@{comparePackages}!FourthScenario@{FourthScenario}}
+\doxysubsubsection{\texorpdfstring{comparePackages()}{comparePackages()}}
+{\footnotesize\ttfamily bool Fourth\+Scenario\+::compare\+Packages (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_package}{Package}} \&}]{p1,  }\item[{const \mbox{\hyperlink{class_package}{Package}} \&}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Compare packages according to their sum of weight and volume. This method is used to when the sort function is called to establish the packages order needed. 
+\begin{DoxyParams}{Parameters}
+{\em p1} & -\/ package 1 \\
+\hline
+{\em p2} & -\/ package 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(weight\+\_\+1 + volume\+\_\+1) \texorpdfstring{$>$}{>} (weight\+\_\+2 + volume\+\_\+2) ? -\/ bool 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_fourth_scenario_ad8d9f227a046c504c68e2b2421979e6c}\label{class_fourth_scenario_ad8d9f227a046c504c68e2b2421979e6c}} 
 \index{FourthScenario@{FourthScenario}!execute@{execute}}
 \index{execute@{execute}!FourthScenario@{FourthScenario}}

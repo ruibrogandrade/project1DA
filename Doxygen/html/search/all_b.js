@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['urban_2dlogistics_0',['urban-logistics',['../md__c___users__rui__documents__projeto__d_a_urban_logistics__r_e_a_d_m_e.html',1,'']]]
+  ['thirdscenario_0',['ThirdScenario',['../class_third_scenario.html',1,'']]],
+  ['transport_1',['Transport',['../class_transport.html',1,'Transport'],['../class_transport.html#ab8ce6a9578103db92d4465235b53fefd',1,'Transport::Transport()=default'],['../class_transport.html#a8ee74c68a17a24de9e53ab5bd14bb9b4',1,'Transport::Transport(unsigned price, unsigned maxVol, unsigned maxWeight)']]]
 ];

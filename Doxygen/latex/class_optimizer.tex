@@ -9,6 +9,52 @@
 \item 
 void \mbox{\hyperlink{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}{optimize}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_optimizer_a0d495ecd8623eb65f092900afe80e7aa}{restart\+Optimizer}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_a395e1c38c0e26e60a3cb98f99d4a2bcf}{optimize\+Transports}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_a8e9851ddab9d8ea84d76df1ae0f8b08d}{optimize\+Profit}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_a35e531d1367015c598b16705be739d77}{optimize\+Express\+Delivery}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_acc592c28cbafc2983e451afecb0ba15a}{balance\+Packages}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_a90e7f2f077e3266709834ea05eeef302}{show\+Used\+Transports}} () const
+\item 
+void \mbox{\hyperlink{class_optimizer_a6f18113dec9efd4a8cd884c09e5bf875}{calculate\+Efficiency}} ()
+\item 
+void \mbox{\hyperlink{class_optimizer_a38150e05707d43b32fa001afc62989ca}{calculate\+Average\+Time}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_optimizer_a17a8a290d2e66877f4c5e82a494633b5}\label{class_optimizer_a17a8a290d2e66877f4c5e82a494633b5}} 
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries used\+Transports}
+\item 
+\mbox{\Hypertarget{class_optimizer_a591499d56cc88ae890a35ded4c948b07}\label{class_optimizer_a591499d56cc88ae890a35ded4c948b07}} 
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries all\+Transports}
+\item 
+\mbox{\Hypertarget{class_optimizer_af03cfff209f032e4d9b3c53fb9de360c}\label{class_optimizer_af03cfff209f032e4d9b3c53fb9de360c}} 
+vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ {\bfseries all\+Packages}
+\item 
+\mbox{\Hypertarget{class_optimizer_ab43f86c18a64ac829438fd459e2d9742}\label{class_optimizer_ab43f86c18a64ac829438fd459e2d9742}} 
+unsigned {\bfseries optimizer\+Type} = 0
+\item 
+\mbox{\Hypertarget{class_optimizer_a999ef05c3fc661fa9714d75af72c950a}\label{class_optimizer_a999ef05c3fc661fa9714d75af72c950a}} 
+unsigned {\bfseries num\+Delivered\+Packages} = 0
+\item 
+\mbox{\Hypertarget{class_optimizer_a61253377aa55e7de03105a158a6510d4}\label{class_optimizer_a61253377aa55e7de03105a158a6510d4}} 
+int {\bfseries total\+Profit} = 0
+\item 
+\mbox{\Hypertarget{class_optimizer_af7058ca4b1a1676e8ea4dfd41da4afcb}\label{class_optimizer_af7058ca4b1a1676e8ea4dfd41da4afcb}} 
+double {\bfseries avg\+Time} = 0
+\item 
+\mbox{\Hypertarget{class_optimizer_a9ae8fcb5fb519e463cdd145dc36a88f6}\label{class_optimizer_a9ae8fcb5fb519e463cdd145dc36a88f6}} 
+double {\bfseries efficiency} = 0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -26,7 +72,7 @@ Empty Constructor \mbox{\Hypertarget{class_optimizer_a7c8cd345e16b882d6cc2169a05
 
 Constructor for getting the data needed for the algorithms and knowing which ones to use 
 \begin{DoxyParams}{Parameters}
-{\em optimizer\+Type} & selects wich Algorithms are ggoing to be used \\
+{\em optimizer\+Type} & selects which Algorithms are going to be used \\
 \hline
 {\em all\+Packages} & a vector that contains all Packages \\
 \hline
@@ -36,13 +82,61 @@ Constructor for getting the data needed for the algorithms and knowing which one
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}\label{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}} 
+\mbox{\Hypertarget{class_optimizer_acc592c28cbafc2983e451afecb0ba15a}\label{class_optimizer_acc592c28cbafc2983e451afecb0ba15a}} 
+\index{Optimizer@{Optimizer}!balancePackages@{balancePackages}}
+\index{balancePackages@{balancePackages}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{balancePackages()}{balancePackages()}}
+{\footnotesize\ttfamily void Optimizer\+::balance\+Packages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Algorithm that distributes the packages equally amongst all the transports \mbox{\Hypertarget{class_optimizer_a38150e05707d43b32fa001afc62989ca}\label{class_optimizer_a38150e05707d43b32fa001afc62989ca}} 
+\index{Optimizer@{Optimizer}!calculateAverageTime@{calculateAverageTime}}
+\index{calculateAverageTime@{calculateAverageTime}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{calculateAverageTime()}{calculateAverageTime()}}
+{\footnotesize\ttfamily void Optimizer\+::calculate\+Average\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Calculates the average time of the delivery of the packages \mbox{\Hypertarget{class_optimizer_a6f18113dec9efd4a8cd884c09e5bf875}\label{class_optimizer_a6f18113dec9efd4a8cd884c09e5bf875}} 
+\index{Optimizer@{Optimizer}!calculateEfficiency@{calculateEfficiency}}
+\index{calculateEfficiency@{calculateEfficiency}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{calculateEfficiency()}{calculateEfficiency()}}
+{\footnotesize\ttfamily void Optimizer\+::calculate\+Efficiency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Calculates in percentage how many packages were used \mbox{\Hypertarget{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}\label{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}} 
 \index{Optimizer@{Optimizer}!optimize@{optimize}}
 \index{optimize@{optimize}!Optimizer@{Optimizer}}
 \doxysubsubsection{\texorpdfstring{optimize()}{optimize()}}
 {\footnotesize\ttfamily void Optimizer\+::optimize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Chooses what is going to be optimized 
+Chooses what is going to be optimized \mbox{\Hypertarget{class_optimizer_a35e531d1367015c598b16705be739d77}\label{class_optimizer_a35e531d1367015c598b16705be739d77}} 
+\index{Optimizer@{Optimizer}!optimizeExpressDelivery@{optimizeExpressDelivery}}
+\index{optimizeExpressDelivery@{optimizeExpressDelivery}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{optimizeExpressDelivery()}{optimizeExpressDelivery()}}
+{\footnotesize\ttfamily void Optimizer\+::optimize\+Express\+Delivery (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Algorithm that minimizes the average time needed to deliver packages \mbox{\Hypertarget{class_optimizer_a8e9851ddab9d8ea84d76df1ae0f8b08d}\label{class_optimizer_a8e9851ddab9d8ea84d76df1ae0f8b08d}} 
+\index{Optimizer@{Optimizer}!optimizeProfit@{optimizeProfit}}
+\index{optimizeProfit@{optimizeProfit}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{optimizeProfit()}{optimizeProfit()}}
+{\footnotesize\ttfamily void Optimizer\+::optimize\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+2 Algorithms that maximizes the profit of delivering packages (Greedy and Dynamic Programming(knapsack) \mbox{\Hypertarget{class_optimizer_a395e1c38c0e26e60a3cb98f99d4a2bcf}\label{class_optimizer_a395e1c38c0e26e60a3cb98f99d4a2bcf}} 
+\index{Optimizer@{Optimizer}!optimizeTransports@{optimizeTransports}}
+\index{optimizeTransports@{optimizeTransports}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{optimizeTransports()}{optimizeTransports()}}
+{\footnotesize\ttfamily void Optimizer\+::optimize\+Transports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Algorithm that minimizes the number of Transports needed for a certain number of Packages (Greedy) \mbox{\Hypertarget{class_optimizer_a0d495ecd8623eb65f092900afe80e7aa}\label{class_optimizer_a0d495ecd8623eb65f092900afe80e7aa}} 
+\index{Optimizer@{Optimizer}!restartOptimizer@{restartOptimizer}}
+\index{restartOptimizer@{restartOptimizer}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{restartOptimizer()}{restartOptimizer()}}
+{\footnotesize\ttfamily void Optimizer\+::restart\+Optimizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Clears all the data structures \mbox{\Hypertarget{class_optimizer_a90e7f2f077e3266709834ea05eeef302}\label{class_optimizer_a90e7f2f077e3266709834ea05eeef302}} 
+\index{Optimizer@{Optimizer}!showUsedTransports@{showUsedTransports}}
+\index{showUsedTransports@{showUsedTransports}!Optimizer@{Optimizer}}
+\doxysubsubsection{\texorpdfstring{showUsedTransports()}{showUsedTransports()}}
+{\footnotesize\ttfamily void Optimizer\+::show\+Used\+Transports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+Shows the transports that were used 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

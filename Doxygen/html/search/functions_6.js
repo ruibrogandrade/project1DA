@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['package_0',['Package',['../class_package.html#a8fe0f40c9268b52bc10d0478df752610',1,'Package::Package()=default'],['../class_package.html#a7734e8f6618dde3428b93581984a7b35',1,'Package::Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime)']]]
+  ['optimize_0',['optimize',['../class_optimizer.html#a6f103614a85654a8e942f8dc7460bed1',1,'Optimizer']]],
+  ['optimizeexpressdelivery_1',['optimizeExpressDelivery',['../class_optimizer.html#a35e531d1367015c598b16705be739d77',1,'Optimizer']]],
+  ['optimizeprofit_2',['optimizeProfit',['../class_optimizer.html#a8e9851ddab9d8ea84d76df1ae0f8b08d',1,'Optimizer']]],
+  ['optimizer_3',['Optimizer',['../class_optimizer.html#a8e09c43da2a8e0a94cbf0ba2be67f4d7',1,'Optimizer::Optimizer()=default'],['../class_optimizer.html#a7c8cd345e16b882d6cc2169a05ebb19c',1,'Optimizer::Optimizer(unsigned optimizerType, const vector&lt; Package &gt; &amp;allPackages, const vector&lt; Transport &gt; &amp;allTransports)']]],
+  ['optimizetransports_4',['optimizeTransports',['../class_optimizer.html#a395e1c38c0e26e60a3cb98f99d4a2bcf',1,'Optimizer']]]
 ];

@@ -64,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="class_fourth_scenario-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">FourthScenario Class Reference</div></div>
 </div><!--header-->
@@ -73,8 +74,57 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8d9f227a046c504c68e2b2421979e6c"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fourth_scenario.html#ad8d9f227a046c504c68e2b2421979e6c">execute</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports)</td></tr>
 <tr class="separator:ad8d9f227a046c504c68e2b2421979e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a97400c63fff749b4043df6b5914088a1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fourth_scenario.html#a97400c63fff749b4043df6b5914088a1">comparePackages</a> (const <a class="el" href="class_package.html">Package</a> &amp;p1, const <a class="el" href="class_package.html">Package</a> &amp;p2)</td></tr>
+<tr class="separator:a97400c63fff749b4043df6b5914088a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a97400c63fff749b4043df6b5914088a1" name="a97400c63fff749b4043df6b5914088a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97400c63fff749b4043df6b5914088a1">&#9670;&nbsp;</a></span>comparePackages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FourthScenario::comparePackages </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_package.html">Package</a> &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_package.html">Package</a> &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Compare packages according to their sum of weight and volume. This method is used to when the sort function is called to establish the packages order needed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>- package 1 </td></tr>
+    <tr><td class="paramname">p2</td><td>- package 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>(weight_1 + volume_1) &gt; (weight_2 + volume_2) ? - bool </dd></dl>
+
+</div>
+</div>
 <a id="ad8d9f227a046c504c68e2b2421979e6c" name="ad8d9f227a046c504c68e2b2421979e6c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8d9f227a046c504c68e2b2421979e6c">&#9670;&nbsp;</a></span>execute()</h2>
 

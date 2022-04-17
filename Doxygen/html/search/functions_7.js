@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['readpackages_0',['readPackages',['../class_application.html#ac9d3ae39002cf92e2b316d652af5732e',1,'Application']]],
-  ['readtransports_1',['readTransports',['../class_application.html#a192c779af63c380ca358ea363024db69',1,'Application']]],
-  ['restart_2',['restart',['../class_transport.html#a867cc8b8b4f455515d1c78eadf5938de',1,'Transport']]],
-  ['runapplication_3',['runApplication',['../class_application.html#a9e3772c36d462b9435dcad563e6dd15b',1,'Application']]]
+  ['package_0',['Package',['../class_package.html#a8fe0f40c9268b52bc10d0478df752610',1,'Package::Package()=default'],['../class_package.html#a7734e8f6618dde3428b93581984a7b35',1,'Package::Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime)']]]
 ];

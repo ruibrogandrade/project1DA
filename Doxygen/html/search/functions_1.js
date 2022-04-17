@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calculateprofit_0',['calculateProfit',['../class_transport.html#a0878950f8928e0258635056a32e92ebf',1,'Transport']]]
+  ['balancepackages_0',['balancePackages',['../class_optimizer.html#acc592c28cbafc2983e451afecb0ba15a',1,'Optimizer']]]
 ];

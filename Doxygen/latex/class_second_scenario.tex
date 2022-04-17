@@ -11,9 +11,59 @@ void \mbox{\hyperlink{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}{k
 \item 
 void \mbox{\hyperlink{class_second_scenario_aaa727edd5f7d2dc47e010194113ee7cc}{greedy\+Profit}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
 \end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_second_scenario_a2e4fe90aa2e5d9044d91455e8e45a02d}{compare\+Packages}} (const \mbox{\hyperlink{class_package}{Package}} \&p1, const \mbox{\hyperlink{class_package}{Package}} \&p2)
+\item 
+static bool \mbox{\hyperlink{class_second_scenario_add4897f06513bb4179a7c40f3d2820f2}{compare\+Transports}} (const \mbox{\hyperlink{class_transport}{Transport}} \&t1, const \mbox{\hyperlink{class_transport}{Transport}} \&t2)
+\item 
+static pair$<$ unsigned, set$<$ unsigned $>$ $>$ \mbox{\hyperlink{class_second_scenario_af5dcf60676df3387405770b7712b3b5a}{knapsack}} (\mbox{\hyperlink{class_transport}{Transport}} \&t, vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&packages)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_second_scenario_a8ea3ba5cd44eecd9b3da6efd980467a0}\label{class_second_scenario_a8ea3ba5cd44eecd9b3da6efd980467a0}} 
+int {\bfseries total\+Profit} = 0
+\item 
+\mbox{\Hypertarget{class_second_scenario_ae27e558b8da678aeb6c8a42c113df3b2}\label{class_second_scenario_ae27e558b8da678aeb6c8a42c113df3b2}} 
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries used\+Transports} \{\}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_second_scenario_a2e4fe90aa2e5d9044d91455e8e45a02d}\label{class_second_scenario_a2e4fe90aa2e5d9044d91455e8e45a02d}} 
+\index{SecondScenario@{SecondScenario}!comparePackages@{comparePackages}}
+\index{comparePackages@{comparePackages}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{comparePackages()}{comparePackages()}}
+{\footnotesize\ttfamily bool Second\+Scenario\+::compare\+Packages (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_package}{Package}} \&}]{p1,  }\item[{const \mbox{\hyperlink{class_package}{Package}} \&}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Compare packages according to their reward, weight, and volume. Since we want to maximize the value of total profit, the value \char`\"{}reward\char`\"{} of the packages as more influence in the comparison. 
+\begin{DoxyParams}{Parameters}
+{\em p1} & -\/ package 1 \\
+\hline
+{\em p2} & -\/ package 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ (package 1 \texorpdfstring{$<$}{<} package 2)? (bool) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_second_scenario_add4897f06513bb4179a7c40f3d2820f2}\label{class_second_scenario_add4897f06513bb4179a7c40f3d2820f2}} 
+\index{SecondScenario@{SecondScenario}!compareTransports@{compareTransports}}
+\index{compareTransports@{compareTransports}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{compareTransports()}{compareTransports()}}
+{\footnotesize\ttfamily bool Second\+Scenario\+::compare\+Transports (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_transport}{Transport}} \&}]{t1,  }\item[{const \mbox{\hyperlink{class_transport}{Transport}} \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Compare transports according to their deployment price, maximum weight, and maximum volume. Since we want to maximize the value of total profit, the value \char`\"{}price\char`\"{} has more influence in the comparison. 
+\begin{DoxyParams}{Parameters}
+{\em t1} & -\/ transport 1 \\
+\hline
+{\em t2} & -\/ transport 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ (transport 1 \texorpdfstring{$<$}{<} transport 2)? (bool) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_second_scenario_abd6e016c402728ec0407134aad5b5021}\label{class_second_scenario_abd6e016c402728ec0407134aad5b5021}} 
 \index{SecondScenario@{SecondScenario}!getTotalProfit@{getTotalProfit}}
 \index{getTotalProfit@{getTotalProfit}!SecondScenario@{SecondScenario}}
@@ -45,6 +95,22 @@ Executes the bin-\/packing algorithm after sorting by descending order of packag
 {\em transports} & -\/ all transports stored from the database. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_second_scenario_af5dcf60676df3387405770b7712b3b5a}\label{class_second_scenario_af5dcf60676df3387405770b7712b3b5a}} 
+\index{SecondScenario@{SecondScenario}!knapsack@{knapsack}}
+\index{knapsack@{knapsack}!SecondScenario@{SecondScenario}}
+\doxysubsubsection{\texorpdfstring{knapsack()}{knapsack()}}
+{\footnotesize\ttfamily pair$<$ unsigned, set$<$ unsigned $>$ $>$ Second\+Scenario\+::knapsack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_transport}{Transport}} \&}]{t,  }\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&}]{packages }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+An implementation of a multidimensional 0-\/1 knapsack, executed with dynamic programming, that builds a matrix to determine the maximum amount of profit in one transport with the given packages. 
+\begin{DoxyParams}{Parameters}
+{\em t} & -\/ transport which we want the profit maximized \\
+\hline
+{\em packages} & -\/ a vector that has all the packages available for transportation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}\label{class_second_scenario_a3840c435c5384c1b8c0bff2d73cfe94e}} 
 \index{SecondScenario@{SecondScenario}!knapsackProfit@{knapsackProfit}}
 \index{knapsackProfit@{knapsackProfit}!SecondScenario@{SecondScenario}}
