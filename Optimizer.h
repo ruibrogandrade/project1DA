@@ -70,7 +70,7 @@ public:
     Optimizer() = default;
     /**
      * Constructor for getting the data needed for the algorithms and knowing which ones to use
-     * @param optimizerType selects wich Algorithms are ggoing to be used
+     * @param optimizerType selects which Algorithms are going to be used
      * @param allPackages a vector that contains all Packages
      * @param allTransports a vector that contains all Transports
      */

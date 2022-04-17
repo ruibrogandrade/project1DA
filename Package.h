@@ -40,7 +40,7 @@ public:
      */
     unsigned getReward() const;
     /**
-     * @return unsigned - duration of package
+     * @return unsigned - estimated time to delivery the package
      */
     unsigned getEstimatedTime() const;
 };
