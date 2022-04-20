@@ -28,6 +28,7 @@ private:
      * @return (max_weight_1 + max_volume_1) > (max_weight_2 + max_volume_2) ? - bool
      */
     static bool compareTransports(const Transport &t1, const Transport &t2);
+
 public:
     /**
      * Executes the bin-packing first fit algorithm and returns the used transports.
@@ -35,7 +36,7 @@ public:
      * @param transports - all transports stored from the database.
      * @return vector<Transport> - Transports that were used.
      */
-    vector<Transport> execute(vector<Package> packages, vector<Transport> transports);
+    vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);
 };
 
 #endif //MAIN_CPP_FIRSTSCENARIO_H

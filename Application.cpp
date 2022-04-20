@@ -83,12 +83,20 @@ bool Application::processTheDay(unsigned optimizerType){
 
     char goToNext;
 
-    cout << "Do you want to see next day of deliveries? (Y/N)" << endl;
+    cout << endl << "Do you want to see next day of deliveries? (Y/N)" << endl;
     cin >> goToNext;
+
+    size_t oldSize = copyPackagesDays.front().size();
 
     switch (goToNext) {
         case 'N': case 'n': return false;
-        case 'Y': case 'y': return true;
+        case 'Y': case 'y':
+            copyPackagesDays.front().insert(copyPackagesDays.front().begin(),
+                                    optimizer.getNonDeliveredPackages().begin(),
+                                    optimizer.getNonDeliveredPackages().end());
+
+            cout << endl << copyPackagesDays.front().size() - oldSize << " packages added from last day!";
+            return true;
         default: return false;
     }
     

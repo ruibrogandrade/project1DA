@@ -6,7 +6,11 @@
 #include "ThirdScenario.h"
 
 bool ThirdScenario::comparePackages(const Package &p1, const Package &p2) {
-    return p1.getEstimatedTime() < p2.getEstimatedTime();
+
+    if(p1.getDay() == p2.getDay())
+        return p1.getEstimatedTime() < p2.getEstimatedTime();
+
+    return p1.getDay() < p2.getDay();
 }
 
 bool ThirdScenario::compareTransports(const Transport &t1, const Transport &t2) {

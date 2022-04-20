@@ -6,7 +6,11 @@
 #include "SecondScenario.h"
 
 bool SecondScenario::comparePackages(const Package &p1, const Package &p2) {
-    return p1.getReward() / (p1.getVolume() + p1.getWeight()) > p2.getReward() / (p2.getVolume() + p2.getWeight());
+    if(p1.getDay() == p2.getDay())
+        return p1.getReward() / (p1.getVolume() + p1.getWeight()) >
+        p2.getReward() / (p2.getVolume() + p2.getWeight());
+
+    return p1.getDay() < p2.getDay();
 }
 
 bool SecondScenario::compareTransports(const Transport &t1, const Transport &t2) {

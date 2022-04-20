@@ -8,7 +8,11 @@
 bool FirstScenario::comparePackages(const Package &p1, const Package &p2) {
     double sum1 = p1.getWeight() + p1.getVolume();
     double sum2 = p2.getWeight() + p2.getVolume();
-    return sum1 > sum2;
+
+    if(p1.getDay() == p2.getDay())
+        return sum1 < sum2;
+
+    return p1.getDay() < p2.getDay();
 }
 
 bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
@@ -17,16 +21,23 @@ bool FirstScenario::compareTransports(const Transport& t1, const Transport& t2){
     return sum1 > sum2;
 }
 
-vector<Transport> FirstScenario::execute(vector<Package> packages, vector<Transport> transports) {
+vector<Transport> FirstScenario::execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages) {
     sort(packages.begin(), packages.end(), comparePackages);
     sort(transports.begin(), transports.end(), compareTransports);
 
     vector<Transport> usedTransports = {};
 
     for (auto &package: packages)
-        for (auto &transport: transports)
-            if (transport.addPackage(package))
+    {
+        for (auto transport = transports.begin(); transport != transports.end(); transport++)
+        {
+            if (transport->addPackage(package))
                 break;
+
+            if(transport == --transports.end())
+                nonDeliveredPackages.push_back(package);
+        }
+    }
 
     for (const auto &t: transports) {
         if (t.getCarriedPackages().empty()) break;

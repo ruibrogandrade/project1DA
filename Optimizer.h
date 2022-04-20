@@ -23,8 +23,10 @@ class Optimizer {
 private:
     vector<Transport> usedTransports;
     vector<Transport> allTransports;
-    vector<Package> allPackages;
-    unsigned optimizerType = 0, numDeliveredPackages = 0;
+    vector<Package> allPackages, nonDeliveredPackages;
+    unsigned numDeliveredPackages = 0;
+
+    unsigned optimizerType = 0;
     int totalProfit = 0;
     double avgTime = 0;
     double efficiency = 0;
@@ -79,6 +81,8 @@ public:
      *  Chooses what is going to be optimized
      */
     void optimize();
+
+    const vector<Package> &getNonDeliveredPackages() const;
 };
 
 #endif //OPTIMIZER_H

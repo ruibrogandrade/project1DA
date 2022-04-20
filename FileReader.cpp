@@ -18,13 +18,10 @@ void FileReader::readFiles() {
     while(readPackages(packagesPath) && readTransports(transportsPath))
     {
         packagesDays.push(packagesInFile);
-        //cout << packagesDays.size() << endl;
         transportsDays.push(transportsInFile);
-        //cout << transportsDays.size() << endl;
+
         packagesPath = prefix + to_string(++day) + sufixP;
-        //cout << packagesPath << endl;
         transportsPath = prefix + to_string(day) + sufixT;
-        //cout << transportsPath << endl << endl;
     }
 }
 

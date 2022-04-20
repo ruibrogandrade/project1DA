@@ -8,7 +8,12 @@
 bool FourthScenario::comparePackages(const Package &p1, const Package &p2) {
     double sum1 = p1.getWeight() + p1.getVolume();
     double sum2 = p2.getWeight() + p2.getVolume();
-    return sum1 > sum2;
+
+
+    if(p1.getDay() == p2.getDay())
+        return sum1 > sum2;
+
+    return p1.getDay() < p2.getDay();
 }
 
 bool FourthScenario::compareTransports(const Transport &t1, const Transport &t2) {
@@ -44,4 +49,8 @@ vector<Transport> FourthScenario::execute(vector<Package> packages, vector<Trans
         usedTransports.push_back(t);
     }
     return usedTransports;
+}
+
+const vector<Package> &FourthScenario::getNonDeliveredPackages() const {
+    return nonDeliveredPackages;
 }

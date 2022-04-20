@@ -11,6 +11,11 @@
 
 class FourthScenario {
 private:
+    vector<Package> nonDeliveredPackages;
+public:
+    const vector<Package> &getNonDeliveredPackages() const;
+
+private:
     /**
      * Compare packages according to their sum of weight and volume.
      * This method is used when the sort function is called to establish the packages order needed.

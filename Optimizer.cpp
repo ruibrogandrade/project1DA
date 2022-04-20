@@ -47,7 +47,7 @@ void Optimizer::optimizeTransports() {
 
     FirstScenario firstScenario;
     vector<Transport> result =
-            firstScenario.execute(allPackages, allTransports);
+            firstScenario.execute(allPackages, allTransports, nonDeliveredPackages);
 
     this->usedTransports = result;
     calculateEfficiency();
@@ -117,6 +117,7 @@ void Optimizer::balancePackages() {
 
 void Optimizer::restartOptimizer() {
     usedTransports.clear();
+    nonDeliveredPackages.clear();
 
     // makes transport.carriedPackages empty
     for (auto &transport: allTransports)
@@ -130,7 +131,7 @@ void Optimizer::restartOptimizer() {
 void Optimizer::showUsedTransports() const {
     cout << endl << "Used transports: " << usedTransports.size() << endl
          << "Delivered packages: " << numDeliveredPackages << endl
-         << "NON delivered packages: " << allPackages.size() - numDeliveredPackages << endl
+         << "NON delivered packages: " << nonDeliveredPackages.size() << endl
          << "Efficiency: " << efficiency * 100 << "%" << endl;
 
     switch (optimizerType) {
@@ -186,4 +187,8 @@ void Optimizer::calculateAverageTime() {
     for (auto &transport: usedTransports) sumTime += transport.sumTime();
 
     this->avgTime = (double) sumTime / numDeliveredPackages;
+}
+
+const vector<Package> &Optimizer::getNonDeliveredPackages() const {
+    return nonDeliveredPackages;
 }
