@@ -13,6 +13,7 @@ class Package {
 private:
     unsigned volume = 0, weight = 0;
     unsigned reward = 0, estimatedTime = 0;
+    unsigned day = 1;
 
 public:
     /**
@@ -26,7 +27,7 @@ public:
      * @param reward
      * @param estimatedTime
      */
-    Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime);
+    Package(unsigned volume, unsigned weight, unsigned reward, unsigned estimatedTime, unsigned day);
     /**
      * @return unsigned - volume of package
      */
@@ -43,6 +44,8 @@ public:
      * @return unsigned - estimated time to delivery the package
      */
     unsigned getEstimatedTime() const;
+
+    unsigned int getDay() const;
 };
 
 #endif //URBAN_LOGISTICS_PACKAGE_H
