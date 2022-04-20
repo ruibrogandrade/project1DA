@@ -42,7 +42,7 @@ public:
      * @param transports - all available transports to deliver the packages.
      * @return vector<Transport> - Transports that were used.
      */
-    static vector<Transport> execute(vector<Package> packages, vector<Transport> transports);
+    static vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);
 };
 
 #endif //MAIN_CPP_FOURTHSCENARIO_H

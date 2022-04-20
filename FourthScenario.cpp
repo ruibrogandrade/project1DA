@@ -20,7 +20,7 @@ bool FourthScenario::compareTransports(const Transport &t1, const Transport &t2)
     return t1.getMaxWeight() + t1.getMaxVol() > t2.getMaxWeight() + t2.getMaxVol();
 }
 
-vector<Transport> FourthScenario::execute(vector<Package> packages, vector<Transport> transports) {
+vector<Transport> FourthScenario::execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages) {
     sort(packages.begin(), packages.end(), comparePackages);
     sort(transports.begin(), transports.end(), compareTransports);
 
@@ -32,7 +32,9 @@ vector<Transport> FourthScenario::execute(vector<Package> packages, vector<Trans
         while(!transportIter->addPackage(package)) {
             added = false;
             transportIter++;
-            if(transportIter == transports.end()) {
+            if(transportIter == transports.end())
+            {
+                nonDeliveredPackages.push_back(package);
                 transportIter = transports.begin();
                 break;
             }
