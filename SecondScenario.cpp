@@ -92,36 +92,41 @@ void SecondScenario::knapsackProfit(vector<Package> packages, vector<Transport> 
     nonDeliveredPackages = packages;
 }
 
-void SecondScenario::greedyProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages) {
-    sort(packages.begin(), packages.end(), comparePackages);
-    sort(transports.begin(), transports.end(), compareTransports);
-
-    for (auto &package: packages)
+void binPacking(vector<Package> &remPackages, vector<Transport> &remTransports, vector<Package> &nonDeliveredPackage)
+{
+    for (auto &package: remPackages)
     {
-        for (auto transport = transports.begin(); transport != transports.end(); transport++)
+        for (auto transport = remTransports.begin(); transport != remTransports.end(); transport++)
         {
             if (transport->addPackage(package))
                 break;
 
-            if(transport == --transports.end())
-                nonDeliveredPackages.push_back(package);
+            if(transport == --remTransports.end()) {
+                nonDeliveredPackage.push_back(package);
+            }
         }
     }
+}
 
-    if(packages.size() == nonDeliveredPackages.size())
-        return;
+void SecondScenario::greedyProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages) {
+    sort(packages.begin(), packages.end(), comparePackages);
+    sort(transports.begin(), transports.end(), compareTransports);
 
-    for (auto &transport: transports) {
-        if (transport.getCarriedPackages().empty()) break;
 
-        int profit = transport.calculateProfit();
+    binPacking(packages, transports, nonDeliveredPackages);
+
+    for (auto transportIter = transports.begin(); transportIter != transports.end(); transportIter++) {
+        //if (transportIter->getCarriedPackages().empty()) break;
+
+        int profit = transportIter->calculateProfit();
         if (profit <= 0)
         {
-            nonDeliveredPackages.insert(nonDeliveredPackages.begin(),transport.getCarriedPackages().begin(), transport.getCarriedPackages().end());
-            transport.restart();
+            auto remPackages = transportIter->getCarriedPackages();
+            transports.erase(transportIter); transportIter--;
+            binPacking(remPackages, transports, nonDeliveredPackages);
             continue;
         }
-        usedTransports.push_back(transport);
+        usedTransports.push_back(*transportIter);
         totalProfit += profit;
     }
 }
