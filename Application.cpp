@@ -8,8 +8,7 @@
 
 using namespace std;
 
-Application::Application() {
-}
+Application::Application() = default;
 
 bool isBadCin() {
     //verify if the menu chose is a possible choice made by the user
@@ -67,6 +66,26 @@ bool wasFinished() {
     }
 }
 
+bool Application::nextDay() {
+    char goToNext;
+    size_t oldSize = copyPackagesDays.front().size();
+
+    cout << endl << "Do you want to see next day of deliveries? (Y/N):";
+    cin >> goToNext;
+
+    switch (goToNext) {
+        case 'N': case 'n': return false;
+        case 'Y': case 'y':
+            copyPackagesDays.front().insert(copyPackagesDays.front().begin(),
+                                            optimizer.getNonDeliveredPackages().begin(),
+                                            optimizer.getNonDeliveredPackages().end());
+
+            cout << endl << copyPackagesDays.front().size() - oldSize << " packages added from last day!";
+            return true;
+        default: return false;
+    }
+}
+
 
 bool Application::processTheDay(unsigned optimizerType){
     vector<Package> packagesFromFile;
@@ -79,33 +98,18 @@ bool Application::processTheDay(unsigned optimizerType){
     optimizer.optimize();
 
     if(copyPackagesDays.empty())
+    {
+        if(!optimizer.getNonDeliveredPackages().empty())
+            cout << endl << "There are no more available transports for delivery the remaining packages..." << endl;
+
         return false;
-
-    char goToNext;
-
-    cout << endl << "Do you want to see next day of deliveries? (Y/N)" << endl;
-    cin >> goToNext;
-
-    size_t oldSize = copyPackagesDays.front().size();
-
-    switch (goToNext) {
-        case 'N': case 'n': return false;
-        case 'Y': case 'y':
-            copyPackagesDays.front().insert(copyPackagesDays.front().begin(),
-                                    optimizer.getNonDeliveredPackages().begin(),
-                                    optimizer.getNonDeliveredPackages().end());
-
-            cout << endl << copyPackagesDays.front().size() - oldSize << " packages added from last day!";
-            return true;
-        default: return false;
     }
-    
+
+    return nextDay();
 }
 
 void Application::runApplication() {
     unsigned int optimizerType;
-    bool nextDay = true;
-
 
     packagesDays = reader.getPackagesDays();
     transportsDays = reader.getTransportsDays();
@@ -118,7 +122,7 @@ void Application::runApplication() {
         copyPackagesDays = packagesDays;
         copyTransportsDays = transportsDays;
         
-        while(!packagesDays.empty())
+        while(!copyPackagesDays.empty())
         {
             if(!processTheDay(optimizerType))
                 break;

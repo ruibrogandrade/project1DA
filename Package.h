@@ -10,6 +10,13 @@
 using namespace std;
 
 class Package {
+
+private:
+    static unsigned id;
+    unsigned packageId;
+public:
+    unsigned int getPackageId() const;
+
 private:
     unsigned volume = 0, weight = 0;
     unsigned reward = 0, estimatedTime = 0;
@@ -46,6 +53,7 @@ public:
     unsigned getEstimatedTime() const;
 
     unsigned int getDay() const;
+
 };
 
 #endif //URBAN_LOGISTICS_PACKAGE_H

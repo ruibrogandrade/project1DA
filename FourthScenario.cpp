@@ -52,7 +52,3 @@ vector<Transport> FourthScenario::execute(vector<Package> &packages, vector<Tran
     }
     return usedTransports;
 }
-
-const vector<Package> &FourthScenario::getNonDeliveredPackages() const {
-    return nonDeliveredPackages;
-}

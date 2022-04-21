@@ -13,6 +13,13 @@
 using namespace std;
 
 class Transport {
+
+private:
+    static unsigned id;
+    unsigned transportID;
+public:
+    unsigned int getTransportId() const;
+
 private:
     unsigned maxVol{}, remainingVolume{};
     unsigned maxWeight{}, remainingWeight{};

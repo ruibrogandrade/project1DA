@@ -17,7 +17,7 @@ bool ThirdScenario::compareTransports(const Transport &t1, const Transport &t2) 
     return t1.getRemainingTime() > t2.getRemainingTime();
 }
 
-vector<Transport> ThirdScenario::execute(vector<Package> packages, vector<Transport> transports) {
+vector<Transport> ThirdScenario::execute(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages) {
     sort(packages.begin(), packages.end(), comparePackages);
     sort(transports.begin(), transports.end(), compareTransports);
 
@@ -36,12 +36,21 @@ vector<Transport> ThirdScenario::execute(vector<Package> packages, vector<Transp
     transports.resize(numOfTransports);
 
     auto it = transports.begin();
-    for (auto package: packages) {
-        if (!(it->addExpress(package))) break;
+    auto packagesIter = packages.begin();
+    for (; packagesIter != packages.end(); packagesIter++)
+    {
+        if (!(it->addExpress(*packagesIter)))
+        {
+            nonDeliveredPackages.insert(nonDeliveredPackages.begin(), packagesIter, packages.end());
+            break;
+        }
 
         if (it->getRemainingTime() < (it++)->getRemainingTime()) it++;
 
-        if (it == transports.end()) it = transports.begin();
+        if (it == transports.end())
+        {
+            it = transports.begin();
+        }
     }
 
     unsigned sumTime = 0;

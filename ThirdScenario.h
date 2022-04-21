@@ -36,7 +36,7 @@ public:
      * @param transports - all transports stored from the database.
      * @return
      */
-    vector<Transport> execute(vector<Package> packages, vector<Transport> transports);
+    vector<Transport> execute(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages);
 };
 
 #endif //MAIN_CPP_THIRDSCENARIO_H

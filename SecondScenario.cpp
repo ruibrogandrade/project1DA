@@ -71,7 +71,7 @@ pair<unsigned, set<unsigned>> SecondScenario::knapsack(Transport &t, vector<Pack
     return matrix[size % 2][maxWeight][maxVol];
 }
 
-void SecondScenario::knapsackProfit(vector<Package> packages, vector<Transport> transports) {
+void SecondScenario::knapsackProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages) {
     sort(packages.begin(), packages.end(), comparePackages);
     sort(transports.begin(), transports.end(), compareTransports);
 
@@ -88,22 +88,39 @@ void SecondScenario::knapsackProfit(vector<Package> packages, vector<Transport> 
         }
         usedTransports.push_back(t);
     }
+
+    nonDeliveredPackages = packages;
 }
 
-void SecondScenario::greedyProfit(vector<Package> packages, vector<Transport> transports) {
+void SecondScenario::greedyProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages) {
     sort(packages.begin(), packages.end(), comparePackages);
     sort(transports.begin(), transports.end(), compareTransports);
 
     for (auto &package: packages)
-        for (auto &transport: transports)
-            if (transport.addPackage(package))
+    {
+        for (auto transport = transports.begin(); transport != transports.end(); transport++)
+        {
+            if (transport->addPackage(package))
                 break;
+
+            if(transport == --transports.end())
+                nonDeliveredPackages.push_back(package);
+        }
+    }
+
+    if(packages.size() == nonDeliveredPackages.size())
+        return;
 
     for (auto &transport: transports) {
         if (transport.getCarriedPackages().empty()) break;
 
         int profit = transport.calculateProfit();
-        if (profit <= 0) continue;
+        if (profit <= 0)
+        {
+            nonDeliveredPackages.insert(nonDeliveredPackages.begin(),transport.getCarriedPackages().begin(), transport.getCarriedPackages().end());
+            transport.restart();
+            continue;
+        }
         usedTransports.push_back(transport);
         totalProfit += profit;
     }

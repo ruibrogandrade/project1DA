@@ -24,12 +24,7 @@ private:
     vector<Transport> usedTransports;
     vector<Transport> allTransports;
     vector<Package> allPackages, nonDeliveredPackages;
-    unsigned numDeliveredPackages = 0;
-
     unsigned optimizerType = 0;
-    int totalProfit = 0;
-    double avgTime = 0;
-    double efficiency = 0;
 
 private:
     /**
@@ -43,7 +38,7 @@ private:
     /**
      * 2 Algorithms that maximizes the profit of delivering packages (Greedy and Dynamic Programming(knapsack)
      */
-    void optimizeProfit();
+    int optimizeProfit();
     /**
      * Algorithm that minimizes the average time needed to deliver packages
      */
@@ -55,15 +50,23 @@ private:
     /**
      * Shows the transports that were used
      */
-    void showUsedTransports() const;
+    void showUsedTransports(int totalProfit = 0) const;
+    void showStatistics();
+    void showTransports() const;
+    void showProfit(int totalProfit) const;
+    void showAvgTime() const;
+    void showDeliveredPackages() const;
+    void showNonDelivered() const;
+    void showChoseMode(unsigned choice, int totalProfitGot) const;
+
     /**
      * Calculates in percentage how many packages were used
      */
-    void calculateEfficiency();
+    double calculateEfficiency() const;
     /**
      * Calculates the average time of the delivery of the packages
      */
-    void calculateAverageTime();
+    double calculateAverageTime() const;
 
 public:
     /**

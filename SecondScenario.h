@@ -63,7 +63,7 @@ public:
      * @param packages - a vector that has all the packages that we want delivered
      * @param transports - a vector that has all transports available for deployment
      */
-    void knapsackProfit(vector<Package> packages, vector<Transport> transports);
+    void knapsackProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages);
 
     /**
      * Executes the bin-packing algorithm after sorting by descending order of packages
@@ -73,7 +73,7 @@ public:
      * @param packages - all packages stored from the database.
      * @param transports - all transports stored from the database.
      */
-    void greedyProfit(vector<Package> packages, vector<Transport> transports);
+    void greedyProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages);
 };
 
 #endif //MAIN_CPP_SECONDSCENARIO_H

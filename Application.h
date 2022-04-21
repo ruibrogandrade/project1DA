@@ -25,6 +25,7 @@ private:
     static unsigned showMenu();
 
     bool processTheDay(unsigned optimizerType);
+    bool nextDay();
 
 public:
     /**

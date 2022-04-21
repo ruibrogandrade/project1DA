@@ -4,10 +4,11 @@
 
 #include "Transport.h"
 
+unsigned Transport::id = 0;
 Transport::Transport(unsigned price, unsigned maxVol, unsigned maxWeight)
         : maxVol(maxVol), maxWeight(maxWeight), price(price),
           remainingVolume(maxVol), remainingWeight(maxWeight),
-          profit(0) {}
+          profit(0) { ++id; transportID = id; }
 
 unsigned Transport::getMaxVol() const {
     return maxVol;
@@ -77,3 +78,8 @@ unsigned Transport::sumTime() {
 
     return sumTime;
 }
+
+unsigned int Transport::getTransportId() const {
+    return transportID;
+}
+

@@ -11,11 +11,6 @@
 
 class FourthScenario {
 private:
-    vector<Package> nonDeliveredPackages;
-public:
-    const vector<Package> &getNonDeliveredPackages() const;
-
-private:
     /**
      * Compare packages according to their sum of weight and volume.
      * This method is used when the sort function is called to establish the packages order needed.
@@ -42,7 +37,7 @@ public:
      * @param transports - all available transports to deliver the packages.
      * @return vector<Transport> - Transports that were used.
      */
-    static vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);
+    vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);
 };
 
 #endif //MAIN_CPP_FOURTHSCENARIO_H

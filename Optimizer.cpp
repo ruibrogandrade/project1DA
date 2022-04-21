@@ -4,6 +4,9 @@
 
 #define GREEDY 1
 #define KNAPSACK 0
+#define NON_DELIVERED_PACKAGES 2
+#define DELIVERED_PACKAGES 1
+#define USED_TRANSPORTS 0
 
 #include <algorithm>
 #include "Optimizer.h"
@@ -23,22 +26,35 @@ Optimizer::Optimizer(unsigned optimizerType, const vector<Package> &allPackages,
 }
 
 void Optimizer::optimize() {
+    int totalProfitGot;
     switch (optimizerType) {
-        case OPTIMIZE_TRANSPORTS:
-            optimizeTransports();
-            showUsedTransports();
-            break;
-        case OPTIMIZE_PROFIT:
-            optimizeProfit();
-            showUsedTransports();
-            break;
-        case OPTIMIZE_EXPRESS_DELIVERY:
-            optimizeExpressDelivery();
-            showUsedTransports();
-            break;
-        case BALANCE_PACKAGES:
-            balancePackages();
-            showUsedTransports();
+        case OPTIMIZE_TRANSPORTS: optimizeTransports(); break;
+        case OPTIMIZE_PROFIT: totalProfitGot = optimizeProfit(); break;
+        case OPTIMIZE_EXPRESS_DELIVERY: optimizeExpressDelivery(); break;
+        case BALANCE_PACKAGES: balancePackages(); break;
+    }
+
+    bool dontGoBack = true;
+    while(dontGoBack)
+    {
+        //int totalProfitGot = 0;
+        unsigned choice;
+
+        cout << endl
+             << "|========================================================================|\n"
+                "|      Non delivered packages                      [2]                   |\n"
+                "|      Delivered Packages                          [1]                   |\n"
+                "|      Used transports                             [0]                   |\n"
+                "|========================================================================|\n";
+
+        cout << "What do you want to see? :";
+        cin >> choice;
+
+        cout << endl; showStatistics();
+        showChoseMode(choice, totalProfitGot);
+
+        cout << endl << "Do you want to see another choice? (1 -> Yes / 0 -> No):";
+        cin >> dontGoBack;
     }
 }
 
@@ -50,7 +66,6 @@ void Optimizer::optimizeTransports() {
             firstScenario.execute(allPackages, allTransports, nonDeliveredPackages);
 
     this->usedTransports = result;
-    calculateEfficiency();
 }
 
 unsigned chooseProfitAlgorithm() {
@@ -73,22 +88,22 @@ unsigned chooseProfitAlgorithm() {
     }
 }
 
-void Optimizer::optimizeProfit() {
+int Optimizer::optimizeProfit() {
     restartOptimizer();
 
     unsigned algorithmSelected = chooseProfitAlgorithm();
 
     SecondScenario secondScenario;
-    vector<Transport> result;
 
     if (algorithmSelected == GREEDY)
-        secondScenario.greedyProfit(allPackages, allTransports);
+        secondScenario.greedyProfit(allPackages, allTransports, nonDeliveredPackages);
     else if (algorithmSelected == KNAPSACK)
-        secondScenario.knapsackProfit(allPackages, allTransports);
+        secondScenario.knapsackProfit(allPackages, allTransports, nonDeliveredPackages);
 
     usedTransports = secondScenario.getUsedTransports();
-    totalProfit = secondScenario.getTotalProfit();
-    calculateEfficiency();
+    int totalProfit = secondScenario.getTotalProfit();
+
+    return totalProfit;
 }
 
 
@@ -97,22 +112,16 @@ void Optimizer::optimizeExpressDelivery() {
 
     ThirdScenario thirdScenario;
     vector<Transport> result =
-            thirdScenario.execute(allPackages, allTransports);
+            thirdScenario.execute(allPackages, allTransports, nonDeliveredPackages);
 
     this->usedTransports = result;
-    calculateEfficiency();
-    calculateAverageTime();
 }
 
 void Optimizer::balancePackages() {
     restartOptimizer();
 
     FourthScenario fourthScenario;
-    vector<Transport> result =
-            fourthScenario.execute(allPackages, allTransports);
-
-    this->usedTransports = result;
-    calculateEfficiency();
+    usedTransports = fourthScenario.execute(allPackages, allTransports,nonDeliveredPackages);
 }
 
 void Optimizer::restartOptimizer() {
@@ -122,73 +131,156 @@ void Optimizer::restartOptimizer() {
     // makes transport.carriedPackages empty
     for (auto &transport: allTransports)
         transport.restart();
-
-    totalProfit = 0;
-    numDeliveredPackages = 0;
-    avgTime = 0, efficiency = 0;
 }
 
-void Optimizer::showUsedTransports() const {
-    cout << endl << "Used transports: " << usedTransports.size() << endl
-         << "Delivered packages: " << numDeliveredPackages << endl
-         << "NON delivered packages: " << nonDeliveredPackages.size() << endl
-         << "Efficiency: " << efficiency * 100 << "%" << endl;
+double Optimizer::calculateEfficiency() const {
+    unsigned numDeliveredPackages = allPackages.size() - nonDeliveredPackages.size();
 
-    switch (optimizerType) {
-        case OPTIMIZE_TRANSPORTS: case BALANCE_PACKAGES:
-            cout << endl << "Transports" << "                        "
-                 << "Number of carried packages" << endl;
+    double efficiency = (double) numDeliveredPackages / (double) allPackages.size();
+    efficiency = round(efficiency * 10000.0) / 10000.0;
 
-            for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  "
-                << transport.getMaxWeight() << "  "
-                << transport.getPrice() << "  ---------------  "
-                << transport.getCarriedPackages().size() << endl;
-            break;
-
-        case OPTIMIZE_PROFIT:
-            cout << "Total profit: " << totalProfit << endl << endl;
-            cout << "Transports" << "                        "
-                 << "Number of carried packages" << "                         "
-                 << "Profit" << endl;
-
-            for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  "
-                << transport.getMaxWeight() << "  "
-                << transport.getPrice() << "  ---------------               "
-                << transport.getCarriedPackages().size() << "             --------------------   "
-                << transport.getProfit() << endl;
-            break;
-
-        case OPTIMIZE_EXPRESS_DELIVERY:
-            cout << "Minimum Average Time: " << avgTime << endl << endl;
-            cout << "Transports" << "                        "
-                 << "Number of carried packages" << endl;
-
-            for (const auto &transport: usedTransports)
-                cout << transport.getMaxVol() << "  "
-                << transport.getMaxWeight() << "  "
-                << transport.getPrice() << "  ---------------  "
-                << transport.getCarriedPackages().size() << endl;
-            break;
-    }
+    return efficiency;
 }
 
-void Optimizer::calculateEfficiency() {
-    for (const auto& t : usedTransports)
-        numDeliveredPackages += t.getCarriedPackages().size();
-
-    this->efficiency = (double) numDeliveredPackages / (double) allPackages.size();
-    this->efficiency = round(efficiency * 10000.0) / 10000.0;
-}
-
-void Optimizer::calculateAverageTime() {
+double Optimizer::calculateAverageTime() const {
+    unsigned numDeliveredPackages = allPackages.size() - nonDeliveredPackages.size();
     unsigned sumTime = 0;
-    for (auto &transport: usedTransports) sumTime += transport.sumTime();
 
-    this->avgTime = (double) sumTime / numDeliveredPackages;
+    for (auto transport: usedTransports)
+        sumTime += transport.sumTime();
+
+    double avgTime = (double) sumTime / numDeliveredPackages;
+
+    return avgTime;
 }
 
 const vector<Package> &Optimizer::getNonDeliveredPackages() const {
     return nonDeliveredPackages;
 }
+
+
+void Optimizer::showStatistics() {
+    cout << endl << "Used transports: " << usedTransports.size() << endl
+         << "Delivered packages: " << allPackages.size() - nonDeliveredPackages.size() << endl
+         << "NON delivered packages: " << nonDeliveredPackages.size() << endl
+         << "Efficiency: " << calculateEfficiency() * 100 << "%" << endl;
+}
+
+void Optimizer::showTransports() const {
+    cout << endl << "Transport ID" << "                     "
+         << "Transports" << "                    "
+         << "Number of carried packages" << endl;
+
+    for (const auto& transport: usedTransports)
+        cout << "    " << transport.getTransportId() << "       ---------------  "
+             << transport.getMaxVol() << "  "
+             << transport.getMaxWeight() << "  "
+             << transport.getPrice() << "  ---------------  "
+             << transport.getCarriedPackages().size() << endl;
+}
+
+
+void Optimizer::showProfit(int totalProfit) const {
+    cout << "Total profit: " << totalProfit << endl << endl;
+    cout << "Transport ID" << "                     "
+         << "Transports" << "                     "
+         << "Number of carried packages"  << "                     "
+         << "Profit" << endl;
+
+    for (const auto &transport: usedTransports)
+        cout << "    " << transport.getTransportId() << "       ---------------    "
+             << transport.getMaxVol() << "  "
+             << transport.getMaxWeight() << "  "
+             << transport.getPrice() << "  ---------------            "
+             << transport.getCarriedPackages().size() << "             ------------------   "
+             << transport.getProfit() << endl;
+}
+
+
+void Optimizer::showAvgTime() const {
+    cout << "Minimum Average Time: " << calculateAverageTime() << endl << endl;
+    cout << "Transport ID" << "                     "
+         << "Transports" << "                    "
+         << "Number of carried packages"  << endl;
+
+    for (const auto &transport: usedTransports)
+        cout << "    " << transport.getTransportId() << "       ---------------  "
+             << transport.getMaxVol() << "  "
+             << transport.getMaxWeight() << "  "
+             << transport.getPrice() << "  ---------------  "
+             << transport.getCarriedPackages().size() << endl;
+}
+
+
+void Optimizer::showUsedTransports(int totalProfit) const {
+
+    switch (optimizerType)
+    {
+        case OPTIMIZE_TRANSPORTS: case BALANCE_PACKAGES:
+            showTransports();
+            break;
+
+        case OPTIMIZE_PROFIT:
+            showProfit(totalProfit);
+            break;
+
+        case OPTIMIZE_EXPRESS_DELIVERY:
+            showAvgTime();
+            break;
+    }
+}
+
+void Optimizer::showNonDelivered() const {
+    if(nonDeliveredPackages.empty())
+    {
+        cout << endl << "All packages were delivered!" << endl;
+        return;
+    }
+
+    cout << "PackageID" << "                "
+         << "Package" << "                "
+         << "Order day" << "                " << endl;
+    for(auto package : nonDeliveredPackages)
+    {
+        cout << package.getPackageId() << "                     "
+             << package.getVolume() << " "
+             << package.getWeight() << " "
+             << package.getReward() << "                    "
+             << package.getDay() << endl;
+    }
+}
+
+void Optimizer::showDeliveredPackages() const {
+    cout << "PackageID" << "                "
+         << "Package" << "                "
+         << "Order day" << "                " << endl;
+
+    for(const auto& transport : usedTransports)
+    {
+        for(auto package : transport.getCarriedPackages())
+        {
+            cout << package.getPackageId() << "                     "
+                 << package.getVolume() << " "
+                 << package.getWeight() << " "
+                 << package.getReward() << "                    "
+                 << package.getDay() << endl;
+        }
+    }
+}
+
+void Optimizer::showChoseMode(unsigned choice, int totalProfitGot) const {
+    switch (choice) {
+        case USED_TRANSPORTS:
+            if (totalProfitGot)
+                showUsedTransports(totalProfitGot);
+
+            else showUsedTransports();
+
+            break;
+
+        case DELIVERED_PACKAGES: showDeliveredPackages(); break;
+        case NON_DELIVERED_PACKAGES: showNonDelivered(); break;
+        default: break;
+    }
+}
+
