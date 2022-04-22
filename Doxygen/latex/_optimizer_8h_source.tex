@@ -1,5 +1,5 @@
 \hypertarget{_optimizer_8h_source}{}\doxysection{Optimizer.\+h}
-\label{_optimizer_8h_source}\index{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Optimizer.h@{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Optimizer.h}}
+\label{_optimizer_8h_source}\index{C:/Users/Rui/Documents/DA/urban-\/logistics/Optimizer.h@{C:/Users/Rui/Documents/DA/urban-\/logistics/Optimizer.h}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//}}
@@ -27,28 +27,35 @@
 \DoxyCodeLine{23 \textcolor{keyword}{private}:}
 \DoxyCodeLine{24     vector<Transport> usedTransports;}
 \DoxyCodeLine{25     vector<Transport> allTransports;}
-\DoxyCodeLine{26     vector<Package> allPackages;}
-\DoxyCodeLine{27     \textcolor{keywordtype}{unsigned} optimizerType = 0, numDeliveredPackages = 0;}
-\DoxyCodeLine{28     \textcolor{keywordtype}{int} totalProfit = 0;}
-\DoxyCodeLine{29     \textcolor{keywordtype}{double} avgTime = 0;}
-\DoxyCodeLine{30     \textcolor{keywordtype}{double} efficiency = 0;}
-\DoxyCodeLine{31 }
-\DoxyCodeLine{32 \textcolor{keyword}{private}:}
-\DoxyCodeLine{36     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a0d495ecd8623eb65f092900afe80e7aa}{restartOptimizer}}();}
-\DoxyCodeLine{40     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a395e1c38c0e26e60a3cb98f99d4a2bcf}{optimizeTransports}}();}
-\DoxyCodeLine{44     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a8e9851ddab9d8ea84d76df1ae0f8b08d}{optimizeProfit}}();}
-\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a35e531d1367015c598b16705be739d77}{optimizeExpressDelivery}}();}
-\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_acc592c28cbafc2983e451afecb0ba15a}{balancePackages}}();}
-\DoxyCodeLine{56     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a90e7f2f077e3266709834ea05eeef302}{showUsedTransports}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{60     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a6f18113dec9efd4a8cd884c09e5bf875}{calculateEfficiency}}();}
-\DoxyCodeLine{64     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a38150e05707d43b32fa001afc62989ca}{calculateAverageTime}}();}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{66 \textcolor{keyword}{public}:}
-\DoxyCodeLine{70     \mbox{\hyperlink{class_optimizer_a8e09c43da2a8e0a94cbf0ba2be67f4d7}{Optimizer}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{77     \mbox{\hyperlink{class_optimizer_a8e09c43da2a8e0a94cbf0ba2be67f4d7}{Optimizer}}(\textcolor{keywordtype}{unsigned} optimizerType, \textcolor{keyword}{const} vector<Package> \&allPackages, \textcolor{keyword}{const} vector<Transport> \&allTransports);}
-\DoxyCodeLine{81     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}{optimize}}();}
-\DoxyCodeLine{82 \};}
-\DoxyCodeLine{83 }
-\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//OPTIMIZER\_H}}
+\DoxyCodeLine{26     vector<Package> allPackages, nonDeliveredPackages;}
+\DoxyCodeLine{27     \textcolor{keywordtype}{unsigned} optimizerType = 0;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{private}:}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a0d495ecd8623eb65f092900afe80e7aa}{restartOptimizer}}();}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a395e1c38c0e26e60a3cb98f99d4a2bcf}{optimizeTransports}}();}
+\DoxyCodeLine{41     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_optimizer_a34ea78e3d51a79ac9a45cfb550307d9c}{optimizeProfit}}();}
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a35e531d1367015c598b16705be739d77}{optimizeExpressDelivery}}();}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_acc592c28cbafc2983e451afecb0ba15a}{balancePackages}}();}
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_ac04a82476a6e60d9ce362f838a39694f}{mainShow}}(\textcolor{keywordtype}{int} totalProfit = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a868e0989057ee6f5492638715c3df5f6}{showStatistics}}();}
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a67eec21f631b69f4fce4b8efcbddb043}{showTransports}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a4585977cf5e41eb40a1a7131fdf0636e}{showProfit}}(\textcolor{keywordtype}{int} totalProfit) \textcolor{keyword}{const};}
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a5e00a24be9da1e99f6c02d33fa1c07b3}{showAvgTime}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_ac0c873a9e6a3b17fcae20173876bbf7f}{showDeliveredPackages}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a4032b03d16bb8b8e4fdb243b769cbbf8}{showNonDelivered}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_aace04614bdf91c855290f9d03f54efe9}{showChoseMode}}(\textcolor{keywordtype}{unsigned} choice, \textcolor{keywordtype}{int} totalProfitGot) \textcolor{keyword}{const};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{91     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_optimizer_ad1841081dc6815aa44d76f51b4e34200}{calculateEfficiency}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{95     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_optimizer_ab03297def4de8a128fd6805b0df60e14}{calculateAverageTime}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{keyword}{public}:}
+\DoxyCodeLine{101     \mbox{\hyperlink{class_optimizer_a8e09c43da2a8e0a94cbf0ba2be67f4d7}{Optimizer}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{108     \mbox{\hyperlink{class_optimizer_a8e09c43da2a8e0a94cbf0ba2be67f4d7}{Optimizer}}(\textcolor{keywordtype}{unsigned} optimizerType, \textcolor{keyword}{const} vector<Package> \&allPackages, \textcolor{keyword}{const} vector<Transport> \&allTransports);}
+\DoxyCodeLine{112     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_optimizer_a6f103614a85654a8e942f8dc7460bed1}{optimize}}();}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{118     \textcolor{keyword}{const} vector<Package> \&\mbox{\hyperlink{class_optimizer_a47dc30c36db0572e8a0e0f7c2ca064f9}{getNonDeliveredPackages}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{119 \};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//OPTIMIZER\_H}}
 
 \end{DoxyCode}

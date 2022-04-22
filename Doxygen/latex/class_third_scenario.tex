@@ -3,7 +3,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \mbox{\hyperlink{class_third_scenario_a80321c60682aaee089353308464a562c}{execute}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \mbox{\hyperlink{class_third_scenario_a0d434db40021d97500c0536c6e6400aa}{execute}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports, vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&non\+Delivered\+Packages)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -47,11 +47,11 @@ Compare transport according to the higher remaining time available for delivery.
 \begin{DoxyReturn}{Returns}
 -\/ ( remaining\+\_\+time\+\_\+1 \texorpdfstring{$>$}{>} remaining\+\_\+time\+\_\+2 )? (bool) 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_third_scenario_a80321c60682aaee089353308464a562c}\label{class_third_scenario_a80321c60682aaee089353308464a562c}} 
+\mbox{\Hypertarget{class_third_scenario_a0d434db40021d97500c0536c6e6400aa}\label{class_third_scenario_a0d434db40021d97500c0536c6e6400aa}} 
 \index{ThirdScenario@{ThirdScenario}!execute@{execute}}
 \index{execute@{execute}!ThirdScenario@{ThirdScenario}}
 \doxysubsubsection{\texorpdfstring{execute()}{execute()}}
-{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ Third\+Scenario\+::execute (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$}]{transports }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ Third\+Scenario\+::execute (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$}]{transports,  }\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&}]{non\+Delivered\+Packages }\end{DoxyParamCaption})}
 
 Executes a bin packing worst fit algorithm and returns the used transports. This function has extra functionality that allows the user to choose how many express transports he wants to use, choosing the best candidates. 
 \begin{DoxyParams}{Parameters}
@@ -59,13 +59,15 @@ Executes a bin packing worst fit algorithm and returns the used transports. This
 \hline
 {\em transports} & -\/ all transports stored from the database. \\
 \hline
+{\em non\+Delivered\+Packages} & -\/ stores the packages that could not been delivered in this scenario. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+vector$<$\+Transport$>$ -\/ used transports. 
 \end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Third\+Scenario.\+h\item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Third\+Scenario.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Third\+Scenario.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Third\+Scenario.\+cpp\end{DoxyCompactItemize}

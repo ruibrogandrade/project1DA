@@ -3,7 +3,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \mbox{\hyperlink{class_first_scenario_a5eab9ba3621176be8f17ba73a131b0cb}{execute}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ transports)
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \mbox{\hyperlink{class_first_scenario_addbbbcaf74f5035eb346bb6dee7d0ade}{execute}} (vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&packages, vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \&transports, vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&non\+Delivered\+Packages)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -47,17 +47,19 @@ Compares transports according to their sum of maximum weight and maximum volume.
 \begin{DoxyReturn}{Returns}
 (max\+\_\+weight\+\_\+1 + max\+\_\+volume\+\_\+1) \texorpdfstring{$>$}{>} (max\+\_\+weight\+\_\+2 + max\+\_\+volume\+\_\+2) ? -\/ bool 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_first_scenario_a5eab9ba3621176be8f17ba73a131b0cb}\label{class_first_scenario_a5eab9ba3621176be8f17ba73a131b0cb}} 
+\mbox{\Hypertarget{class_first_scenario_addbbbcaf74f5035eb346bb6dee7d0ade}\label{class_first_scenario_addbbbcaf74f5035eb346bb6dee7d0ade}} 
 \index{FirstScenario@{FirstScenario}!execute@{execute}}
 \index{execute@{execute}!FirstScenario@{FirstScenario}}
 \doxysubsubsection{\texorpdfstring{execute()}{execute()}}
-{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ First\+Scenario\+::execute (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$}]{transports }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ First\+Scenario\+::execute (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&}]{packages,  }\item[{vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ \&}]{transports,  }\item[{vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ \&}]{non\+Delivered\+Packages }\end{DoxyParamCaption})}
 
 Executes the bin-\/packing first fit algorithm and returns the used transports. 
 \begin{DoxyParams}{Parameters}
 {\em packages} & -\/ all packages stored from the database. \\
 \hline
 {\em transports} & -\/ all transports stored from the database. \\
+\hline
+{\em non\+Delivered\+Packages} & -\/ stores the packages that could not been delivered in this scenario. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -67,5 +69,5 @@ vector$<$\+Transport$>$ -\/ Transports that were used.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/First\+Scenario.\+h\item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/First\+Scenario.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/First\+Scenario.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/First\+Scenario.\+cpp\end{DoxyCompactItemize}

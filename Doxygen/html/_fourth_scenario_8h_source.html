@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>urban_logistics: C:/Users/Rui/Documents/Projeto DA/urban-logistics/FourthScenario.h Source File</title>
+<title>urban_logistics: C:/Users/Rui/Documents/DA/urban-logistics/FourthScenario.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_dadaf9e24319e5f2c450bdb61f1e979c.html">Rui</a></li><li class="navelem"><a class="el" href="dir_af6a6f553bcb0260109e3c15dd7dc054.html">Documents</a></li><li class="navelem"><a class="el" href="dir_fa4383cc4777c2c5c50825b049aeaafc.html">Projeto DA</a></li><li class="navelem"><a class="el" href="dir_99a57271cbef8e14e6bd5b4e2370f459.html">urban-logistics</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f396504afdc959660871b003fa10164d.html">Documents</a></li><li class="navelem"><a class="el" href="dir_47517c146e030d69b2c9f177123a43f9.html">DA</a></li><li class="navelem"><a class="el" href="dir_6c33ff24bb6c5a4575fa4f1f50a0e90e.html">urban-logistics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -83,15 +83,20 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_fourth_scenario.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_fourth_scenario.html">FourthScenario</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_fourth_scenario.html#a97400c63fff749b4043df6b5914088a1">comparePackages</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_package.html">Package</a> &amp;p1, <span class="keyword">const</span> <a class="code hl_class" href="class_package.html">Package</a> &amp;p2);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    vector&lt;Transport&gt; <a class="code hl_function" href="class_fourth_scenario.html#ad8d9f227a046c504c68e2b2421979e6c">execute</a>(vector&lt;Package&gt; packages, vector&lt;Transport&gt; transports);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">//MAIN_CPP_FOURTHSCENARIO_H</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_fourth_scenario.html#aa874289783601b884810e58a3df74e7a">compareTransports</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_transport.html">Transport</a> &amp;t1, <span class="keyword">const</span> <a class="code hl_class" href="class_transport.html">Transport</a> &amp;t2);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    vector&lt;Transport&gt; <a class="code hl_function" href="class_fourth_scenario.html#a129379827f39efebf5b0e81e1164b517">execute</a>(vector&lt;Package&gt; &amp;packages, vector&lt;Transport&gt; &amp;transports, vector&lt;Package&gt; &amp;nonDeliveredPackages);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">//MAIN_CPP_FOURTHSCENARIO_H</span></div>
 <div class="ttc" id="aclass_fourth_scenario_html"><div class="ttname"><a href="class_fourth_scenario.html">FourthScenario</a></div><div class="ttdef"><b>Definition:</b> FourthScenario.h:12</div></div>
+<div class="ttc" id="aclass_fourth_scenario_html_a129379827f39efebf5b0e81e1164b517"><div class="ttname"><a href="class_fourth_scenario.html#a129379827f39efebf5b0e81e1164b517">FourthScenario::execute</a></div><div class="ttdeci">vector&lt; Transport &gt; execute(vector&lt; Package &gt; &amp;packages, vector&lt; Transport &gt; &amp;transports, vector&lt; Package &gt; &amp;nonDeliveredPackages)</div><div class="ttdef"><b>Definition:</b> FourthScenario.cpp:23</div></div>
 <div class="ttc" id="aclass_fourth_scenario_html_a97400c63fff749b4043df6b5914088a1"><div class="ttname"><a href="class_fourth_scenario.html#a97400c63fff749b4043df6b5914088a1">FourthScenario::comparePackages</a></div><div class="ttdeci">static bool comparePackages(const Package &amp;p1, const Package &amp;p2)</div><div class="ttdef"><b>Definition:</b> FourthScenario.cpp:8</div></div>
-<div class="ttc" id="aclass_fourth_scenario_html_ad8d9f227a046c504c68e2b2421979e6c"><div class="ttname"><a href="class_fourth_scenario.html#ad8d9f227a046c504c68e2b2421979e6c">FourthScenario::execute</a></div><div class="ttdeci">vector&lt; Transport &gt; execute(vector&lt; Package &gt; packages, vector&lt; Transport &gt; transports)</div><div class="ttdef"><b>Definition:</b> FourthScenario.cpp:14</div></div>
+<div class="ttc" id="aclass_fourth_scenario_html_aa874289783601b884810e58a3df74e7a"><div class="ttname"><a href="class_fourth_scenario.html#aa874289783601b884810e58a3df74e7a">FourthScenario::compareTransports</a></div><div class="ttdeci">static bool compareTransports(const Transport &amp;t1, const Transport &amp;t2)</div><div class="ttdef"><b>Definition:</b> FourthScenario.cpp:19</div></div>
 <div class="ttc" id="aclass_package_html"><div class="ttname"><a href="class_package.html">Package</a></div><div class="ttdef"><b>Definition:</b> Package.h:12</div></div>
+<div class="ttc" id="aclass_transport_html"><div class="ttname"><a href="class_transport.html">Transport</a></div><div class="ttdef"><b>Definition:</b> Transport.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

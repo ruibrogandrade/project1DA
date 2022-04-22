@@ -3,9 +3,12 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{class_package_afd1018f1b4bdc19018405b9a90606718}\label{class_package_afd1018f1b4bdc19018405b9a90606718}} 
+unsigned int {\bfseries get\+Package\+Id} () const
+\item 
 \mbox{\hyperlink{class_package_a8fe0f40c9268b52bc10d0478df752610}{Package}} ()=default
 \item 
-\mbox{\hyperlink{class_package_a7734e8f6618dde3428b93581984a7b35}{Package}} (unsigned volume, unsigned weight, unsigned reward, unsigned estimated\+Time)
+\mbox{\hyperlink{class_package_acd20161e8fdf7fd3cf8a312a28cb53e2}{Package}} (unsigned volume, unsigned weight, unsigned reward, unsigned estimated\+Time, unsigned day)
 \item 
 unsigned \mbox{\hyperlink{class_package_a33f63dfee7b5b3536444418121f4c49d}{get\+Volume}} () const
 \item 
@@ -14,9 +17,14 @@ unsigned \mbox{\hyperlink{class_package_acc0cc1eb5bff7595b42e1c105fcfaa1f}{get\+
 unsigned \mbox{\hyperlink{class_package_a9483b99ae8fcdb8891f848cec5022cc2}{get\+Reward}} () const
 \item 
 unsigned \mbox{\hyperlink{class_package_ae5640a9d7f51e59bf0ffbac08bba84ab}{get\+Estimated\+Time}} () const
+\item 
+unsigned int \mbox{\hyperlink{class_package_ac1395bbc2207ebfec65e02cc2eed91a3}{get\+Day}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_package_a34c43177a17c33b37dece12f61cb0f6c}\label{class_package_a34c43177a17c33b37dece12f61cb0f6c}} 
+unsigned {\bfseries package\+Id}
 \item 
 \mbox{\Hypertarget{class_package_aee9b54b9aa702906ab2569b01dd02db5}\label{class_package_aee9b54b9aa702906ab2569b01dd02db5}} 
 unsigned {\bfseries volume} = 0
@@ -29,6 +37,15 @@ unsigned {\bfseries reward} = 0
 \item 
 \mbox{\Hypertarget{class_package_ab7fe5bd8d2d5bcc1ab4e9e859854ff6b}\label{class_package_ab7fe5bd8d2d5bcc1ab4e9e859854ff6b}} 
 unsigned {\bfseries estimated\+Time} = 0
+\item 
+\mbox{\Hypertarget{class_package_a2d0cbca10ccb53d5030a7a2b8c3dc14a}\label{class_package_a2d0cbca10ccb53d5030a7a2b8c3dc14a}} 
+unsigned {\bfseries day} = 1
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_package_a1edf45dbc36448ef80af05d3b21140b9}\label{class_package_a1edf45dbc36448ef80af05d3b21140b9}} 
+static unsigned {\bfseries id} = 0
 \end{DoxyCompactItemize}
 
 
@@ -39,11 +56,11 @@ unsigned {\bfseries estimated\+Time} = 0
 \doxysubsubsection{\texorpdfstring{Package()}{Package()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Package\+::\+Package (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-An empty Constructor \mbox{\Hypertarget{class_package_a7734e8f6618dde3428b93581984a7b35}\label{class_package_a7734e8f6618dde3428b93581984a7b35}} 
+An empty Constructor \mbox{\Hypertarget{class_package_acd20161e8fdf7fd3cf8a312a28cb53e2}\label{class_package_acd20161e8fdf7fd3cf8a312a28cb53e2}} 
 \index{Package@{Package}!Package@{Package}}
 \index{Package@{Package}!Package@{Package}}
 \doxysubsubsection{\texorpdfstring{Package()}{Package()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Package\+::\+Package (\begin{DoxyParamCaption}\item[{unsigned}]{volume,  }\item[{unsigned}]{weight,  }\item[{unsigned}]{reward,  }\item[{unsigned}]{estimated\+Time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Package\+::\+Package (\begin{DoxyParamCaption}\item[{unsigned}]{volume,  }\item[{unsigned}]{weight,  }\item[{unsigned}]{reward,  }\item[{unsigned}]{estimated\+Time,  }\item[{unsigned}]{day }\end{DoxyParamCaption})}
 
 Constructor that stores the data after reading the database. 
 \begin{DoxyParams}{Parameters}
@@ -59,6 +76,15 @@ Constructor that stores the data after reading the database.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_package_ac1395bbc2207ebfec65e02cc2eed91a3}\label{class_package_ac1395bbc2207ebfec65e02cc2eed91a3}} 
+\index{Package@{Package}!getDay@{getDay}}
+\index{getDay@{getDay}!Package@{Package}}
+\doxysubsubsection{\texorpdfstring{getDay()}{getDay()}}
+{\footnotesize\ttfamily unsigned int Package\+::get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+int -\/ The default day that the package would be delivered; 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_package_ae5640a9d7f51e59bf0ffbac08bba84ab}\label{class_package_ae5640a9d7f51e59bf0ffbac08bba84ab}} 
 \index{Package@{Package}!getEstimatedTime@{getEstimatedTime}}
 \index{getEstimatedTime@{getEstimatedTime}!Package@{Package}}
@@ -99,5 +125,5 @@ unsigned -\/ weight of package
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Package.\+h\item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Package.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Package.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Package.\+cpp\end{DoxyCompactItemize}

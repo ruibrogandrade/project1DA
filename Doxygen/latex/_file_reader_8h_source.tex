@@ -1,0 +1,45 @@
+\hypertarget{_file_reader_8h_source}{}\doxysection{File\+Reader.\+h}
+\label{_file_reader_8h_source}\index{C:/Users/Rui/Documents/DA/urban-\/logistics/FileReader.h@{C:/Users/Rui/Documents/DA/urban-\/logistics/FileReader.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by drigo on 19/04/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef MAIN\_CPP\_FILEREADER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define MAIN\_CPP\_FILEREADER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Package.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Transport.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Optimizer.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_file_reader}{FileReader}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{private}:}
+\DoxyCodeLine{16     queue<vector<Package>> packagesDays;}
+\DoxyCodeLine{17     queue<vector<Transport>> transportsDays;}
+\DoxyCodeLine{18     vector<Package> packagesInFile;}
+\DoxyCodeLine{19     vector<Transport> transportsInFile;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{unsigned} day = 1;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_file_reader_a723b142a1a32a30c97752068c3900041}{readFiles}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_file_reader_a5292cff61640042f80a6d24b13dc89ed}{readPackages}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& filePath);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_file_reader_a3aea3dddafbac0393518cd03af1abc80}{readTransports}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string}\& filePath);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{49     \mbox{\hyperlink{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}{FileReader}}();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{56     \textcolor{keyword}{const} queue<vector<Package>> \&\mbox{\hyperlink{class_file_reader_a1d05fc60721be34dc2e0b762f8f243bb}{getPackagesDays}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{63     \textcolor{keyword}{const} queue<vector<Transport>> \&\mbox{\hyperlink{class_file_reader_a8c0aa600280e1e639ba1633203a3aa19}{getTransportsDays}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{64 \};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//MAIN\_CPP\_FILEREADER\_H}}
+
+\end{DoxyCode}

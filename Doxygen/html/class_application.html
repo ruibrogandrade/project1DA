@@ -64,7 +64,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_application-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Application Class Reference</div></div>
@@ -75,26 +76,41 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afa8cc05ce6b6092be5ecdfdae44e05f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#afa8cc05ce6b6092be5ecdfdae44e05f8">Application</a> ()</td></tr>
 <tr class="separator:afa8cc05ce6b6092be5ecdfdae44e05f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9d3ae39002cf92e2b316d652af5732e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#ac9d3ae39002cf92e2b316d652af5732e">readPackages</a> ()</td></tr>
-<tr class="separator:ac9d3ae39002cf92e2b316d652af5732e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a192c779af63c380ca358ea363024db69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#a192c779af63c380ca358ea363024db69">readTransports</a> ()</td></tr>
-<tr class="separator:a192c779af63c380ca358ea363024db69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e3772c36d462b9435dcad563e6dd15b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#a9e3772c36d462b9435dcad563e6dd15b">runApplication</a> ()</td></tr>
 <tr class="separator:a9e3772c36d462b9435dcad563e6dd15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab1b62903afde946bb47c8241efdd86d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#ab1b62903afde946bb47c8241efdd86d8">processTheDay</a> (unsigned optimizerType)</td></tr>
+<tr class="separator:ab1b62903afde946bb47c8241efdd86d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9386d40b9e59f56f8ba6234ca297b23a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#a9386d40b9e59f56f8ba6234ca297b23a">nextDay</a> ()</td></tr>
+<tr class="separator:a9386d40b9e59f56f8ba6234ca297b23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a9921fa52b6e0ada1b51f8eda5e69c55b"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_application.html#a9921fa52b6e0ada1b51f8eda5e69c55b">showMenu</a> ()</td></tr>
 <tr class="separator:a9921fa52b6e0ada1b51f8eda5e69c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:afb30ba26476977bf45e9c83bd0ef4f9b"><td class="memItemLeft" align="right" valign="top"><a id="afb30ba26476977bf45e9c83bd0ef4f9b" name="afb30ba26476977bf45e9c83bd0ef4f9b"></a>
-vector&lt; <a class="el" href="class_package.html">Package</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>allPackages</b></td></tr>
-<tr class="separator:afb30ba26476977bf45e9c83bd0ef4f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f3d51b5af13ee7b4cf47eaf7dd63a7c"><td class="memItemLeft" align="right" valign="top"><a id="a7f3d51b5af13ee7b4cf47eaf7dd63a7c" name="a7f3d51b5af13ee7b4cf47eaf7dd63a7c"></a>
-vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>allTransports</b></td></tr>
-<tr class="separator:a7f3d51b5af13ee7b4cf47eaf7dd63a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d4880cdbcc7f29a835d21492145d4d"><td class="memItemLeft" align="right" valign="top"><a id="a45d4880cdbcc7f29a835d21492145d4d" name="a45d4880cdbcc7f29a835d21492145d4d"></a>
+<a class="el" href="class_file_reader.html">FileReader</a>&#160;</td><td class="memItemRight" valign="bottom"><b>reader</b></td></tr>
+<tr class="separator:a45d4880cdbcc7f29a835d21492145d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af54ce432e34073bbdc986228fc14013d"><td class="memItemLeft" align="right" valign="top"><a id="af54ce432e34073bbdc986228fc14013d" name="af54ce432e34073bbdc986228fc14013d"></a>
+<a class="el" href="class_optimizer.html">Optimizer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>optimizer</b></td></tr>
+<tr class="separator:af54ce432e34073bbdc986228fc14013d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83bd36537c1bfd961b9c636024e8f3ce"><td class="memItemLeft" align="right" valign="top"><a id="a83bd36537c1bfd961b9c636024e8f3ce" name="a83bd36537c1bfd961b9c636024e8f3ce"></a>
+queue&lt; vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>packagesDays</b></td></tr>
+<tr class="separator:a83bd36537c1bfd961b9c636024e8f3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45f34316a72fb1a930e34d6d0f5372e0"><td class="memItemLeft" align="right" valign="top"><a id="a45f34316a72fb1a930e34d6d0f5372e0" name="a45f34316a72fb1a930e34d6d0f5372e0"></a>
+queue&lt; vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>copyPackagesDays</b></td></tr>
+<tr class="separator:a45f34316a72fb1a930e34d6d0f5372e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace49056f953839d25dd81ac8deecde91"><td class="memItemLeft" align="right" valign="top"><a id="ace49056f953839d25dd81ac8deecde91" name="ace49056f953839d25dd81ac8deecde91"></a>
+queue&lt; vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>transportsDays</b></td></tr>
+<tr class="separator:ace49056f953839d25dd81ac8deecde91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692096e2e5230cf6811f712bd7dbba43"><td class="memItemLeft" align="right" valign="top"><a id="a692096e2e5230cf6811f712bd7dbba43" name="a692096e2e5230cf6811f712bd7dbba43"></a>
+queue&lt; vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>copyTransportsDays</b></td></tr>
+<tr class="separator:a692096e2e5230cf6811f712bd7dbba43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afa8cc05ce6b6092be5ecdfdae44e05f8" name="afa8cc05ce6b6092be5ecdfdae44e05f8"></a>
@@ -102,6 +118,9 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Application::Application </td>
@@ -110,45 +129,73 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p >Reads the database that contain the transports and another that contain the packages. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac9d3ae39002cf92e2b316d652af5732e" name="ac9d3ae39002cf92e2b316d652af5732e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9d3ae39002cf92e2b316d652af5732e">&#9670;&nbsp;</a></span>readPackages()</h2>
+<a id="a9386d40b9e59f56f8ba6234ca297b23a" name="a9386d40b9e59f56f8ba6234ca297b23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9386d40b9e59f56f8ba6234ca297b23a">&#9670;&nbsp;</a></span>nextDay()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Application::readPackages </td>
+          <td class="memname">bool Application::nextDay </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p >Reads the packages database and stores the data in allPackages vector. </p>
+<p >Transfers the remaining packages that haven't been delivered from the last day to the next day. </p><dl class="section return"><dt>Returns</dt><dd>bool - If the user want to see the next day or not. </dd></dl>
 
 </div>
 </div>
-<a id="a192c779af63c380ca358ea363024db69" name="a192c779af63c380ca358ea363024db69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a192c779af63c380ca358ea363024db69">&#9670;&nbsp;</a></span>readTransports()</h2>
+<a id="ab1b62903afde946bb47c8241efdd86d8" name="ab1b62903afde946bb47c8241efdd86d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b62903afde946bb47c8241efdd86d8">&#9670;&nbsp;</a></span>processTheDay()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Application::readTransports </td>
+          <td class="memname">bool Application::processTheDay </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>optimizerType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p >Reads the transports database and stores the data in allTransports vector. </p>
+<p >Process the current day doing the chose optimization by calling the optimizer. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">optimizerType</td><td>- The type of the optimization chose by the user from the menu. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool - If the user want to see the next day or not. </dd></dl>
 
 </div>
 </div>
@@ -166,7 +213,7 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Where the application works. Here the menu is displayed and the specific optimizer and print are called. </p>
+<p >Where the application works. Here the menu is displayed and the processDay function is called. </p>
 
 </div>
 </div>
@@ -188,17 +235,17 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Displays the menu and return the chose option entered by the user. </p><dl class="section return"><dt>Returns</dt><dd>An option entered by the user (unsigned) </dd></dl>
+<p >Displays the main menu for the user choose the optimization that he want. </p><dl class="section return"><dt>Returns</dt><dd>unsigned - number of the optimization chose. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/<a class="el" href="_application_8h_source.html">Application.h</a></li>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/Application.cpp</li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/<a class="el" href="_application_8h_source.html">Application.h</a></li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/Application.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

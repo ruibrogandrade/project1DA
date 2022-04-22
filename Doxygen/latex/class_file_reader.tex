@@ -1,0 +1,108 @@
+\hypertarget{class_file_reader}{}\doxysection{File\+Reader Class Reference}
+\label{class_file_reader}\index{FileReader@{FileReader}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}{File\+Reader}} ()
+\item 
+const queue$<$ vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ $>$ \& \mbox{\hyperlink{class_file_reader_a1d05fc60721be34dc2e0b762f8f243bb}{get\+Packages\+Days}} () const
+\item 
+const queue$<$ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ $>$ \& \mbox{\hyperlink{class_file_reader_a8c0aa600280e1e639ba1633203a3aa19}{get\+Transports\+Days}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_file_reader_a723b142a1a32a30c97752068c3900041}{read\+Files}} ()
+\item 
+bool \mbox{\hyperlink{class_file_reader_a5292cff61640042f80a6d24b13dc89ed}{read\+Packages}} (const string \&file\+Path)
+\item 
+bool \mbox{\hyperlink{class_file_reader_a3aea3dddafbac0393518cd03af1abc80}{read\+Transports}} (const string \&file\+Path)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_file_reader_ac7b40926bb3d5d900d6ad3963382ed6d}\label{class_file_reader_ac7b40926bb3d5d900d6ad3963382ed6d}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ $>$ {\bfseries packages\+Days}
+\item 
+\mbox{\Hypertarget{class_file_reader_ad7761dae4520b77dd9a1dab3b5d26dbc}\label{class_file_reader_ad7761dae4520b77dd9a1dab3b5d26dbc}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ $>$ {\bfseries transports\+Days}
+\item 
+\mbox{\Hypertarget{class_file_reader_a5b59cee8a60d877fd92aabaf91f830ac}\label{class_file_reader_a5b59cee8a60d877fd92aabaf91f830ac}} 
+vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ {\bfseries packages\+In\+File}
+\item 
+\mbox{\Hypertarget{class_file_reader_a2467752769ca02ab2fbc6cfd7dd2bd5a}\label{class_file_reader_a2467752769ca02ab2fbc6cfd7dd2bd5a}} 
+vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries transports\+In\+File}
+\item 
+\mbox{\Hypertarget{class_file_reader_a68e3274e4f3254e780edd5527df7ac1f}\label{class_file_reader_a68e3274e4f3254e780edd5527df7ac1f}} 
+unsigned {\bfseries day} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}\label{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}} 
+\index{FileReader@{FileReader}!FileReader@{FileReader}}
+\index{FileReader@{FileReader}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{FileReader()}{FileReader()}}
+{\footnotesize\ttfamily File\+Reader\+::\+File\+Reader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calls the read\+Files function. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_file_reader_a1d05fc60721be34dc2e0b762f8f243bb}\label{class_file_reader_a1d05fc60721be34dc2e0b762f8f243bb}} 
+\index{FileReader@{FileReader}!getPackagesDays@{getPackagesDays}}
+\index{getPackagesDays@{getPackagesDays}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{getPackagesDays()}{getPackagesDays()}}
+{\footnotesize\ttfamily const queue$<$ vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ $>$ \& File\+Reader\+::get\+Packages\+Days (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+queue$<$vector$<$\+Package$>$$>$ -\/ Packages that will be processed day by day. Each vector into the queue corresponding to the packages of one day. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_a8c0aa600280e1e639ba1633203a3aa19}\label{class_file_reader_a8c0aa600280e1e639ba1633203a3aa19}} 
+\index{FileReader@{FileReader}!getTransportsDays@{getTransportsDays}}
+\index{getTransportsDays@{getTransportsDays}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{getTransportsDays()}{getTransportsDays()}}
+{\footnotesize\ttfamily const queue$<$ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ $>$ \& File\+Reader\+::get\+Transports\+Days (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+queue$<$vector$<$\+Transport$>$$>$ -\/ Transports that will be processed day by day. Each vector into the queue corresponding to the transports of one day. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_a723b142a1a32a30c97752068c3900041}\label{class_file_reader_a723b142a1a32a30c97752068c3900041}} 
+\index{FileReader@{FileReader}!readFiles@{readFiles}}
+\index{readFiles@{readFiles}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{readFiles()}{readFiles()}}
+{\footnotesize\ttfamily void File\+Reader\+::read\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Calls the read\+Packages and the read\+Transports functions and increment the package vectors\textquotesingle{} queue and the transport vectors\textquotesingle{} queue according to the number of days available. \mbox{\Hypertarget{class_file_reader_a5292cff61640042f80a6d24b13dc89ed}\label{class_file_reader_a5292cff61640042f80a6d24b13dc89ed}} 
+\index{FileReader@{FileReader}!readPackages@{readPackages}}
+\index{readPackages@{readPackages}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{readPackages()}{readPackages()}}
+{\footnotesize\ttfamily bool File\+Reader\+::read\+Packages (\begin{DoxyParamCaption}\item[{const string \&}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Reads the packages and stores them in the packages\+Inf\+File vector for one day. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & -\/ packages path for one day. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ If the file\+Path could be opened or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_a3aea3dddafbac0393518cd03af1abc80}\label{class_file_reader_a3aea3dddafbac0393518cd03af1abc80}} 
+\index{FileReader@{FileReader}!readTransports@{readTransports}}
+\index{readTransports@{readTransports}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{readTransports()}{readTransports()}}
+{\footnotesize\ttfamily bool File\+Reader\+::read\+Transports (\begin{DoxyParamCaption}\item[{const string \&}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Reads the transports and stores them in the transports\+Inf\+File vector for one day. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & -\/ transports path for one day. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ If the file\+Path could be opened or not. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/File\+Reader.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/File\+Reader.\+cpp\end{DoxyCompactItemize}

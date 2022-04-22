@@ -1,5 +1,5 @@
 \hypertarget{_package_8h_source}{}\doxysection{Package.\+h}
-\label{_package_8h_source}\index{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Package.h@{C:/Users/Rui/Documents/Projeto DA/urban-\/logistics/Package.h}}
+\label{_package_8h_source}\index{C:/Users/Rui/Documents/DA/urban-\/logistics/Package.h@{C:/Users/Rui/Documents/DA/urban-\/logistics/Package.h}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//}}
@@ -14,19 +14,30 @@
 \DoxyCodeLine{10 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{11 }
 \DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_package}{Package}} \{}
-\DoxyCodeLine{13 \textcolor{keyword}{private}:}
-\DoxyCodeLine{14     \textcolor{keywordtype}{unsigned} volume = 0, weight = 0;}
-\DoxyCodeLine{15     \textcolor{keywordtype}{unsigned} reward = 0, estimatedTime = 0;}
-\DoxyCodeLine{16 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{private}:}
+\DoxyCodeLine{15     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} id;}
+\DoxyCodeLine{16     \textcolor{keywordtype}{unsigned} packageId;}
 \DoxyCodeLine{17 \textcolor{keyword}{public}:}
-\DoxyCodeLine{21     \mbox{\hyperlink{class_package_a8fe0f40c9268b52bc10d0478df752610}{Package}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{29     \mbox{\hyperlink{class_package_a7734e8f6618dde3428b93581984a7b35}{Package}}(\textcolor{keywordtype}{unsigned} volume, \textcolor{keywordtype}{unsigned} weight, \textcolor{keywordtype}{unsigned} reward, \textcolor{keywordtype}{unsigned} estimatedTime);}
-\DoxyCodeLine{33     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_a33f63dfee7b5b3536444418121f4c49d}{getVolume}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{37     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_acc0cc1eb5bff7595b42e1c105fcfaa1f}{getWeight}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{41     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_a9483b99ae8fcdb8891f848cec5022cc2}{getReward}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{45     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_ae5640a9d7f51e59bf0ffbac08bba84ab}{getEstimatedTime}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{46 \};}
-\DoxyCodeLine{47 }
-\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//URBAN\_LOGISTICS\_PACKAGE\_H}}
+\DoxyCodeLine{18     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getPackageId() \textcolor{keyword}{const};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21     \textcolor{keywordtype}{unsigned} volume = 0, weight = 0;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{unsigned} reward = 0, estimatedTime = 0;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{unsigned} day = 1;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_package_a8fe0f40c9268b52bc10d0478df752610}{Package}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{37     \mbox{\hyperlink{class_package_acd20161e8fdf7fd3cf8a312a28cb53e2}{Package}}(\textcolor{keywordtype}{unsigned} volume, \textcolor{keywordtype}{unsigned} weight, \textcolor{keywordtype}{unsigned} reward, \textcolor{keywordtype}{unsigned} estimatedTime, \textcolor{keywordtype}{unsigned} day);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_a33f63dfee7b5b3536444418121f4c49d}{getVolume}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{45     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_acc0cc1eb5bff7595b42e1c105fcfaa1f}{getWeight}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{49     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_a9483b99ae8fcdb8891f848cec5022cc2}{getReward}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{53     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_package_ae5640a9d7f51e59bf0ffbac08bba84ab}{getEstimatedTime}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_package_ac1395bbc2207ebfec65e02cc2eed91a3}{getDay}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//URBAN\_LOGISTICS\_PACKAGE\_H}}
 
 \end{DoxyCode}

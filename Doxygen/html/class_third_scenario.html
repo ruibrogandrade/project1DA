@@ -72,8 +72,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a80321c60682aaee089353308464a562c"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_third_scenario.html#a80321c60682aaee089353308464a562c">execute</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports)</td></tr>
-<tr class="separator:a80321c60682aaee089353308464a562c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d434db40021d97500c0536c6e6400aa"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_third_scenario.html#a0d434db40021d97500c0536c6e6400aa">execute</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports, vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;nonDeliveredPackages)</td></tr>
+<tr class="separator:a0d434db40021d97500c0536c6e6400aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -171,8 +171,8 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a80321c60682aaee089353308464a562c" name="a80321c60682aaee089353308464a562c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80321c60682aaee089353308464a562c">&#9670;&nbsp;</a></span>execute()</h2>
+<a id="a0d434db40021d97500c0536c6e6400aa" name="a0d434db40021d97500c0536c6e6400aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d434db40021d97500c0536c6e6400aa">&#9670;&nbsp;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +187,13 @@ Static Private Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td>
-          <td class="paramname"><em>transports</em>&#160;</td>
+          <td class="paramname"><em>transports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>nonDeliveredPackages</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,16 +206,17 @@ Static Private Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">packages</td><td>- all packages stored from the database. </td></tr>
     <tr><td class="paramname">transports</td><td>- all transports stored from the database. </td></tr>
+    <tr><td class="paramname">nonDeliveredPackages</td><td>- stores the packages that could not been delivered in this scenario. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;Transport&gt; - used transports. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/<a class="el" href="_third_scenario_8h_source.html">ThirdScenario.h</a></li>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/ThirdScenario.cpp</li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/<a class="el" href="_third_scenario_8h_source.html">ThirdScenario.h</a></li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/ThirdScenario.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

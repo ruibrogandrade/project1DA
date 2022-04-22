@@ -5,13 +5,16 @@
 \item 
 \mbox{\hyperlink{class_application_afa8cc05ce6b6092be5ecdfdae44e05f8}{Application}} ()
 \item 
-void \mbox{\hyperlink{class_application_ac9d3ae39002cf92e2b316d652af5732e}{read\+Packages}} ()
-\item 
-void \mbox{\hyperlink{class_application_a192c779af63c380ca358ea363024db69}{read\+Transports}} ()
-\item 
 void \mbox{\hyperlink{class_application_a9e3772c36d462b9435dcad563e6dd15b}{run\+Application}} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_application_ab1b62903afde946bb47c8241efdd86d8}{process\+The\+Day}} (unsigned optimizer\+Type)
+\item 
+bool \mbox{\hyperlink{class_application_a9386d40b9e59f56f8ba6234ca297b23a}{next\+Day}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static unsigned \mbox{\hyperlink{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}{show\+Menu}} ()
@@ -19,11 +22,23 @@ static unsigned \mbox{\hyperlink{class_application_a9921fa52b6e0ada1b51f8eda5e69
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_application_afb30ba26476977bf45e9c83bd0ef4f9b}\label{class_application_afb30ba26476977bf45e9c83bd0ef4f9b}} 
-vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ {\bfseries all\+Packages}
+\mbox{\Hypertarget{class_application_a45d4880cdbcc7f29a835d21492145d4d}\label{class_application_a45d4880cdbcc7f29a835d21492145d4d}} 
+\mbox{\hyperlink{class_file_reader}{File\+Reader}} {\bfseries reader}
 \item 
-\mbox{\Hypertarget{class_application_a7f3d51b5af13ee7b4cf47eaf7dd63a7c}\label{class_application_a7f3d51b5af13ee7b4cf47eaf7dd63a7c}} 
-vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries all\+Transports}
+\mbox{\Hypertarget{class_application_af54ce432e34073bbdc986228fc14013d}\label{class_application_af54ce432e34073bbdc986228fc14013d}} 
+\mbox{\hyperlink{class_optimizer}{Optimizer}} {\bfseries optimizer}
+\item 
+\mbox{\Hypertarget{class_application_a83bd36537c1bfd961b9c636024e8f3ce}\label{class_application_a83bd36537c1bfd961b9c636024e8f3ce}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ $>$ {\bfseries packages\+Days}
+\item 
+\mbox{\Hypertarget{class_application_a45f34316a72fb1a930e34d6d0f5372e0}\label{class_application_a45f34316a72fb1a930e34d6d0f5372e0}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_package}{Package}} $>$ $>$ {\bfseries copy\+Packages\+Days}
+\item 
+\mbox{\Hypertarget{class_application_ace49056f953839d25dd81ac8deecde91}\label{class_application_ace49056f953839d25dd81ac8deecde91}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ $>$ {\bfseries transports\+Days}
+\item 
+\mbox{\Hypertarget{class_application_a692096e2e5230cf6811f712bd7dbba43}\label{class_application_a692096e2e5230cf6811f712bd7dbba43}} 
+queue$<$ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ $>$ {\bfseries copy\+Transports\+Days}
 \end{DoxyCompactItemize}
 
 
@@ -32,41 +47,52 @@ vector$<$ \mbox{\hyperlink{class_transport}{Transport}} $>$ {\bfseries all\+Tran
 \index{Application@{Application}!Application@{Application}}
 \index{Application@{Application}!Application@{Application}}
 \doxysubsubsection{\texorpdfstring{Application()}{Application()}}
-{\footnotesize\ttfamily Application\+::\+Application (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Application\+::\+Application (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 Reads the database that contain the transports and another that contain the packages. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_application_ac9d3ae39002cf92e2b316d652af5732e}\label{class_application_ac9d3ae39002cf92e2b316d652af5732e}} 
-\index{Application@{Application}!readPackages@{readPackages}}
-\index{readPackages@{readPackages}!Application@{Application}}
-\doxysubsubsection{\texorpdfstring{readPackages()}{readPackages()}}
-{\footnotesize\ttfamily void Application\+::read\+Packages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_application_a9386d40b9e59f56f8ba6234ca297b23a}\label{class_application_a9386d40b9e59f56f8ba6234ca297b23a}} 
+\index{Application@{Application}!nextDay@{nextDay}}
+\index{nextDay@{nextDay}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{nextDay()}{nextDay()}}
+{\footnotesize\ttfamily bool Application\+::next\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Reads the packages database and stores the data in all\+Packages vector. \mbox{\Hypertarget{class_application_a192c779af63c380ca358ea363024db69}\label{class_application_a192c779af63c380ca358ea363024db69}} 
-\index{Application@{Application}!readTransports@{readTransports}}
-\index{readTransports@{readTransports}!Application@{Application}}
-\doxysubsubsection{\texorpdfstring{readTransports()}{readTransports()}}
-{\footnotesize\ttfamily void Application\+::read\+Transports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+Transfers the remaining packages that haven\textquotesingle{}t been delivered from the last day to the next day. \begin{DoxyReturn}{Returns}
+bool -\/ If the user want to see the next day or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_ab1b62903afde946bb47c8241efdd86d8}\label{class_application_ab1b62903afde946bb47c8241efdd86d8}} 
+\index{Application@{Application}!processTheDay@{processTheDay}}
+\index{processTheDay@{processTheDay}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{processTheDay()}{processTheDay()}}
+{\footnotesize\ttfamily bool Application\+::process\+The\+Day (\begin{DoxyParamCaption}\item[{unsigned}]{optimizer\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Reads the transports database and stores the data in all\+Transports vector. \mbox{\Hypertarget{class_application_a9e3772c36d462b9435dcad563e6dd15b}\label{class_application_a9e3772c36d462b9435dcad563e6dd15b}} 
+Process the current day doing the chose optimization by calling the optimizer. 
+\begin{DoxyParams}{Parameters}
+{\em optimizer\+Type} & -\/ The type of the optimization chose by the user from the menu. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ If the user want to see the next day or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a9e3772c36d462b9435dcad563e6dd15b}\label{class_application_a9e3772c36d462b9435dcad563e6dd15b}} 
 \index{Application@{Application}!runApplication@{runApplication}}
 \index{runApplication@{runApplication}!Application@{Application}}
 \doxysubsubsection{\texorpdfstring{runApplication()}{runApplication()}}
 {\footnotesize\ttfamily void Application\+::run\+Application (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Where the application works. Here the menu is displayed and the specific optimizer and print are called. \mbox{\Hypertarget{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}\label{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}} 
+Where the application works. Here the menu is displayed and the process\+Day function is called. \mbox{\Hypertarget{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}\label{class_application_a9921fa52b6e0ada1b51f8eda5e69c55b}} 
 \index{Application@{Application}!showMenu@{showMenu}}
 \index{showMenu@{showMenu}!Application@{Application}}
 \doxysubsubsection{\texorpdfstring{showMenu()}{showMenu()}}
-{\footnotesize\ttfamily unsigned Application\+::show\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily unsigned Application\+::show\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
-Displays the menu and return the chose option entered by the user. \begin{DoxyReturn}{Returns}
-An option entered by the user (unsigned) 
+Displays the main menu for the user choose the optimization that he want. \begin{DoxyReturn}{Returns}
+unsigned -\/ number of the optimization chose. 
 \end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Application.\+h\item 
-C\+:/\+Users/\+Rui/\+Documents/\+Projeto DA/urban-\/logistics/Application.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Application.\+h\item 
+C\+:/\+Users/\+Rui/\+Documents/\+DA/urban-\/logistics/Application.\+cpp\end{DoxyCompactItemize}

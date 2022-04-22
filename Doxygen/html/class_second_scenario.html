@@ -77,10 +77,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abd6e016c402728ec0407134aad5b5021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cfba92e4d667120d9499706b2d6cd19"><td class="memItemLeft" align="right" valign="top">const vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_second_scenario.html#a9cfba92e4d667120d9499706b2d6cd19">getUsedTransports</a> () const</td></tr>
 <tr class="separator:a9cfba92e4d667120d9499706b2d6cd19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3840c435c5384c1b8c0bff2d73cfe94e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_second_scenario.html#a3840c435c5384c1b8c0bff2d73cfe94e">knapsackProfit</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports)</td></tr>
-<tr class="separator:a3840c435c5384c1b8c0bff2d73cfe94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa727edd5f7d2dc47e010194113ee7cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_second_scenario.html#aaa727edd5f7d2dc47e010194113ee7cc">greedyProfit</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports)</td></tr>
-<tr class="separator:aaa727edd5f7d2dc47e010194113ee7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531cf9958ad05c3635cdf738765e8606"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_second_scenario.html#a531cf9958ad05c3635cdf738765e8606">knapsackProfit</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports, vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;nonDeliveredPackages)</td></tr>
+<tr class="separator:a531cf9958ad05c3635cdf738765e8606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aed432b1f2a0f4fcf187c9d65d43685"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_second_scenario.html#a3aed432b1f2a0f4fcf187c9d65d43685">greedyProfit</a> (vector&lt; <a class="el" href="class_package.html">Package</a> &gt; packages, vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt; transports, vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;nonDeliveredPackages)</td></tr>
+<tr class="separator:a3aed432b1f2a0f4fcf187c9d65d43685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -225,8 +225,8 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
 
 </div>
 </div>
-<a id="aaa727edd5f7d2dc47e010194113ee7cc" name="aaa727edd5f7d2dc47e010194113ee7cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa727edd5f7d2dc47e010194113ee7cc">&#9670;&nbsp;</a></span>greedyProfit()</h2>
+<a id="a3aed432b1f2a0f4fcf187c9d65d43685" name="a3aed432b1f2a0f4fcf187c9d65d43685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aed432b1f2a0f4fcf187c9d65d43685">&#9670;&nbsp;</a></span>greedyProfit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +241,13 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td>
-          <td class="paramname"><em>transports</em>&#160;</td>
+          <td class="paramname"><em>transports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>nonDeliveredPackages</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -254,6 +260,7 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
   <table class="params">
     <tr><td class="paramname">packages</td><td>- all packages stored from the database. </td></tr>
     <tr><td class="paramname">transports</td><td>- all transports stored from the database. </td></tr>
+    <tr><td class="paramname">nonDeliveredPackages</td><td>- stores the packages that could not been delivered in this scenario. </td></tr>
   </table>
   </dd>
 </dl>
@@ -304,8 +311,8 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
 
 </div>
 </div>
-<a id="a3840c435c5384c1b8c0bff2d73cfe94e" name="a3840c435c5384c1b8c0bff2d73cfe94e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3840c435c5384c1b8c0bff2d73cfe94e">&#9670;&nbsp;</a></span>knapsackProfit()</h2>
+<a id="a531cf9958ad05c3635cdf738765e8606" name="a531cf9958ad05c3635cdf738765e8606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531cf9958ad05c3635cdf738765e8606">&#9670;&nbsp;</a></span>knapsackProfit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +327,13 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</td>
-          <td class="paramname"><em>transports</em>&#160;</td>
+          <td class="paramname"><em>transports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_package.html">Package</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>nonDeliveredPackages</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -340,8 +353,8 @@ vector&lt; <a class="el" href="class_transport.html">Transport</a> &gt;&#160;</t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/<a class="el" href="_second_scenario_8h_source.html">SecondScenario.h</a></li>
-<li>C:/Users/Rui/Documents/Projeto DA/urban-logistics/SecondScenario.cpp</li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/<a class="el" href="_second_scenario_8h_source.html">SecondScenario.h</a></li>
+<li>C:/Users/Rui/Documents/DA/urban-logistics/SecondScenario.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
