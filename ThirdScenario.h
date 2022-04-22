@@ -34,7 +34,8 @@ public:
      * how many express transports he wants to use, choosing the best candidates.
      * @param packages - all packages stored from the database.
      * @param transports - all transports stored from the database.
-     * @return
+     * @param nonDeliveredPackages - stores the packages that could not been delivered in this scenario.
+     * @return vector<Transport> - used transports.
      */
     vector<Transport> execute(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages);
 };

@@ -72,6 +72,7 @@ public:
      * but is much faster than the knapsack algorithm.
      * @param packages - all packages stored from the database.
      * @param transports - all transports stored from the database.
+     * @param nonDeliveredPackages - stores the packages that could not been delivered in this scenario.
      */
     void greedyProfit(vector<Package> packages, vector<Transport> transports, vector<Package> &nonDeliveredPackages);
 };

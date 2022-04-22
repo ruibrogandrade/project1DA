@@ -22,9 +22,23 @@ private:
     queue<vector<Transport>> transportsDays,copyTransportsDays;
 
 private:
+    /**
+     * Displays the main menu for the user choose the optimization that he want.
+     * @return unsigned - number of the optimization chose.
+     */
     static unsigned showMenu();
 
+    /**
+     * Process the current day doing the chose optimization by calling the optimizer.
+     * @param optimizerType - The type of the optimization chose by the user from the menu.
+     * @return bool - If the user want to see the next day or not.
+     */
     bool processTheDay(unsigned optimizerType);
+
+    /**
+     * Transfers the remaining packages that haven't been delivered from the last day to the next day.
+     * @return bool - If the user want to see the next day or not.
+     */
     bool nextDay();
 
 public:
@@ -34,7 +48,7 @@ public:
     Application();
 
     /**
-     * Where the application works. Here the menu is displayed and the specific optimizer and print are called.
+     * Where the application works. Here the menu is displayed and the processDay function is called.
      */
     void runApplication();
 };

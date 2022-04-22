@@ -52,6 +52,10 @@ public:
      */
     unsigned getEstimatedTime() const;
 
+    /**
+     *
+     * @return int - The default day that the package would be delivered;
+     */
     unsigned int getDay() const;
 
 };

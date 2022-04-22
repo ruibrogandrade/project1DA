@@ -34,6 +34,7 @@ public:
      * Executes the bin-packing first fit algorithm and returns the used transports.
      * @param packages - all packages stored from the database.
      * @param transports - all transports stored from the database.
+     * @param nonDeliveredPackages - stores the packages that could not been delivered in this scenario.
      * @return vector<Transport> - Transports that were used.
      */
     vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);

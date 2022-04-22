@@ -212,7 +212,7 @@ void Optimizer::showAvgTime() const {
 }
 
 
-void Optimizer::showUsedTransports(int totalProfit) const {
+void Optimizer::mainShow(int totalProfit) const {
 
     switch (optimizerType)
     {
@@ -272,9 +272,9 @@ void Optimizer::showChoseMode(unsigned choice, int totalProfitGot) const {
     switch (choice) {
         case USED_TRANSPORTS:
             if (totalProfitGot)
-                showUsedTransports(totalProfitGot);
+                mainShow(totalProfitGot);
 
-            else showUsedTransports();
+            else mainShow();
 
             break;
 

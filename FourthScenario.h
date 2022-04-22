@@ -35,6 +35,7 @@ public:
      * per transport.
      * @param packages - all packages that need be delivered.
      * @param transports - all available transports to deliver the packages.
+     * @param nonDeliveredPackages - stores the packages that could not been delivered in this scenario.
      * @return vector<Transport> - Transports that were used.
      */
     vector<Transport> execute(vector<Package> &packages, vector<Transport> &transports, vector<Package> &nonDeliveredPackages);

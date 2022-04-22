@@ -48,15 +48,41 @@ private:
      */
     void balancePackages();
     /**
-     * Shows the transports that were used
+     * Output the data selected by the user:
+     * either show the transports, show the delivered packages, or show non delivered packges
      */
-    void showUsedTransports(int totalProfit = 0) const;
+    void mainShow(int totalProfit = 0) const;
+    /**
+     * Shows the number of used transports, delivered packages, non delivered packages,
+     * and the efficiency.
+     */
     void showStatistics();
+    /**
+     * Shows the transports.
+     */
     void showTransports() const;
+    /**
+     * Shows the profit.
+     * @param totalProfit
+     */
     void showProfit(int totalProfit) const;
+    /**
+     * Shows the avarage time.
+     */
     void showAvgTime() const;
+    /**
+     * Shows the delivered packages.
+     */
     void showDeliveredPackages() const;
+    /**
+     * Shows the non delivered packages.
+     */
     void showNonDelivered() const;
+    /**
+     * Displays the choice made by the user.
+     * @param choice - The delivered packages, non delivered packages or used transports
+     * @param totalProfitGot
+     */
     void showChoseMode(unsigned choice, int totalProfitGot) const;
 
     /**
@@ -85,6 +111,10 @@ public:
      */
     void optimize();
 
+    /**
+     *
+     * @return vector<Package> - Non delivered packages.
+     */
     const vector<Package> &getNonDeliveredPackages() const;
 };
 
